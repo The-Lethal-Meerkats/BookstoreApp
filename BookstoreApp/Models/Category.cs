@@ -7,15 +7,13 @@ using System.Threading.Tasks;
 
 namespace BookstoreApp.Models
 {
-    public class Wishlist
+    public class Category
     {
         [Key]
-        public int Id { get; set; }
+        public int CategoryID { get; set; }
 
         [Required]
-        public virtual int UserID { get; set; }
+        public string CategoryName { get; set; }
 
-        [Required]
-        public int BookID { get; set; }
     }
 }
