@@ -16,6 +16,11 @@ namespace BookstoreApp.Data
         public IDbSet<Book> Books { get; set; }
         public IDbSet<Author> Authors { get; set; }
         public IDbSet<Category> Categories { get; set; }
+        public IDbSet<Order> Orders { get; set; }
+        public IDbSet<OrderStatus> OrderStatuses { get; set; }
+        public IDbSet<ShoppingCart> ShoppingCart { get; set; }
+        public IDbSet<ShoppingCartStatus> ShoppingCartStatuses { get; set; }
+        
 
         public void SaveChanges()
         {
