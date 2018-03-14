@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookstoreApp.Models
 {
@@ -29,8 +30,11 @@ namespace BookstoreApp.Models
         [Required]
         public string PhoneNumber { get; set; }
 
+        public int OrderStatusID { get; set; }
         [Required]
-        public virtual int OrderStatusId { get; set; }
+        [ForeignKey("OrderStatusID")]
+        public OrderStatus OrderStatus { get; set; }
+        
 
         public virtual ICollection<Book> Books { get; set; }   
     }

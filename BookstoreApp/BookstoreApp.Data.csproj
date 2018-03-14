@@ -65,6 +65,10 @@
     <Compile Include="Migrations\201803142038047_ChangesInPropertyNames.Designer.cs">
       <DependentUpon>201803142038047_ChangesInPropertyNames.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803142200498_Adding rest of foreign keys.cs" />
+    <Compile Include="Migrations\201803142200498_Adding rest of foreign keys.Designer.cs">
+      <DependentUpon>201803142200498_Adding rest of foreign keys.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Author.cs" />
@@ -93,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803142038047_ChangesInPropertyNames.resx">
       <DependentUpon>201803142038047_ChangesInPropertyNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803142200498_Adding rest of foreign keys.resx">
+      <DependentUpon>201803142200498_Adding rest of foreign keys.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

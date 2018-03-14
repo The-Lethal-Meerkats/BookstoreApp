@@ -10,7 +10,5 @@ namespace BookstoreApp.Models
 
         [Required]
         public string CategoryName { get; set; }
-
-        public virtual ICollection<Book> Books { get; set; }
     }
 }

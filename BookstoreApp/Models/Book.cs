@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookstoreApp.Models
 {
@@ -24,11 +25,16 @@ namespace BookstoreApp.Models
         [Required]
         public string BookName { get; set; }
 
+        public int AuthorID { get; set; }
         [Required]
-        public virtual int AuthorId { get; set; }
+        [ForeignKey("AuthorID")]
+        public Author Author { get; set; }
 
+        public  int CategoryID { get; set; }
         [Required]
-        public virtual int CategoryId { get; set; }
+        [ForeignKey("CategoryID")]
+        public Category Category { get; set; }
+        
 
         public virtual ICollection<ShoppingCart> InShoppingCarts { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookstoreApp.Models
 {
@@ -13,8 +14,11 @@ namespace BookstoreApp.Models
         [Key]
         public int Id { get; set; }
 
+        public int UserID { get; set; }
+
         [Required]
-        public virtual int UserId { get; set; }
+        [ForeignKey("UserID")]
+        public User User { get; set; }
 
         [Required]
         public virtual ICollection<Book> Books { get; set; }

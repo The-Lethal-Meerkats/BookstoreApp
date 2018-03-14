@@ -19,10 +19,9 @@ namespace BookstoreApp.Models
         [ForeignKey("UserId")]
         public User User { get; set; }
 
-        public int ShoppingCartStatusId { get; set; }
-
+        public int ShoppingCartStatusID { get; set; }
         [Required]
-        [ForeignKey("ShoppingCartStatusId")]
+        [ForeignKey("ShoppingCartStatusID")]
         public ShoppingCartStatus ShoppingCartStatus { get; set; }
 
         public virtual ICollection<Book> Books { get; set; }

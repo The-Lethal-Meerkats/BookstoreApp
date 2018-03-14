@@ -11,6 +11,7 @@ namespace BookstoreApp.Models
         [Required]
         public string AuthorName { get; set; }
 
-        public virtual ICollection<Book> Books { get; set; }
+
+
     }
 }
