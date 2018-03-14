@@ -52,6 +52,10 @@
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderStatus.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
+    <Compile Include="Models\ShoppingCartStatus.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Wishlist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
