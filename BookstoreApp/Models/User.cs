@@ -5,7 +5,7 @@ namespace BookstoreApp.Models
     public class User
     {
         [Key]
-        public int Id { get; set; }
+        public int UserId { get; set; }
 
         [Required]
         public string FirstName { get; set; }
@@ -22,6 +22,7 @@ namespace BookstoreApp.Models
         [Required]
         [StringLength(maximumLength: 50, MinimumLength = 6, ErrorMessage = "min 6, max 50 letters")]
         public string Password { get; set; }
-        
+
+       
     }
 }
