@@ -49,6 +49,15 @@
   <ItemGroup>
     <Compile Include="BookstoreContext.cs" />
     <Compile Include="IBookstoreContext.cs" />
+    <Compile Include="Migrations\201803141857071_Initial.cs" />
+    <Compile Include="Migrations\201803141857071_Initial.Designer.cs">
+      <DependentUpon>201803141857071_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803141907300_Changes to Book &amp; Author &amp; Category.cs" />
+    <Compile Include="Migrations\201803141907300_Changes to Book &amp; Author &amp; Category.Designer.cs">
+      <DependentUpon>201803141907300_Changes to Book &amp; Author &amp; Category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Category.cs" />
@@ -64,6 +73,13 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201803141857071_Initial.resx">
+      <DependentUpon>201803141857071_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803141907300_Changes to Book &amp; Author &amp; Category.resx">
+      <DependentUpon>201803141907300_Changes to Book &amp; Author &amp; Category.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

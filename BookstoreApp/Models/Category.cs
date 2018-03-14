@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookstoreApp.Models
 {
@@ -9,5 +10,7 @@ namespace BookstoreApp.Models
 
         [Required]
         public string CategoryName { get; set; }
+
+        public virtual ICollection<Book> books { get; set; }
     }
 }

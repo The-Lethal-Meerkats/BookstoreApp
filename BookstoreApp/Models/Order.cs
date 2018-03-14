@@ -38,5 +38,7 @@ namespace BookstoreApp.Models
         public virtual int OrderStatusID { get; set; }
 
         public virtual ICollection<Book> Books { get; set; }
+
+        
     }
 }
