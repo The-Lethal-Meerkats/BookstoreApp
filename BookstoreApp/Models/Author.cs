@@ -14,9 +14,5 @@ namespace BookstoreApp.Models
 
         [Required]
         public string AuthorName { get; set; }
-
-        
-
-
     }
 }
