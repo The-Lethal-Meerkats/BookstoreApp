@@ -57,6 +57,14 @@
     <Compile Include="Migrations\201803141907300_Changes to Book &amp; Author &amp; Category.Designer.cs">
       <DependentUpon>201803141907300_Changes to Book &amp; Author &amp; Category.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803142026572_AddedForeignKeyToShoppingCartStatusTable.cs" />
+    <Compile Include="Migrations\201803142026572_AddedForeignKeyToShoppingCartStatusTable.Designer.cs">
+      <DependentUpon>201803142026572_AddedForeignKeyToShoppingCartStatusTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803142038047_ChangesInPropertyNames.cs" />
+    <Compile Include="Migrations\201803142038047_ChangesInPropertyNames.Designer.cs">
+      <DependentUpon>201803142038047_ChangesInPropertyNames.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Author.cs" />
@@ -79,6 +87,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803141907300_Changes to Book &amp; Author &amp; Category.resx">
       <DependentUpon>201803141907300_Changes to Book &amp; Author &amp; Category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803142026572_AddedForeignKeyToShoppingCartStatusTable.resx">
+      <DependentUpon>201803142026572_AddedForeignKeyToShoppingCartStatusTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803142038047_ChangesInPropertyNames.resx">
+      <DependentUpon>201803142038047_ChangesInPropertyNames.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

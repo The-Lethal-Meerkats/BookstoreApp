@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BookstoreApp.Models
 {
     public class OrderStatus
     {
         [Key]
-        public int OrderStatusID { get; set; }
+        public int OrderStatusId { get; set; }
 
         [Required]
         public string OrderStatusDescription { get; set; }

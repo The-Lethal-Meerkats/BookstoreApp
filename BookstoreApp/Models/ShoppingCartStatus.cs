@@ -10,7 +10,7 @@ namespace BookstoreApp.Models
     public class ShoppingCartStatus
     {
         [Key]
-        public int ShoppingCartStatusID { get; set; }
+        public int ShoppingCartStatusId { get; set; }
 
         [Required]
         public string ShoppingCartStatusDescription { get; set; }

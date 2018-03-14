@@ -9,11 +9,12 @@ namespace BookstoreApp.Models
         {
             this.Books = new HashSet<Book>();
         }
+
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public virtual int UserID { get; set; }
+        public virtual int UserId { get; set; }
 
         [Required]
         public virtual ICollection<Book> Books { get; set; }

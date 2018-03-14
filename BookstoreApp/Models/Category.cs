@@ -6,11 +6,11 @@ namespace BookstoreApp.Models
     public class Category
     {
         [Key]
-        public int CategoryID { get; set; }
+        public int CategoryId { get; set; }
 
         [Required]
         public string CategoryName { get; set; }
 
-        public virtual ICollection<Book> books { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
     }
 }

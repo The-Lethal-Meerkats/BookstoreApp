@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookstoreApp.Models
 {
@@ -15,13 +12,18 @@ namespace BookstoreApp.Models
         }
 
         [Key]
-        public int ShoppingCartID { get; set; }
+        public int ShoppingCartId { get; set; }
+
+        public int UserId { get; set; }
+        [Required]
+        [ForeignKey("UserId")]
+        public User User { get; set; }
+
+        public int ShoppingCartStatusId { get; set; }
 
         [Required]
-        public virtual int UserID { get; set; }
-
-        [Required]
-        public virtual int ShoppingCartStatusID { get; set; }
+        [ForeignKey("ShoppingCartStatusId")]
+        public ShoppingCartStatus ShoppingCartStatus { get; set; }
 
         public virtual ICollection<Book> Books { get; set; }
     }

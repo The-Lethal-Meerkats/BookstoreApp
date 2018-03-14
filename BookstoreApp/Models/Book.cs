@@ -9,29 +9,30 @@ namespace BookstoreApp.Models
         {
             this.InShoppingCarts = new HashSet<ShoppingCart>();
             this.InWishlists = new HashSet<Wishlist>();
-            this.inOrders = new HashSet<Order>();
+            this.InOrders = new HashSet<Order>();
         }
+
         [Key]
-        public int BookID { get; set; }
+        public int BookId { get; set; }
 
         [Required]
-        public string ISBN { get; set; }
+        public string Isbn { get; set; }
 
         [Required]
-        public string ImageURL { get; set; }
+        public string ImageUrl { get; set; }
 
         [Required]
         public string BookName { get; set; }
 
         [Required]
-        public virtual int AuthorID { get; set; }
+        public virtual int AuthorId { get; set; }
 
         [Required]
-        public virtual int CategoryID { get; set; }
+        public virtual int CategoryId { get; set; }
 
         public virtual ICollection<ShoppingCart> InShoppingCarts { get; set; }
 
-        public virtual ICollection<Order> inOrders { get; set; }
+        public virtual ICollection<Order> InOrders { get; set; }
 
         public virtual ICollection<Wishlist> InWishlists { get; set; }
     }

@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookstoreApp.Models
 {
@@ -12,18 +8,17 @@ namespace BookstoreApp.Models
     {
         public Order()
         {
-                this.Books = new HashSet<Book>();
+            this.Books = new HashSet<Book>();
         }
 
-
         [Key]
-        public int OrderID { get; set; }
+        public int OrderId { get; set; }
 
         [Required]
-        public virtual int UserID { get; set; }
+        public virtual int UserId { get; set; }
 
         [Required]
-        public virtual int UserAddressID { get; set; }
+        public virtual int UserAddressId { get; set; }
 
         [Required]
         public  DateTime ReceivedOrderTime { get; set; }
@@ -35,10 +30,8 @@ namespace BookstoreApp.Models
         public string PhoneNumber { get; set; }
 
         [Required]
-        public virtual int OrderStatusID { get; set; }
+        public virtual int OrderStatusId { get; set; }
 
-        public virtual ICollection<Book> Books { get; set; }
-
-        
+        public virtual ICollection<Book> Books { get; set; }   
     }
 }
