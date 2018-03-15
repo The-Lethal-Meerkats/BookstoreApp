@@ -24,6 +24,16 @@ namespace BookstoreApp.Data
         public IDbSet<Country> Countries { get; set; }
         public IDbSet<City> Cities { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserAddress>()
+                .HasRequired(u => u.User)
+                .WithRequiredPrincipal()
+                .WillCascadeOnDelete(false);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public void SaveChanges()
         {
             throw new NotImplementedException();
