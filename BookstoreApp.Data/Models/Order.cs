@@ -24,7 +24,6 @@ namespace BookstoreApp.Models
         public int UserAddressId { get; set; }
 
         [Required]
-        [ForeignKey("UserAddressId")]
         public UserAddress UserAddress { get; set; }
 
         [Required]

@@ -55,7 +55,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BookstoreApp\BookstoreApp.Data.csproj">
+    <ProjectReference Include="..\BookstoreApp.Data\BookstoreApp.Data.csproj">
       <Project>{CC2B780C-8C53-4DA6-8C8E-907BE8260EB4}</Project>
       <Name>BookstoreApp.Data</Name>
     </ProjectReference>

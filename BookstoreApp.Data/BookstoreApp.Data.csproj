@@ -31,10 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -49,30 +49,6 @@
   <ItemGroup>
     <Compile Include="BookstoreContext.cs" />
     <Compile Include="IBookstoreContext.cs" />
-    <Compile Include="Migrations\201803141857071_Initial.cs" />
-    <Compile Include="Migrations\201803141857071_Initial.Designer.cs">
-      <DependentUpon>201803141857071_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803141907300_Changes to Book &amp; Author &amp; Category.cs" />
-    <Compile Include="Migrations\201803141907300_Changes to Book &amp; Author &amp; Category.Designer.cs">
-      <DependentUpon>201803141907300_Changes to Book &amp; Author &amp; Category.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803142026572_AddedForeignKeyToShoppingCartStatusTable.cs" />
-    <Compile Include="Migrations\201803142026572_AddedForeignKeyToShoppingCartStatusTable.Designer.cs">
-      <DependentUpon>201803142026572_AddedForeignKeyToShoppingCartStatusTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803142038047_ChangesInPropertyNames.cs" />
-    <Compile Include="Migrations\201803142038047_ChangesInPropertyNames.Designer.cs">
-      <DependentUpon>201803142038047_ChangesInPropertyNames.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803150542148_Added FK for the rest of the models.cs" />
-    <Compile Include="Migrations\201803150542148_Added FK for the rest of the models.Designer.cs">
-      <DependentUpon>201803150542148_Added FK for the rest of the models.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803151037063_AddingFK.cs" />
-    <Compile Include="Migrations\201803151037063_AddingFK.Designer.cs">
-      <DependentUpon>201803151037063_AddingFK.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Author.cs" />
@@ -91,26 +67,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803141857071_Initial.resx">
-      <DependentUpon>201803141857071_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803141907300_Changes to Book &amp; Author &amp; Category.resx">
-      <DependentUpon>201803141907300_Changes to Book &amp; Author &amp; Category.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803142026572_AddedForeignKeyToShoppingCartStatusTable.resx">
-      <DependentUpon>201803142026572_AddedForeignKeyToShoppingCartStatusTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803142038047_ChangesInPropertyNames.resx">
-      <DependentUpon>201803142038047_ChangesInPropertyNames.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803150542148_Added FK for the rest of the models.resx">
-      <DependentUpon>201803150542148_Added FK for the rest of the models.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803151037063_AddingFK.resx">
-      <DependentUpon>201803151037063_AddingFK.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
