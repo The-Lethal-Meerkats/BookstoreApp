@@ -7,13 +7,13 @@ namespace BookstoreApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Addingrestofforeignkeys : IMigrationMetadata
+    public sealed partial class AddedFKfortherestofthemodels : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Addingrestofforeignkeys));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedFKfortherestofthemodels));
         
         string IMigrationMetadata.Id
         {
-            get { return "201803142200498_Adding rest of foreign keys"; }
+            get { return "201803150542148_Added FK for the rest of the models"; }
         }
         
         string IMigrationMetadata.Source

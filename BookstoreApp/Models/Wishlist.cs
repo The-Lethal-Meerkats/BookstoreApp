@@ -14,10 +14,10 @@ namespace BookstoreApp.Models
         [Key]
         public int Id { get; set; }
 
-        public int UserID { get; set; }
+        public int UserId { get; set; }
 
         [Required]
-        [ForeignKey("UserID")]
+        [ForeignKey("UserId")]
         public User User { get; set; }
 
         [Required]

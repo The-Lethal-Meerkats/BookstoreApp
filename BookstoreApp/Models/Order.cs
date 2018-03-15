@@ -30,11 +30,11 @@ namespace BookstoreApp.Models
         [Required]
         public string PhoneNumber { get; set; }
 
-        public int OrderStatusID { get; set; }
+        public int OrderStatusId { get; set; }
+
         [Required]
-        [ForeignKey("OrderStatusID")]
-        public OrderStatus OrderStatus { get; set; }
-        
+        [ForeignKey("OrderStatusId")]
+        public OrderStatus OrderStatus { get; set; }       
 
         public virtual ICollection<Book> Books { get; set; }   
     }

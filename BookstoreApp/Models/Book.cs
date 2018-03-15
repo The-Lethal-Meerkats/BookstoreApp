@@ -25,14 +25,16 @@ namespace BookstoreApp.Models
         [Required]
         public string BookName { get; set; }
 
-        public int AuthorID { get; set; }
+        public int AuthorId { get; set; }
+
         [Required]
-        [ForeignKey("AuthorID")]
+        [ForeignKey("AuthorId")]
         public Author Author { get; set; }
 
-        public  int CategoryID { get; set; }
+        public  int CategoryId { get; set; }
+
         [Required]
-        [ForeignKey("CategoryID")]
+        [ForeignKey("CategoryId")]
         public Category Category { get; set; }
         
 
