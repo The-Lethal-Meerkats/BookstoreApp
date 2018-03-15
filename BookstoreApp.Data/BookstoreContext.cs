@@ -26,11 +26,6 @@ namespace BookstoreApp.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserAddress>()
-                .HasRequired(u => u.User)
-                .WithRequiredPrincipal()
-                .WillCascadeOnDelete(false);
-
             base.OnModelCreating(modelBuilder);
         }
 
