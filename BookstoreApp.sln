@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookstoreApp.Data", "BookstoreApp.Data.csproj", "{CC2B780C-8C53-4DA6-8C8E-907BE8260EB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookstoreApp.Data", "BookstoreApp.Data\BookstoreApp.Data.csproj", "{CC2B780C-8C53-4DA6-8C8E-907BE8260EB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookstoreApp.Client", "..\BookstoreApp.Client\BookstoreApp.Client.csproj", "{9186AB7C-48DF-4873-8961-DFF9F6EF1FE3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookstoreApp.Client", "BookstoreApp.Client\BookstoreApp.Client.csproj", "{9186AB7C-48DF-4873-8961-DFF9F6EF1FE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookstoreApp.Services", "..\BookstoreApp.Services\BookstoreApp.Services.csproj", "{86961D60-F652-472A-986E-B9CE14BFC801}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookstoreApp.Services", "BookstoreApp.Services\BookstoreApp.Services.csproj", "{86961D60-F652-472A-986E-B9CE14BFC801}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

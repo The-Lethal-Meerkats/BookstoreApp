@@ -286,3 +286,6 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+#Additional Project files to be ingnored
+bookstoreDbDesign.png
