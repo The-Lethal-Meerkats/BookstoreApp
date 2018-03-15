@@ -6,7 +6,7 @@ namespace BookstoreApp.Client
     {
         static void Main()
         {
-            var db = new BookstoreContext();
+            
         }
     }
 }
