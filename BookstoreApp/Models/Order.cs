@@ -15,14 +15,20 @@ namespace BookstoreApp.Models
         [Key]
         public int OrderId { get; set; }
 
-        [Required]
-        public virtual int UserId { get; set; }
+        public int UserId { get; set; }
 
         [Required]
-        public virtual int UserAddressId { get; set; }
+        [ForeignKey("UserId")]
+        public User User { get; set; }
+
+        public int UserAddressId { get; set; }
 
         [Required]
-        public  DateTime ReceivedOrderTime { get; set; }
+        [ForeignKey("UserAddressId")]
+        public UserAddress UserAddress { get; set; }
+
+        [Required]
+        public DateTime ReceivedOrderTime { get; set; }
 
         ///Optional
         public DateTime? OrderCompletedTime { get; set; }
@@ -30,11 +36,11 @@ namespace BookstoreApp.Models
         [Required]
         public string PhoneNumber { get; set; }
 
-        public int OrderStatusID { get; set; }
+        public int OrderStatusId { get; set; }
+
         [Required]
-        [ForeignKey("OrderStatusID")]
-        public OrderStatus OrderStatus { get; set; }
-        
+        [ForeignKey("OrderStatusId")]
+        public OrderStatus OrderStatus { get; set; }       
 
         public virtual ICollection<Book> Books { get; set; }   
     }

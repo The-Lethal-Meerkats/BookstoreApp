@@ -65,19 +65,22 @@
     <Compile Include="Migrations\201803142038047_ChangesInPropertyNames.Designer.cs">
       <DependentUpon>201803142038047_ChangesInPropertyNames.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803142200498_Adding rest of foreign keys.cs" />
-    <Compile Include="Migrations\201803142200498_Adding rest of foreign keys.Designer.cs">
-      <DependentUpon>201803142200498_Adding rest of foreign keys.cs</DependentUpon>
+    <Compile Include="Migrations\201803150542148_Added FK for the rest of the models.cs" />
+    <Compile Include="Migrations\201803150542148_Added FK for the rest of the models.Designer.cs">
+      <DependentUpon>201803150542148_Added FK for the rest of the models.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\ShoppingCartStatus.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserAddress.cs" />
     <Compile Include="Models\Wishlist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -98,8 +101,8 @@
     <EmbeddedResource Include="Migrations\201803142038047_ChangesInPropertyNames.resx">
       <DependentUpon>201803142038047_ChangesInPropertyNames.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803142200498_Adding rest of foreign keys.resx">
-      <DependentUpon>201803142200498_Adding rest of foreign keys.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803150542148_Added FK for the rest of the models.resx">
+      <DependentUpon>201803150542148_Added FK for the rest of the models.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
