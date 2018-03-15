@@ -4,7 +4,6 @@ namespace BookstoreApp.Models
 {
     public class Author
     {
-        [Key]
         public int AuthorId { get; set; }
 
         [Required]

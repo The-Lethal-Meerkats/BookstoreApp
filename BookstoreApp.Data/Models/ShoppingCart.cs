@@ -11,16 +11,11 @@ namespace BookstoreApp.Models
             this.Books = new HashSet<Book>();
         }
 
-        [Key]
         public int ShoppingCartId { get; set; }
 
-        public int UserId { get; set; }
-
         [Required]
-        [ForeignKey("UserId")]
-        public User User { get; set; }
-
-
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
 
         [InverseProperty("ShoppingCart")]
         public virtual ShoppingCartStatus ShoppingCartStatus { get; set; }

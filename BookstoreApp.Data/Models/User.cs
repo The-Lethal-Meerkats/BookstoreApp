@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BookstoreApp.Models
+﻿namespace BookstoreApp.Models
 {
     public class User
     {
@@ -15,7 +13,6 @@ namespace BookstoreApp.Models
         public string Username { get; set; }
 
         public string Password { get; set; }
-
 
         public int UserAddressId { get; set; }
         public virtual UserAddress UserAddress { get; set; }

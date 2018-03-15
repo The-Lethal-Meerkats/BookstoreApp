@@ -4,7 +4,6 @@ namespace BookstoreApp.Models
 {
     public class OrderStatus
     {
-        [Key]
         public int OrderStatusId { get; set; }
 
         [Required]

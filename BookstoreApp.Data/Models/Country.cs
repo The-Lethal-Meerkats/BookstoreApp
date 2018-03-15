@@ -4,7 +4,6 @@ namespace BookstoreApp.Models
 {
     public class Country
     {
-        [Key]
         public int CountryId { get; set; }
 
         [Required]

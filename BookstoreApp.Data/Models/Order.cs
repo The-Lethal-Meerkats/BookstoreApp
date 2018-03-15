@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookstoreApp.Models
 {
@@ -12,19 +11,15 @@ namespace BookstoreApp.Models
             this.Books = new HashSet<Book>();
         }
 
-        [Key]
-        public int OrderId { get; set; }
+        public int OrderId { get; set; }       
 
+        [Required]
         public int UserId { get; set; }
+        public virtual User User { get; set; }
 
         [Required]
-        [ForeignKey("UserId")]
-        public User User { get; set; }
-
         public int UserAddressId { get; set; }
-
-        [Required]
-        public UserAddress UserAddress { get; set; }
+        public virtual UserAddress UserAddress { get; set; }
 
         [Required]
         public DateTime ReceivedOrderTime { get; set; }
@@ -35,11 +30,9 @@ namespace BookstoreApp.Models
         [Required]
         public string PhoneNumber { get; set; }
 
-        public int OrderStatusId { get; set; }
-
         [Required]
-        [ForeignKey("OrderStatusId")]
-        public OrderStatus OrderStatus { get; set; }       
+        public int OrderStatusId { get; set; }
+        public virtual OrderStatus OrderStatus { get; set; }       
 
         public virtual ICollection<Book> Books { get; set; }   
     }
