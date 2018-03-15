@@ -9,7 +9,8 @@ namespace BookstoreApp.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(BookstoreApp.Data.BookstoreContext context)
