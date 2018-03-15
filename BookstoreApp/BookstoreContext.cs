@@ -20,7 +20,9 @@ namespace BookstoreApp.Data
         public IDbSet<OrderStatus> OrderStatuses { get; set; }
         public IDbSet<ShoppingCart> ShoppingCart { get; set; }
         public IDbSet<ShoppingCartStatus> ShoppingCartStatuses { get; set; }
-        
+        public IDbSet<UserAddress> UserAddresses { get; set; }
+        public IDbSet<Country> Countries { get; set; }
+        public IDbSet<City> Cities { get; set; }
 
         public void SaveChanges()
         {

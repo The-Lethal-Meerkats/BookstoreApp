@@ -15,14 +15,20 @@ namespace BookstoreApp.Models
         [Key]
         public int OrderId { get; set; }
 
-        [Required]
-        public virtual int UserId { get; set; }
+        public int UserId { get; set; }
 
         [Required]
-        public virtual int UserAddressId { get; set; }
+        [ForeignKey("UserId")]
+        public User User { get; set; }
+
+        public int UserAddressId { get; set; }
 
         [Required]
-        public  DateTime ReceivedOrderTime { get; set; }
+        [ForeignKey("UserAddressId")]
+        public UserAddress UserAddress { get; set; }
+
+        [Required]
+        public DateTime ReceivedOrderTime { get; set; }
 
         ///Optional
         public DateTime? OrderCompletedTime { get; set; }
