@@ -49,13 +49,10 @@
   <ItemGroup>
     <Compile Include="BookstoreContext.cs" />
     <Compile Include="IBookstoreContext.cs" />
-    <Compile Include="Migrations\201803160622311_initial.cs" />
-    <Compile Include="Migrations\201803160622311_initial.Designer.cs">
-      <DependentUpon>201803160622311_initial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Author.cs" />
+    <Compile Include="Models\BookImage.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
@@ -73,11 +70,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803160622311_initial.resx">
-      <DependentUpon>201803160622311_initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
