@@ -14,6 +14,7 @@ namespace BookstoreApp.Data
         IDbSet<Wishlist> Wishlists { get; set; }
 
         IDbSet<Book> Books { get; set; }
+        IDbSet<BookImage> BookImages { get; set; }
         IDbSet<Category> Categories { get; set; }
         IDbSet<Author> Authors { get; set; }
 
@@ -26,7 +27,7 @@ namespace BookstoreApp.Data
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
         DbEntityEntry Entry(object entity);
 
-        void SaveChanges();
+        int SaveChanges();
         void Dispose();
     }
 }
