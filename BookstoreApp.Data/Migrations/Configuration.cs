@@ -51,7 +51,7 @@ namespace BookstoreApp.Migrations
 
             using (StreamReader reader = new StreamReader(@"D:\Telerik Academy\TeamProjects\BookstoreApp\book30-listing-test.csv"))
             {
-                for (int i = 1; i <= 100; i++)
+                while (!reader.EndOfStream)
                 {
                     try
                     {
