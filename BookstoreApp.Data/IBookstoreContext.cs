@@ -1,5 +1,6 @@
 ﻿using BookstoreApp.Models;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace BookstoreApp.Data
 {
@@ -21,8 +22,11 @@ namespace BookstoreApp.Data
         
         IDbSet<ShoppingCart> ShoppingCarts { get; set; }
         IDbSet<ShoppingCartStatus> ShoppingCartStatuses { get; set; }
-        
+
+        DbSet<TEntity> Set<TEntity>() where TEntity : class;
+        DbEntityEntry Entry(object entity);
 
         void SaveChanges();
+        void Dispose();
     }
 }

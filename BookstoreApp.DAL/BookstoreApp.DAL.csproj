@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IUnitOfWork.cs" />
+    <Compile Include="Repository\Contracts\IReadOnlyRepository.cs" />
+    <Compile Include="Repository\Contracts\IRepository.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,5 +64,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

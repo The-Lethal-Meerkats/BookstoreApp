@@ -1,56 +1,57 @@
 ﻿using System;
 using BookstoreApp.Data;
 using BookstoreApp.DAL.Repository;
+using BookstoreApp.DAL.Repository.Contracts;
 using BookstoreApp.Models;
 
 namespace BookstoreApp.DAL
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IDisposable, IUnitOfWork
     {
-        private readonly BookstoreContext context = new BookstoreContext();
+        private readonly IBookstoreContext context = new BookstoreContext();
 
-        private readonly GenericRepository<User> userRepository;
+        private readonly IRepository<User> userRepository;
 
-        private readonly GenericRepository<UserAddress> userAddressRepository;
-        private readonly GenericRepository<City> cityRepository;
-        private readonly GenericRepository<Country> countryRepository;
+        private readonly IRepository<UserAddress> userAddressRepository;
+        private readonly IRepository<City> cityRepository;
+        private readonly IRepository<Country> countryRepository;
 
-        private readonly GenericRepository<Book> bookRepository;
-        private readonly GenericRepository<Author> authorRepository;
-        private readonly GenericRepository<Category> categoryRepository;
+        private readonly IRepository<Book> bookRepository;
+        private readonly IRepository<Author> authorRepository;
+        private readonly IRepository<Category> categoryRepository;
 
-        private readonly GenericRepository<Order> orderRepository;
-        private readonly GenericRepository<OrderStatus> orderStatusRepository;
+        private readonly IRepository<Order> orderRepository;
+        private readonly IReadOnlyRepository<OrderStatus> orderStatusRepository;
 
-        private readonly GenericRepository<Wishlist> wishlistRepository;
+        private readonly IRepository<Wishlist> wishlistRepository;
 
-        private readonly GenericRepository<ShoppingCart> shoppingCartRepository;
-        private readonly GenericRepository<ShoppingCartStatus> shoppingCartStatusRepository;
+        private readonly IRepository<ShoppingCart> shoppingCartRepository;
+        private readonly IReadOnlyRepository<ShoppingCartStatus> shoppingCartStatusRepository;
 
         private bool disposed = false;
 
-        public GenericRepository<User> UserRepository
+        public IRepository<User> UserRepository
         {
             get
             {
                 return this.userRepository ?? new GenericRepository<User>(context);
             }
         }
-        public GenericRepository<UserAddress> UserAddressRepository
+        public IRepository<UserAddress> UserAddressRepository
         {
             get
             {
                 return this.userAddressRepository ?? new GenericRepository<UserAddress>(context);
             }
         }
-        public GenericRepository<City> CityRepository
+        public IRepository<City> CityRepository
         {
             get
             {
                 return this.cityRepository ?? new GenericRepository<City>(context);
             }
         }
-        public GenericRepository<Country> CountryRepository
+        public IRepository<Country> CountryRepository
         {
             get
             {
@@ -58,35 +59,35 @@ namespace BookstoreApp.DAL
             }
         }
 
-        public GenericRepository<Book> BookRepository
+        public IRepository<Book> BookRepository
         {
             get
             {
                 return this.bookRepository ?? new GenericRepository<Book>(context);
             }
         }
-        public GenericRepository<Category> CategoryRepository
+        public IRepository<Category> CategoryRepository
         {
             get
             {
                 return this.categoryRepository ?? new GenericRepository<Category>(context);
             }
         }
-        public GenericRepository<Author> AuthorRepository
+        public IRepository<Author> AuthorRepository
         {
             get
             {
                 return this.authorRepository ?? new GenericRepository<Author>(context);
             }
         }
-        public GenericRepository<Order> OrderRepository
+        public IRepository<Order> OrderRepository
         {
             get
             {
                 return this.orderRepository ?? new GenericRepository<Order>(context);
             }
         }
-        public GenericRepository<OrderStatus> OrderStatusRepository
+        public IReadOnlyRepository<OrderStatus> OrderStatusRepository
         {
             get
             {
@@ -94,7 +95,7 @@ namespace BookstoreApp.DAL
             }
         }
 
-        public GenericRepository<Wishlist> WishlistRepository
+        public IRepository<Wishlist> WishlistRepository
         {
             get
             {
@@ -102,7 +103,7 @@ namespace BookstoreApp.DAL
             }
         }
 
-        public GenericRepository<ShoppingCart> ShoppingCartRepository
+        public IRepository<ShoppingCart> ShoppingCartRepository
         {
             get
             {
@@ -110,7 +111,7 @@ namespace BookstoreApp.DAL
             }
         }
 
-        public GenericRepository<ShoppingCartStatus> ShoppingCartStatusRepository
+        public IReadOnlyRepository<ShoppingCartStatus> ShoppingCartStatusRepository
         {
             get
             {

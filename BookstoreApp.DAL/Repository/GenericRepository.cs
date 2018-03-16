@@ -1,20 +1,24 @@
 ﻿using BookstoreApp.Data;
 using System.Data.Entity;
+using BookstoreApp.DAL.Repository.Contracts;
+using System.Linq;
 
 namespace BookstoreApp.DAL.Repository
 {
-    public class GenericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        internal BookstoreContext context;
+        internal IBookstoreContext context;
         internal DbSet<TEntity> dbSet;
 
-        public GenericRepository(BookstoreContext context)
+
+
+        public GenericRepository(IBookstoreContext context)
         {
             this.context = context;
             this.dbSet = context.Set<TEntity>();
         }
 
-        public virtual TEntity GetEntityById(object id)
+        public virtual TEntity GetById(object id)
         {
             return dbSet.Find(id);
         }
@@ -41,6 +45,14 @@ namespace BookstoreApp.DAL.Repository
 
             context.Entry(entityToUpdate)
                 .State = EntityState.Modified;
+        }
+
+        public IQueryable<TEntity> All
+        {
+            get
+            {
+                return this.dbSet;
+            }
         }
     }
 }
