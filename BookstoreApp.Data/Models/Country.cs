@@ -4,9 +4,8 @@ namespace BookstoreApp.Models
 {
     public class Country
     {
-        public int CountryId { get; set; }
+        public int Id { get; set; }
 
-        [Required]
         public string CountryName { get; set; }
     }
 }

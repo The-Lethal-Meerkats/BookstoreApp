@@ -11,26 +11,18 @@ namespace BookstoreApp.Models
             this.Books = new HashSet<Book>();
         }
 
-        public int OrderId { get; set; }       
+        public int Id { get; set; }       
 
-        [Required]
+        public DateTime ReceivedOrderTime { get; set; }
+
+        public DateTime? OrderCompletedTime { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+
         public int UserId { get; set; }
         public virtual User User { get; set; }
 
-        [Required]
-        public int UserAddressId { get; set; }
-        public virtual UserAddress UserAddress { get; set; }
-
-        [Required]
-        public DateTime ReceivedOrderTime { get; set; }
-
-        ///Optional
-        public DateTime? OrderCompletedTime { get; set; }
-
-        [Required]
-        public string PhoneNumber { get; set; }
-
-        [Required]
         public int OrderStatusId { get; set; }
         public virtual OrderStatus OrderStatus { get; set; }       
 

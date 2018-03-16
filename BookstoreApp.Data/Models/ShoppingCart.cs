@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookstoreApp.Models
 {
@@ -8,18 +6,18 @@ namespace BookstoreApp.Models
     {
         public ShoppingCart()
         {
-            this.Books = new HashSet<Book>();
+            this.Items = new HashSet<ShoppingCartItem>();
         }
 
-        public int ShoppingCartId { get; set; }
+        public int Id { get; set; }
 
-        [Required]
+
         public int UserId { get; set; }
         public virtual User User { get; set; }
 
-        [InverseProperty("ShoppingCart")]
+        public int ShoppingCartStatusId { get; set; }
         public virtual ShoppingCartStatus ShoppingCartStatus { get; set; }
 
-        public virtual ICollection<Book> Books { get; set; }
+        public virtual ICollection<ShoppingCartItem> Items { get; set; }
     }
 }

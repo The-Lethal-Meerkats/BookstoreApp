@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace BookstoreApp.Models
 {
@@ -7,7 +6,7 @@ namespace BookstoreApp.Models
     {
         public Wishlist()
         {
-            this.Books = new HashSet<Book>();
+            this.Items = new HashSet<WishlistItem>();
         }
 
         public int Id { get; set; }
@@ -15,7 +14,6 @@ namespace BookstoreApp.Models
         public int UserId { get; set; }
         public virtual User User { get; set; }
 
-        [Required]
-        public virtual ICollection<Book> Books { get; set; }
+        public virtual ICollection<WishlistItem> Items { get; set; }
     }
 }
