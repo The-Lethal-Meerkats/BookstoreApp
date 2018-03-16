@@ -6,7 +6,7 @@ namespace BookstoreApp.Models
     {
         public ShoppingCart()
         {
-            this.Items = new HashSet<ShoppingCartItem>();
+            this.Books = new HashSet<Book>();
         }
 
         public int Id { get; set; }
@@ -18,6 +18,6 @@ namespace BookstoreApp.Models
         public int ShoppingCartStatusId { get; set; }
         public virtual ShoppingCartStatus ShoppingCartStatus { get; set; }
 
-        public virtual ICollection<ShoppingCartItem> Items { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
     }
 }

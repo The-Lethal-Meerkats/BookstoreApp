@@ -17,8 +17,7 @@ namespace BookstoreApp.Data
         public IDbSet<City> Cities { get; set; }
 
         public IDbSet<Wishlist> Wishlists { get; set; }
-        public IDbSet<WishlistItem> WishlistItems { get; set; }
-
+        
         public IDbSet<Book> Books { get; set; }
         public IDbSet<Author> Authors { get; set; }
         public IDbSet<Category> Categories { get; set; }
@@ -27,7 +26,6 @@ namespace BookstoreApp.Data
         public IDbSet<OrderStatus> OrderStatuses { get; set; }
 
         public IDbSet<ShoppingCart> ShoppingCarts { get; set; }
-        public IDbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         public IDbSet<ShoppingCartStatus> ShoppingCartStatuses { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
