@@ -289,3 +289,5 @@ __pycache__/
 
 #Additional Project files to be ingnored
 bookstoreDbDesign.png
+book30-listing-test.csv
+ImportScript/
