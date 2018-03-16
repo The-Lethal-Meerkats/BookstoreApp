@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BookstoreApp.DAL.Repository;
-using BookstoreApp.DAL.Repository.Contracts;
+﻿using BookstoreApp.Data.Repository.Contracts;
 using BookstoreApp.Models;
 
-namespace BookstoreApp.DAL
+namespace BookstoreApp.Data.Contracts
 {
     public interface IUnitOfWork
     {

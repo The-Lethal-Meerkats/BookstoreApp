@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookstoreApp.DAL.Repository.Contracts
+namespace BookstoreApp.Data.Repository.Contracts
 {
     public interface IReadOnlyRepository<TEntity>
     {

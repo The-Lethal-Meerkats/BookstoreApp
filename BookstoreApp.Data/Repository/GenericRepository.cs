@@ -1,9 +1,9 @@
 ﻿using BookstoreApp.Data;
 using System.Data.Entity;
-using BookstoreApp.DAL.Repository.Contracts;
 using System.Linq;
+using BookstoreApp.Data.Repository.Contracts;
 
-namespace BookstoreApp.DAL.Repository
+namespace BookstoreApp.Data.Repository
 {
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {

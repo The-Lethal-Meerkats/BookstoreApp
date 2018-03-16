@@ -1,10 +1,10 @@
 ﻿using System;
-using BookstoreApp.Data;
-using BookstoreApp.DAL.Repository;
-using BookstoreApp.DAL.Repository.Contracts;
+using BookstoreApp.Data.Contracts;
+using BookstoreApp.Data.Repository;
+using BookstoreApp.Data.Repository.Contracts;
 using BookstoreApp.Models;
 
-namespace BookstoreApp.DAL
+namespace BookstoreApp.Data
 {
     public class UnitOfWork : IDisposable, IUnitOfWork
     {
