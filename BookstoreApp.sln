@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookstoreApp.Data", "BookstoreApp.Data\BookstoreApp.Data.csproj", "{CC2B780C-8C53-4DA6-8C8E-907BE8260EB4}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookstoreApp.Services", "BookstoreApp.Services\BookstoreApp.Services.csproj", "{86961D60-F652-472A-986E-B9CE14BFC801}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImportScript", "ImportScript\ImportScript.csproj", "{79867CBB-6F7E-4517-872D-347DA35B5A6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookstoreApp.DAL", "BookstoreApp.DAL\BookstoreApp.DAL.csproj", "{05668EFA-380C-4D83-B2FA-A6EFFF32435B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{79867CBB-6F7E-4517-872D-347DA35B5A6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79867CBB-6F7E-4517-872D-347DA35B5A6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79867CBB-6F7E-4517-872D-347DA35B5A6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05668EFA-380C-4D83-B2FA-A6EFFF32435B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05668EFA-380C-4D83-B2FA-A6EFFF32435B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05668EFA-380C-4D83-B2FA-A6EFFF32435B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05668EFA-380C-4D83-B2FA-A6EFFF32435B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
