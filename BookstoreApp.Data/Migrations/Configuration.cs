@@ -7,6 +7,7 @@ namespace BookstoreApp.Migrations
     using System.Data.Entity.Migrations;
     using System.IO;
     using System.Linq;
+    using System.Net.Http;
 
     internal sealed class Configuration : DbMigrationsConfiguration<BookstoreContext>
     {
@@ -20,7 +21,10 @@ namespace BookstoreApp.Migrations
         {
             try
             {
+                this.SeedBookCategories(context);
                 this.SeedBooks(context);
+
+                context.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -28,54 +32,62 @@ namespace BookstoreApp.Migrations
             }
         }
 
-        private void SeedBooks(BookstoreContext context)
+        private void SeedBookCategories(BookstoreContext context)
         {
-            var booksToSeed = ReadBooksFromFile();
-
-            foreach (var book in booksToSeed)
+            foreach (var item in BookCategories)
             {
-                context.Books.AddOrUpdate(b => b.Isbn, book);
-            }
+                var category = new Category()
+                {
+                    CategoryName = item
+                };
 
-            context.SaveChanges();
+                context.Categories.AddOrUpdate(c => c.CategoryName, category);
+            }
         }
 
-        private List<Book> ReadBooksFromFile()
+        private void SeedBooks(BookstoreContext context)
         {
-            List<Book> books = new List<Book>();
+            var client = new HttpClient();
 
-            using (StreamReader reader = new StreamReader(@"D:\Telelrik Academy\Team Projects\BookstoreApp\book30-listing-test.csv"))
+            using (StreamReader reader = new StreamReader(@"D:\Telerik Academy\TeamProjects\BookstoreApp\book30-listing-test.csv"))
             {
-                while (!reader.EndOfStream)
+                for (int i = 1; i <= 100; i++)
                 {
                     try
                     {
                         var line = reader.ReadLine().Split(',').ToArray();
-                        string author = line[4].Trim();
-                        string category = line[6].Trim();
+                        string author = line[3].Trim();
+                        string category = line[4].Trim();
                         string isbn = line[0];
-                        string bookName = line[3];
-                        string url = line[2];
+                        string bookName = line[2];
+                        string url = line[1];
+
+                        var image = client.GetByteArrayAsync(url).GetAwaiter().GetResult();
+
+                        var bookImageToAdd = new BookImage()
+                        {
+                            Image = image
+                        };
 
                         var authorToAdd = new Author()
                         {
                             AuthorName = author
                         };
 
-                        var categoryToAdd = new Category()
-                        {
-                            CategoryName = category
-                        };
+                        var categoryToAdd = context.Categories
+                            .Where(c => c.CategoryName.Equals(category))
+                            .First();
 
                         var bookToAdd = new Book()
                         {
                             BookName = bookName,
                             Isbn = isbn,
                             Author = authorToAdd,
-                            Category = categoryToAdd
+                            Category = categoryToAdd,
+                            BookImage = bookImageToAdd
                         };
 
-                        books.Add(bookToAdd);
+                        context.Books.AddOrUpdate(b => b.Isbn, bookToAdd);
                     }
                     catch (Exception ex)
                     {
@@ -83,8 +95,40 @@ namespace BookstoreApp.Migrations
                     }
                 }
             }
-
-            return books;
         }
+
+        public static List<string> BookCategories = new List<string>()
+        {
+            "Arts & Photography",
+            "Biographies & Memoirs",
+            "Business & Money",
+            "Calendars",
+            "Children's Books",
+            "Christian Books & Bibles",
+            "Travel",
+            "Test Preparation",
+            "Teen & Young Adult",
+            "Sports & Outdoors",
+            "Self-Help",
+            "Science Fiction & Fantasy",
+            "Science & Math",
+            "Romance",
+            "Religion & Spirituality",
+            "Reference",
+            "Politics & Social Sciences",
+            "Parenting & Relationships",
+            "Mystery & Thriller & Suspense",
+            "Medical Books",
+            "Literature & Fiction",
+            "Law",
+            "Humor & Entertainment",
+            "History",
+            "Health & Fitness & Dieting",
+            "Engineering & Transportation",
+            "Crafts & Hobbies & Home",
+            "Cookbooks & Food & Wine",
+            "Computers & Technology",
+            "Comics & Graphic Novels",
+        };
     }
 }

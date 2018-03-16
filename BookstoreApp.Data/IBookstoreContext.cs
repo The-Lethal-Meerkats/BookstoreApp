@@ -13,6 +13,7 @@ namespace BookstoreApp.Data
         IDbSet<Wishlist> Wishlists { get; set; }
 
         IDbSet<Book> Books { get; set; }
+        IDbSet<BookImage> BookImages { get; set; }
         IDbSet<Category> Categories { get; set; }
         IDbSet<Author> Authors { get; set; }
 
@@ -23,6 +24,6 @@ namespace BookstoreApp.Data
         IDbSet<ShoppingCartStatus> ShoppingCartStatuses { get; set; }
         
 
-        void SaveChanges();
+        int SaveChanges();
     }
 }

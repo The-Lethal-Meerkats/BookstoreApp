@@ -19,6 +19,8 @@ namespace BookstoreApp.Data
         public IDbSet<Wishlist> Wishlists { get; set; }
         
         public IDbSet<Book> Books { get; set; }
+        public IDbSet<BookImage> BookImages { get; set; }
+
         public IDbSet<Author> Authors { get; set; }
         public IDbSet<Category> Categories { get; set; }
 
@@ -36,9 +38,9 @@ namespace BookstoreApp.Data
             base.OnModelCreating(modelBuilder);
         }
 
-        public void SaveChanges()
+        public override int SaveChanges()
         {
-            throw new NotImplementedException();
+            return base.SaveChanges();
         }
     }
 }
