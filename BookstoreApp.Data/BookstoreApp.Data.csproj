@@ -53,6 +53,10 @@
     <Compile Include="Migrations\201803160622311_initial.Designer.cs">
       <DependentUpon>201803160622311_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803160924102_Many-to-ManyImplemented.cs" />
+    <Compile Include="Migrations\201803160924102_Many-to-ManyImplemented.Designer.cs">
+      <DependentUpon>201803160924102_Many-to-ManyImplemented.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Author.cs" />
@@ -62,12 +66,10 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
-    <Compile Include="Models\ShoppingCartItem.cs" />
     <Compile Include="Models\ShoppingCartStatus.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserAddress.cs" />
     <Compile Include="Models\Wishlist.cs" />
-    <Compile Include="Models\WishlistItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +79,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803160622311_initial.resx">
       <DependentUpon>201803160622311_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803160924102_Many-to-ManyImplemented.resx">
+      <DependentUpon>201803160924102_Many-to-ManyImplemented.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -11,7 +11,6 @@ namespace BookstoreApp.Data
         IDbSet<City> Cities { get; set; }
 
         IDbSet<Wishlist> Wishlists { get; set; }
-        IDbSet<WishlistItem> WishlistItems { get; set; }
 
         IDbSet<Book> Books { get; set; }
         IDbSet<Category> Categories { get; set; }
@@ -21,7 +20,6 @@ namespace BookstoreApp.Data
         IDbSet<OrderStatus> OrderStatuses { get; set; }
         
         IDbSet<ShoppingCart> ShoppingCarts { get; set; }
-        IDbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         IDbSet<ShoppingCartStatus> ShoppingCartStatuses { get; set; }
         
 

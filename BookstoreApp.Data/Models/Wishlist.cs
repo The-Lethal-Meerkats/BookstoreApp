@@ -6,7 +6,7 @@ namespace BookstoreApp.Models
     {
         public Wishlist()
         {
-            this.Items = new HashSet<WishlistItem>();
+            this.Books = new HashSet<Book>();
         }
 
         public int Id { get; set; }
@@ -14,6 +14,6 @@ namespace BookstoreApp.Models
         public int UserId { get; set; }
         public virtual User User { get; set; }
 
-        public virtual ICollection<WishlistItem> Items { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
     }
 }
