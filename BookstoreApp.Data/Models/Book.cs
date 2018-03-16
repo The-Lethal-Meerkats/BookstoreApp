@@ -15,8 +15,6 @@ namespace BookstoreApp.Models
 
         public string Isbn { get; set; }
 
-        public string ImageUrl { get; set; }
-
         public string BookName { get; set; }
 
         public int AuthorId { get; set; }
@@ -25,7 +23,7 @@ namespace BookstoreApp.Models
         public int CategoryId { get; set; }      
         public virtual Category Category { get; set; }
 
-        public int BookImageId { get; set; }
+        public int? BookImageId { get; set; }
         public virtual BookImage BookImage { get; set; }
 
         public virtual ICollection<ShoppingCart> InShoppingCarts { get; set; }
