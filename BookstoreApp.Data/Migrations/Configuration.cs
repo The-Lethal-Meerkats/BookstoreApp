@@ -49,7 +49,7 @@ namespace BookstoreApp.Migrations
         {
             var client = new HttpClient();
 
-            using (StreamReader reader = new StreamReader(@"D:\Telerik Academy\TeamProjects\BookstoreApp\book30-listing-test.csv"))
+            using (StreamReader reader = new StreamReader(@"D:\Coding\bookstore.csv"))
             {
                 while (!reader.EndOfStream)
                 {
