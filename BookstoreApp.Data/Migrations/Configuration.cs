@@ -80,7 +80,7 @@ namespace BookstoreApp.Migrations
 
                         var bookToAdd = new Book()
                         {
-                            BookName = bookName,
+                            Title = bookName,
                             Isbn = isbn,
                             Author = authorToAdd,
                             Category = categoryToAdd,

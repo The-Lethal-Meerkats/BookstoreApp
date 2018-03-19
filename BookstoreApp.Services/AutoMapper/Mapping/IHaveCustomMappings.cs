@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace BookstoreApp.Client.Mapping
+namespace BookstoreApp.Services.AutoMapper.Mapping
 {
     public interface IHaveCustomMappings
     {

@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using BookstoreApp.Client.Mapping;
+using BookstoreApp.Services.AutoMapper.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace BookstoreApp.Client
+namespace BookstoreApp.Services.AutoMapper
 {
     public static class AutomapperConfig
     {
