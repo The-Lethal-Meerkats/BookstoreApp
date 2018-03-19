@@ -23,6 +23,7 @@ namespace BookstoreApp.Client
             // FOR TESTING PURPOSES
             var books = unit.Books.All();
             Console.WriteLine(books.Count());
+
         }
     }
 }
