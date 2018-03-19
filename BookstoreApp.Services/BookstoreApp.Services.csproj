@@ -72,7 +72,6 @@
     <Compile Include="AutoMapper\AutomapperConfig.cs" />
     <Compile Include="AutoMapper\Mapping\IHaveCustomMappings.cs" />
     <Compile Include="AutoMapper\Mapping\IMapFrom.cs" />
-    <Compile Include="BookService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Implementation\ShoppingCartService.cs" />
     <Compile Include="ViewModels\AuthorModel.cs" />
