@@ -1,7 +1,10 @@
-﻿namespace BookstoreApp.Services.Contracts
+﻿using BookstoreApp.Models;
+using System.Collections.Generic;
+
+namespace BookstoreApp.Services.Contracts
 {
     public interface IOrderService
     {
-        int GetUserOrders(int userId);
+        IList<Order> GetUserOrders(int userId);
     }
 }

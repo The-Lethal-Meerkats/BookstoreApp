@@ -4,8 +4,6 @@ using BookstoreApp.Data.DI;
 using BookstoreApp.Services.AutoMapper;
 using System;
 using System.Linq;
-using System.Reflection;
-using BookstoreApp.Services.Implementation;
 
 namespace BookstoreApp.Client
 {
