@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using BookstoreApp.Data;
 using BookstoreApp.Services;
+using BookstoreApp.Services.Implementation;
 
 namespace BookstoreApp.Client
 {

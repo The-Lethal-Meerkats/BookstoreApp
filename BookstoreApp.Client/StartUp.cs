@@ -7,6 +7,7 @@ using BookstoreApp.Services.ViewModels;
 using System;
 using System.Linq;
 using System.Reflection;
+using BookstoreApp.Services.Implementation;
 
 namespace BookstoreApp.Client
 {

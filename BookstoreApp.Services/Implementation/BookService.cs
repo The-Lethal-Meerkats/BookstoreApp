@@ -3,7 +3,8 @@ using BookstoreApp.Data;
 using BookstoreApp.Services.ViewModels;
 using System.Collections.Generic;
 
-namespace BookstoreApp.Services
+namespace BookstoreApp.Services.Implementation
+
 {
     public class BookService
     {
