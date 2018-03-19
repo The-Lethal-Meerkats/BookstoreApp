@@ -10,23 +10,23 @@ namespace BookstoreApp.Data
     {
         private readonly IBookstoreContext bookstoreContext;
 
-        private readonly IRepository<User> userRepository;
+        private readonly IRepository<User> users;
 
-        private readonly IRepository<UserAddress> userAddressRepository;
-        private readonly IRepository<City> cityRepository;
-        private readonly IRepository<Country> countryRepository;
+        private readonly IRepository<UserAddress> userAddresses;
+        private readonly IRepository<City> cities;
+        private readonly IRepository<Country> countries;
 
-        private readonly IRepository<Book> bookRepository;
-        private readonly IRepository<Author> authorRepository;
-        private readonly IRepository<Category> categoryRepository;
+        private readonly IRepository<Book> books;
+        private readonly IRepository<Author> authors;
+        private readonly IRepository<Category> categories;
 
-        private readonly IRepository<Order> orderRepository;
-        private readonly IReadOnlyRepository<OrderStatus> orderStatusRepository;
+        private readonly IRepository<Order> orders;
+        private readonly IReadOnlyRepository<OrderStatus> orderStatuses;
 
-        private readonly IRepository<Wishlist> wishlistRepository;
+        private readonly IRepository<Wishlist> wishlists;
 
-        private readonly IRepository<ShoppingCart> shoppingCartRepository;
-        private readonly IReadOnlyRepository<ShoppingCartStatus> shoppingCartStatusRepository;
+        private readonly IRepository<ShoppingCart> shoppingCarts;
+        private readonly IReadOnlyRepository<ShoppingCartStatus> shoppingCartStatuses;
 
         private bool disposed = false;
 
@@ -36,99 +36,99 @@ namespace BookstoreApp.Data
             this.bookstoreContext = bookstoreContext;
         }
 
-        public IRepository<User> UserRepository
+        public IRepository<User> Users
         {
             get
             {
-                return this.userRepository ?? new GenericRepository<User>(bookstoreContext);
+                return this.users ?? new GenericRepository<User>(bookstoreContext);
             }
         }
 
-        public IRepository<UserAddress> UserAddressRepository
+        public IRepository<UserAddress> UserAddresses
         {
             get
             {
-                return this.userAddressRepository ?? new GenericRepository<UserAddress>(bookstoreContext);
+                return this.userAddresses ?? new GenericRepository<UserAddress>(bookstoreContext);
             }
         }
 
-        public IRepository<City> CityRepository
+        public IRepository<City> Cities
         {
             get
             {
-                return this.cityRepository ?? new GenericRepository<City>(bookstoreContext);
+                return this.cities ?? new GenericRepository<City>(bookstoreContext);
             }
         }
 
-        public IRepository<Country> CountryRepository
+        public IRepository<Country> Countries
         {
             get
             {
-                return this.countryRepository ?? new GenericRepository<Country>(bookstoreContext);
+                return this.countries ?? new GenericRepository<Country>(bookstoreContext);
             }
         }
 
-        public IRepository<Book> BookRepository
+        public IRepository<Book> Books
         {
             get
             {
-                return this.bookRepository ?? new GenericRepository<Book>(bookstoreContext);
+                return this.books ?? new GenericRepository<Book>(bookstoreContext);
             }
         }
 
-        public IRepository<Category> CategoryRepository
+        public IRepository<Category> Categories
         {
             get
             {
-                return this.categoryRepository ?? new GenericRepository<Category>(bookstoreContext);
+                return this.categories ?? new GenericRepository<Category>(bookstoreContext);
             }
         }
 
-        public IRepository<Author> AuthorRepository
+        public IRepository<Author> Authors
         {
             get
             {
-                return this.authorRepository ?? new GenericRepository<Author>(bookstoreContext);
+                return this.authors ?? new GenericRepository<Author>(bookstoreContext);
             }
         }
 
-        public IRepository<Order> OrderRepository
+        public IRepository<Order> Orders
         {
             get
             {
-                return this.orderRepository ?? new GenericRepository<Order>(bookstoreContext);
+                return this.orders ?? new GenericRepository<Order>(bookstoreContext);
             }
         }
 
-        public IReadOnlyRepository<OrderStatus> OrderStatusRepository
+        public IReadOnlyRepository<OrderStatus> OrderStatuses
         {
             get
             {
-                return this.orderStatusRepository ?? new GenericRepository<OrderStatus>(bookstoreContext);
+                return this.orderStatuses ?? new GenericRepository<OrderStatus>(bookstoreContext);
             }
         }
 
-        public IRepository<Wishlist> WishlistRepository
+        public IRepository<Wishlist> Wishlists
         {
             get
             {
-                return this.wishlistRepository ?? new GenericRepository<Wishlist>(bookstoreContext);
+                return this.wishlists ?? new GenericRepository<Wishlist>(bookstoreContext);
             }
         }
 
-        public IRepository<ShoppingCart> ShoppingCartRepository
+        public IRepository<ShoppingCart> ShoppingCarts
         {
             get
             {
-                return this.shoppingCartRepository ?? new GenericRepository<ShoppingCart>(bookstoreContext);
+                return this.shoppingCarts ?? new GenericRepository<ShoppingCart>(bookstoreContext);
             }
         }
 
-        public IReadOnlyRepository<ShoppingCartStatus> ShoppingCartStatusRepository
+        public IReadOnlyRepository<ShoppingCartStatus> ShoppingCartStatuses
         {
             get
             {
-                return this.shoppingCartStatusRepository ?? new GenericRepository<ShoppingCartStatus>(bookstoreContext);
+                return this.shoppingCartStatuses ?? new GenericRepository<ShoppingCartStatus>(bookstoreContext);
             }
         }
 

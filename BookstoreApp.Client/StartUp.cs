@@ -21,7 +21,7 @@ namespace BookstoreApp.Client
             var unit = container.Resolve<IUnitOfWork>();
 
             // FOR TESTING PURPOSES
-            var books = unit.BookRepository.All();
+            var books = unit.Books.All();
             Console.WriteLine(books.Count());
         }
     }

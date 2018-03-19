@@ -5,23 +5,23 @@ namespace BookstoreApp.Data.Contracts
 {
     public interface IUnitOfWork
     {
-        IRepository<User> UserRepository { get; }
+        IRepository<User> Users { get; }
 
-        IRepository<UserAddress> UserAddressRepository { get; }
-        IRepository<City> CityRepository { get; }
-        IRepository<Country> CountryRepository { get; }
+        IRepository<UserAddress> UserAddresses{ get; }
+        IRepository<City> Cities{ get; }
+        IRepository<Country> Countries { get; }
 
-        IRepository<Book> BookRepository { get; }
-        IRepository<Author> AuthorRepository { get; }
-        IRepository<Category> CategoryRepository { get; }
+        IRepository<Book> Books { get; }
+        IRepository<Author> Authors { get; }
+        IRepository<Category> Categories { get; }
 
-        IRepository<Order> OrderRepository { get; }
-        IReadOnlyRepository<OrderStatus> OrderStatusRepository { get; }
+        IRepository<Order> Orders { get; }
+        IReadOnlyRepository<OrderStatus> OrderStatuses { get; }
 
-        IRepository<Wishlist> WishlistRepository { get; }
+        IRepository<Wishlist> Wishlists { get; }
 
-        IRepository<ShoppingCart> ShoppingCartRepository { get; }
-        IReadOnlyRepository<ShoppingCartStatus> ShoppingCartStatusRepository { get; }
+        IRepository<ShoppingCart> ShoppingCarts { get; }
+        IReadOnlyRepository<ShoppingCartStatus> ShoppingCartStatuses { get; }
 
         int SaveChanges();
     }
