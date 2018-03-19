@@ -1,10 +1,11 @@
 ﻿using BookstoreApp.Models;
+using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
 namespace BookstoreApp.Data
 {
-    public interface IBookstoreContext
+    public interface IBookstoreContext : IDisposable
     {
         IDbSet<User> Users { get; set; }
         IDbSet<UserAddress> UserAddresses { get; set; }
@@ -24,10 +25,9 @@ namespace BookstoreApp.Data
         IDbSet<ShoppingCart> ShoppingCarts { get; set; }
         IDbSet<ShoppingCartStatus> ShoppingCartStatuses { get; set; }
 
-        DbSet<TEntity> Set<TEntity>() where TEntity : class;
-        DbEntityEntry Entry(object entity);
+        IDbSet<TEntity> Set<TEntity>() where TEntity : class;
+        DbEntityEntry<T> Entry<T>(T entity) where T : class;
 
         int SaveChanges();
-        void Dispose();
     }
 }

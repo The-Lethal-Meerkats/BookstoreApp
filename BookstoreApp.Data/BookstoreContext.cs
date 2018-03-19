@@ -37,9 +37,9 @@ namespace BookstoreApp.Data
             base.OnModelCreating(modelBuilder);
         }
 
-        public override int SaveChanges()
+        public new IDbSet<T> Set<T>() where T : class
         {
-            return base.SaveChanges();
+            return base.Set<T>();
         }
     }
 }

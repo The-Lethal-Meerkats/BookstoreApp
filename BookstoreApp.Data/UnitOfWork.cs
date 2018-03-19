@@ -6,7 +6,7 @@ using BookstoreApp.Models;
 
 namespace BookstoreApp.Data
 {
-    public class UnitOfWork : IDisposable, IUnitOfWork
+    public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly IBookstoreContext context = new BookstoreContext();
 
@@ -37,6 +37,7 @@ namespace BookstoreApp.Data
                 return this.userRepository ?? new GenericRepository<User>(context);
             }
         }
+
         public IRepository<UserAddress> UserAddressRepository
         {
             get
@@ -44,6 +45,7 @@ namespace BookstoreApp.Data
                 return this.userAddressRepository ?? new GenericRepository<UserAddress>(context);
             }
         }
+
         public IRepository<City> CityRepository
         {
             get
@@ -51,6 +53,7 @@ namespace BookstoreApp.Data
                 return this.cityRepository ?? new GenericRepository<City>(context);
             }
         }
+
         public IRepository<Country> CountryRepository
         {
             get
@@ -66,6 +69,7 @@ namespace BookstoreApp.Data
                 return this.bookRepository ?? new GenericRepository<Book>(context);
             }
         }
+
         public IRepository<Category> CategoryRepository
         {
             get
@@ -73,6 +77,7 @@ namespace BookstoreApp.Data
                 return this.categoryRepository ?? new GenericRepository<Category>(context);
             }
         }
+
         public IRepository<Author> AuthorRepository
         {
             get
@@ -80,6 +85,7 @@ namespace BookstoreApp.Data
                 return this.authorRepository ?? new GenericRepository<Author>(context);
             }
         }
+
         public IRepository<Order> OrderRepository
         {
             get
@@ -87,6 +93,7 @@ namespace BookstoreApp.Data
                 return this.orderRepository ?? new GenericRepository<Order>(context);
             }
         }
+
         public IReadOnlyRepository<OrderStatus> OrderStatusRepository
         {
             get
@@ -119,9 +126,9 @@ namespace BookstoreApp.Data
             }
         }
 
-        public void Save()
+        public int SaveChanges()
         {
-            context.SaveChanges();
+            return context.SaveChanges();
         }
 
         protected virtual void Dispose(bool disposing)
@@ -132,6 +139,7 @@ namespace BookstoreApp.Data
                 {
                     context.Dispose();
                 }
+
                 disposed = true;
             }
         }

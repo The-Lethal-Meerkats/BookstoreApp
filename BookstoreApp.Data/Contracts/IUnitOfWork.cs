@@ -22,5 +22,7 @@ namespace BookstoreApp.Data.Contracts
 
         IRepository<ShoppingCart> ShoppingCartRepository { get; }
         IReadOnlyRepository<ShoppingCartStatus> ShoppingCartStatusRepository { get; }
+
+        int SaveChanges();
     }
 }

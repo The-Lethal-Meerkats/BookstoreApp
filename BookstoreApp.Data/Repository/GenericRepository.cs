@@ -1,58 +1,63 @@
-﻿using BookstoreApp.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using BookstoreApp.Data.Repository.Contracts;
+using System;
 
 namespace BookstoreApp.Data.Repository
 {
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         internal IBookstoreContext context;
-        internal DbSet<TEntity> dbSet;
-
-
+        internal IDbSet<TEntity> dbSet;
 
         public GenericRepository(IBookstoreContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentException("An instance of IBookstoreContext is required to use this repository.", "context");
+            }
+
             this.context = context;
             this.dbSet = context.Set<TEntity>();
         }
 
+        public virtual IQueryable<TEntity> All()
+        {
+            return this.dbSet.AsQueryable();
+        }
+
         public virtual TEntity GetById(object id)
         {
-            return dbSet.Find(id);
+            return this.dbSet.Find(id);
         }
-        public virtual void Insert(TEntity entity)
+
+        public virtual void Add(TEntity entity)
         {
-            dbSet.Add(entity);
+            this.dbSet.Add(entity);
         }
-        public virtual void Delete(object id)
-        {
-            TEntity entityToDelete = dbSet.Find(id);
-            Delete(entityToDelete);
-        }
-        public virtual void Delete(TEntity entityToDelete)
-        {
-            if (context.Entry(entityToDelete).State == EntityState.Detached)
-            {
-                dbSet.Attach(entityToDelete);
-            }
-            dbSet.Remove(entityToDelete);
-        }
+
         public virtual void Update(TEntity entityToUpdate)
         {
-            dbSet.Attach(entityToUpdate);
+            this.dbSet.Attach(entityToUpdate);
 
             context.Entry(entityToUpdate)
                 .State = EntityState.Modified;
         }
 
-        public IQueryable<TEntity> All
+        public virtual void Delete(object id)
         {
-            get
+            TEntity entityToDelete = this.dbSet.Find(id);
+            Delete(entityToDelete);
+        }
+
+        public virtual void Delete(TEntity entityToDelete)
+        {
+            if (context.Entry(entityToDelete).State == EntityState.Detached)
             {
-                return this.dbSet;
+                this.dbSet.Attach(entityToDelete);
             }
+
+            this.dbSet.Remove(entityToDelete);
         }
     }
 }

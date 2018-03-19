@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace BookstoreApp.Data.Repository.Contracts
 {
     public interface IReadOnlyRepository<TEntity>
     {
-        IQueryable<TEntity> All { get; }
+        IQueryable<TEntity> All();
+
         TEntity GetById(object id);
     }
 }
