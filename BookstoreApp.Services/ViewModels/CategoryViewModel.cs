@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookstoreApp.Services.ViewModels
 {
-    public class CategoryModel
+    public class CategoryViewModel
     {
     }
 }
