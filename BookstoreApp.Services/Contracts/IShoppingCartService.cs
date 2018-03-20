@@ -12,6 +12,6 @@ namespace BookstoreApp.Services.Contracts
 
         IList<Book> ShowUserShoppingCart(int userId);
 
-        int PlaceOrderFromShoppingCart(int userId, OrderModel orderModel);
+        int PlaceOrderFromShoppingCart(int userId, OrderViewModel orderModel);
     }
 }

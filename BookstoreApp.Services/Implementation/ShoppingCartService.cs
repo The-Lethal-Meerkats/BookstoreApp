@@ -47,7 +47,7 @@ namespace BookstoreApp.Services.Implementation
             return this.unitOfWork.SaveChanges();
         }
 
-        public int PlaceOrderFromShoppingCart(int userId, OrderModel orderModel)
+        public int PlaceOrderFromShoppingCart(int userId, OrderViewModel orderModel)
         {
             var shoppingCart = this.unitOfWork.ShoppingCarts.GetById(userId);
 
