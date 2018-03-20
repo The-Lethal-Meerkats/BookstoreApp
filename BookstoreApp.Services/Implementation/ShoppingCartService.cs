@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BookstoreApp.Data;
-using BookstoreApp.Data.Contracts;
+﻿using BookstoreApp.Data.Contracts;
 using BookstoreApp.Models;
 using BookstoreApp.Services.Contracts;
 using BookstoreApp.Services.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BookstoreApp.Services.Implementation
 {
@@ -69,7 +66,7 @@ namespace BookstoreApp.Services.Implementation
 
             if (shoppingCart == null)
             {
-                throw new ArgumentException();
+                return null;
             }
 
             var shoppingCartBooks = shoppingCart.Books.AsQueryable().ToList();
