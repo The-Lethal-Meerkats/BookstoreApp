@@ -1,13 +1,13 @@
 ﻿namespace BookstoreApp.Data.Repository.Contracts
 {
-    public interface IRepository<TEntity> : IReadOnlyRepository<TEntity>
+    public interface IRepository<T> : IReadOnlyRepository<T>
     {
-        void Add(TEntity entity);
+        void Add(T entity);
 
-        void Delete(TEntity entity);
+        void Delete(T entity);
 
-        void Delete(object id);
+        void Delete(int id);
 
-        void Update(TEntity entity);
+        void Update(T entity);
     }
 }
