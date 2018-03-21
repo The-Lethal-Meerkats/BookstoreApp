@@ -5,9 +5,6 @@ using BookstoreApp.Data.Contracts;
 using BookstoreApp.Models;
 using BookstoreApp.Services.Contracts;
 using BookstoreApp.Services.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BookstoreApp.Services.Implementation
 {
