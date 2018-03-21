@@ -2,62 +2,82 @@
 using System.Linq;
 using BookstoreApp.Data.Repository.Contracts;
 using System;
+using System.Data.Entity.Infrastructure;
 
 namespace BookstoreApp.Data.Repository
 {
-    public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class GenericRepository<T> : IRepository<T> where T : class
     {
-        internal IBookstoreContext context;
-        internal IDbSet<TEntity> dbSet;
+        private IBookstoreContext context;
+        private IDbSet<T> dbSet;
 
         public GenericRepository(IBookstoreContext context)
         {
             if (context == null)
             {
-                throw new ArgumentException("An instance of IBookstoreContext is required to use this repository.", "context");
+                throw new ArgumentException("An instance of BookstoreContext is required to use this repository.", "context");
             }
 
             this.context = context;
-            this.dbSet = context.Set<TEntity>();
+            this.dbSet = context.Set<T>();
         }
 
-        public virtual IQueryable<TEntity> All()
+        public virtual IQueryable<T> All()
         {
             return this.dbSet.AsQueryable();
         }
 
-        public virtual TEntity GetById(object id)
+        public virtual T GetById(int id)
         {
             return this.dbSet.Find(id);
         }
 
-        public virtual void Add(TEntity entity)
+        public virtual void Add(T entity)
         {
-            this.dbSet.Add(entity);
-        }
-
-        public virtual void Update(TEntity entityToUpdate)
-        {
-            this.dbSet.Attach(entityToUpdate);
-
-            context.Entry(entityToUpdate)
-                .State = EntityState.Modified;
-        }
-
-        public virtual void Delete(object id)
-        {
-            TEntity entityToDelete = this.dbSet.Find(id);
-            Delete(entityToDelete);
-        }
-
-        public virtual void Delete(TEntity entityToDelete)
-        {
-            if (context.Entry(entityToDelete).State == EntityState.Detached)
+            DbEntityEntry entry = this.context.Entry(entity);
+            if (entry.State != EntityState.Detached)
             {
-                this.dbSet.Attach(entityToDelete);
+                entry.State = EntityState.Added;
+            }
+            else
+            {
+                this.dbSet.Add(entity);
+            }
+        }
+
+        public virtual void Update(T entity)
+        {
+            DbEntityEntry entry = this.context.Entry(entity);
+            if (entry.State == EntityState.Detached)
+            {
+                this.dbSet.Attach(entity);
             }
 
-            this.dbSet.Remove(entityToDelete);
+            entry.State = EntityState.Modified;
+        }
+
+        public virtual void Delete(T entity)
+        {
+            DbEntityEntry entry = this.context.Entry(entity);
+            if (entry.State != EntityState.Deleted)
+            {
+                entry.State = EntityState.Deleted;
+            }
+            else
+            {
+                this.dbSet.Attach(entity);
+                this.dbSet.Remove(entity);
+            }
+        }
+
+        public virtual void Delete(int id)
+        {
+            var entity = this.GetById(id);
+
+            if (entity != null)
+            {
+                this.Delete(entity);
+            }
         }
     }
 }
