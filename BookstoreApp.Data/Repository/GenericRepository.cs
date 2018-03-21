@@ -3,6 +3,8 @@ using System.Linq;
 using BookstoreApp.Data.Repository.Contracts;
 using System;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Migrations;
+using System.Linq.Expressions;
 
 namespace BookstoreApp.Data.Repository
 {
@@ -54,6 +56,11 @@ namespace BookstoreApp.Data.Repository
             }
 
             entry.State = EntityState.Modified;
+        }
+
+        public void AddOrUpdate(Expression<Func<T, object>> condition, T entity)
+        {
+            this.dbSet.AddOrUpdate(condition, entity);
         }
 
         public virtual void Delete(T entity)
