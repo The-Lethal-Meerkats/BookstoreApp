@@ -6,7 +6,7 @@ using BookstoreApp.Models;
 
 namespace BookstoreApp.Data
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         private IBookstoreContext bookstoreContext;
         private IRepository<User> users;
@@ -218,26 +218,6 @@ namespace BookstoreApp.Data
         public int SaveChanges()
         {
             return bookstoreContext.SaveChanges();
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposed)
-            {
-                if (disposing)
-                {
-                    bookstoreContext.Dispose();
-                }
-
-                disposed = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-
-            GC.SuppressFinalize(this);
         }
     }
 }
