@@ -1,5 +1,4 @@
-﻿using System;
-using BookstoreApp.Data.Contracts;
+﻿using BookstoreApp.Data.Contracts;
 using BookstoreApp.Data.Repository;
 using BookstoreApp.Data.Repository.Contracts;
 using BookstoreApp.Models;
@@ -21,8 +20,6 @@ namespace BookstoreApp.Data
         private IRepository<Wishlist> wishlists;
         private IRepository<ShoppingCart> shoppingCarts;
         private IReadOnlyRepository<ShoppingCartStatus> shoppingCartStatuses;
-
-        private bool disposed = false;
 
         public UnitOfWork(IBookstoreContext bookstoreContext)
         {
