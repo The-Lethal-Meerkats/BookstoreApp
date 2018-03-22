@@ -9,7 +9,6 @@ using BookstoreApp.Services.Contracts;
 using BookstoreApp.Services.ViewModels;
 
 namespace BookstoreApp.Services.Implementation
-
 {
     public class BookService: IBookService
     {

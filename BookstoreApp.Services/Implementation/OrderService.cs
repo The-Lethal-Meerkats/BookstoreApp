@@ -18,6 +18,8 @@ namespace BookstoreApp.Services.Implementation
 
         public IList<Order> GetUserOrders(int userId)
         {
+            var user = this.unitOfWork.Users.GetById(userId);
+
             var orders = this.unitOfWork.Orders.All().ToList();
 
             if(orders == null)
