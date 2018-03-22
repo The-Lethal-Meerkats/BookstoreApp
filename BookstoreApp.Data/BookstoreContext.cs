@@ -7,7 +7,7 @@ namespace BookstoreApp.Data
     public class BookstoreContext : DbContext, IBookstoreContext
     {
         public BookstoreContext() 
-            : base("BookStore")
+            : base("Bookstore")
         { }
 
         public IDbSet<User> Users { get; set; }

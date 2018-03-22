@@ -2,10 +2,10 @@
 
 namespace BookstoreApp.Data.Repository.Contracts
 {
-    public interface IReadOnlyRepository<TEntity>
+    public interface IReadOnlyRepository<T>
     {
-        IQueryable<TEntity> All();
+        IQueryable<T> All();
 
-        TEntity GetById(object id);
+        T GetById(int id);
     }
 }

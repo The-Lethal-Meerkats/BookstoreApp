@@ -1,46 +1,71 @@
-﻿using System;
-using BookstoreApp.Data.Contracts;
+﻿using BookstoreApp.Data.Contracts;
 using BookstoreApp.Data.Repository;
 using BookstoreApp.Data.Repository.Contracts;
 using BookstoreApp.Models;
 
 namespace BookstoreApp.Data
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
-        private readonly IBookstoreContext bookstoreContext;
-
-        private readonly IRepository<User> users;
-
-        private readonly IRepository<UserAddress> userAddresses;
-        private readonly IRepository<City> cities;
-        private readonly IRepository<Country> countries;
-
-        private readonly IRepository<Book> books;
-        private readonly IRepository<Author> authors;
-        private readonly IRepository<Category> categories;
-
-        private readonly IRepository<Order> orders;
-        private readonly IReadOnlyRepository<OrderStatus> orderStatuses;
-
-        private readonly IRepository<Wishlist> wishlists;
-
-        private readonly IRepository<ShoppingCart> shoppingCarts;
-        private readonly IReadOnlyRepository<ShoppingCartStatus> shoppingCartStatuses;
-
-        private bool disposed = false;
-
+        private IBookstoreContext bookstoreContext;
+        private IRepository<User> users;
+        private IRepository<UserAddress> userAddresses;
+        private IRepository<City> cities;
+        private IRepository<Country> countries;
+        private IRepository<Book> books;
+        private IRepository<Author> authors;
+        private IRepository<Category> categories;
+        private IRepository<Order> orders;
+        private IReadOnlyRepository<OrderStatus> orderStatuses;
+        private IRepository<Wishlist> wishlists;
+        private IRepository<ShoppingCart> shoppingCarts;
+        private IReadOnlyRepository<ShoppingCartStatus> shoppingCartStatuses;
 
         public UnitOfWork(IBookstoreContext bookstoreContext)
         {
             this.bookstoreContext = bookstoreContext;
         }
 
+        public UnitOfWork(
+            IBookstoreContext bookstoreContext, 
+            IRepository<User> users, 
+            IRepository<UserAddress> userAddresses,
+            IRepository<City> cities,
+            IRepository<Country> countries,
+            IRepository<Book> books,
+            IRepository<Author> authors,
+            IRepository<Category> categories,
+            IRepository<Order> orders,
+            IReadOnlyRepository<OrderStatus> orderStatuses,
+            IRepository<Wishlist> wishlists,
+            IRepository<ShoppingCart> shoppingCarts,
+            IReadOnlyRepository<ShoppingCartStatus> shoppingCartStatuses)
+        {
+            this.bookstoreContext = bookstoreContext;
+            this.users = users;
+            this.userAddresses = userAddresses;
+            this.cities = cities;
+            this.countries = countries;
+            this.books = books;
+            this.authors = authors;
+            this.categories = categories;
+            this.orders = orders;
+            this.orderStatuses = orderStatuses;
+            this.wishlists = wishlists;
+            this.shoppingCarts = shoppingCarts;
+            this.shoppingCartStatuses = shoppingCartStatuses;
+        }
+
         public IRepository<User> Users
         {
             get
             {
-                return this.users ?? new GenericRepository<User>(bookstoreContext);
+                if (this.users == null)
+                {
+                    this.users = new GenericRepository<User>(bookstoreContext);
+                }
+
+                return this.users;
             }
         }
 
@@ -48,7 +73,12 @@ namespace BookstoreApp.Data
         {
             get
             {
-                return this.userAddresses ?? new GenericRepository<UserAddress>(bookstoreContext);
+                if (this.userAddresses == null)
+                {
+                    this.userAddresses = new GenericRepository<UserAddress>(bookstoreContext);
+                }
+
+                return this.userAddresses;
             }
         }
 
@@ -56,7 +86,12 @@ namespace BookstoreApp.Data
         {
             get
             {
-                return this.cities ?? new GenericRepository<City>(bookstoreContext);
+                if (this.cities == null)
+                {
+                    this.cities = new GenericRepository<City>(bookstoreContext);
+                }
+
+                return this.cities;
             }
         }
 
@@ -64,7 +99,12 @@ namespace BookstoreApp.Data
         {
             get
             {
-                return this.countries ?? new GenericRepository<Country>(bookstoreContext);
+                if (this.countries == null)
+                {
+                    this.countries = new GenericRepository<Country>(bookstoreContext);
+                }
+
+                return this.countries;
             }
         }
 
@@ -72,7 +112,12 @@ namespace BookstoreApp.Data
         {
             get
             {
-                return this.books ?? new GenericRepository<Book>(bookstoreContext);
+                if (this.books == null)
+                {
+                    this.books = new GenericRepository<Book>(bookstoreContext);
+                }
+
+                return this.books;
             }
         }
 
@@ -80,7 +125,12 @@ namespace BookstoreApp.Data
         {
             get
             {
-                return this.categories ?? new GenericRepository<Category>(bookstoreContext);
+                if (this.categories == null)
+                {
+                    this.categories = new GenericRepository<Category>(bookstoreContext);
+                }
+
+                return this.categories;
             }
         }
 
@@ -88,7 +138,12 @@ namespace BookstoreApp.Data
         {
             get
             {
-                return this.authors ?? new GenericRepository<Author>(bookstoreContext);
+                if (this.authors == null)
+                {
+                    this.authors = new GenericRepository<Author>(bookstoreContext);
+                }
+
+                return this.authors;
             }
         }
 
@@ -96,7 +151,12 @@ namespace BookstoreApp.Data
         {
             get
             {
-                return this.orders ?? new GenericRepository<Order>(bookstoreContext);
+                if (this.orders == null)
+                {
+                    this.orders = new GenericRepository<Order>(bookstoreContext);
+                }
+
+                return this.orders;
             }
         }
 
@@ -104,7 +164,12 @@ namespace BookstoreApp.Data
         {
             get
             {
-                return this.orderStatuses ?? new GenericRepository<OrderStatus>(bookstoreContext);
+                if (this.orderStatuses == null)
+                {
+                    this.orderStatuses = new GenericRepository<OrderStatus>(bookstoreContext);
+                }
+
+                return this.orderStatuses;
             }
         }
 
@@ -112,7 +177,12 @@ namespace BookstoreApp.Data
         {
             get
             {
-                return this.wishlists ?? new GenericRepository<Wishlist>(bookstoreContext);
+                if (this.wishlists == null)
+                {
+                    this.wishlists = new GenericRepository<Wishlist>(bookstoreContext);
+                }
+
+                return this.wishlists;
             }
         }
 
@@ -120,7 +190,12 @@ namespace BookstoreApp.Data
         {
             get
             {
-                return this.shoppingCarts ?? new GenericRepository<ShoppingCart>(bookstoreContext);
+                if (this.shoppingCarts == null)
+                {
+                    this.shoppingCarts = new GenericRepository<ShoppingCart>(bookstoreContext);
+                }
+
+                return this.shoppingCarts;
             }
         }
 
@@ -128,33 +203,18 @@ namespace BookstoreApp.Data
         {
             get
             {
-                return this.shoppingCartStatuses ?? new GenericRepository<ShoppingCartStatus>(bookstoreContext);
+                if (this.shoppingCartStatuses == null)
+                {
+                    this.shoppingCartStatuses = new GenericRepository<ShoppingCartStatus>(bookstoreContext);
+                }
+
+                return this.shoppingCartStatuses;
             }
         }
 
         public int SaveChanges()
         {
             return bookstoreContext.SaveChanges();
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposed)
-            {
-                if (disposing)
-                {
-                    bookstoreContext.Dispose();
-                }
-
-                disposed = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-
-            GC.SuppressFinalize(this);
         }
     }
 }

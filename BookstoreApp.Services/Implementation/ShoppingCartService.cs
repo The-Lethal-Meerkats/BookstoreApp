@@ -1,10 +1,10 @@
-﻿using BookstoreApp.Data.Contracts;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using BookstoreApp.Data.Contracts;
 using BookstoreApp.Models;
 using BookstoreApp.Services.Contracts;
 using BookstoreApp.Services.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BookstoreApp.Services.Implementation
 {
@@ -44,7 +44,7 @@ namespace BookstoreApp.Services.Implementation
             return this.unitOfWork.SaveChanges();
         }
 
-        public int PlaceOrderFromShoppingCart(int userId, OrderModel orderModel)
+        public int PlaceOrderFromShoppingCart(int userId, OrderViewModel orderModel)
         {
             var shoppingCart = this.unitOfWork.ShoppingCarts.GetById(userId);
 

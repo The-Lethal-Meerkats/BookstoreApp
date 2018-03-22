@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using BookstoreApp.Data.Contracts;
 using BookstoreApp.Models;
 using BookstoreApp.Services.Contracts;
+using BookstoreApp.Services.ViewModels;
 
 namespace BookstoreApp.Services.Implementation
 
@@ -10,15 +14,22 @@ namespace BookstoreApp.Services.Implementation
     public class BookService: IBookService
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
 
-        public BookService(IUnitOfWork unitOfWork)
+        public BookService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
 
-        public IList<Book> GetAllBooks()
+        public List<BookViewModel> GetAllBooks()
         {
-            return this.unitOfWork.Books.All().ToList();
+            var storedBooks = this.unitOfWork.Books
+                .All()
+                .ProjectTo<BookViewModel>()
+                .ToList();
+
+            return storedBooks;
         }
 
         public IList<Book> GetBookByTitle(string title)
