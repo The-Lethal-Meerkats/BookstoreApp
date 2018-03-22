@@ -10,7 +10,7 @@ namespace BookstoreApp.Services.Contracts
 
         int DeleteBookFromShoppingCart(Book book, int userId);
 
-        IList<Book> ShowUserShoppingCart(int userId);
+        List<BookViewModel> ShowUserShoppingCart(int userId);
 
         int PlaceOrderFromShoppingCart(int userId, OrderViewModel orderModel);
     }

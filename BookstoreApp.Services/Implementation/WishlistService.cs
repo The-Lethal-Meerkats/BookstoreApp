@@ -1,6 +1,9 @@
-﻿using BookstoreApp.Data.Contracts;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using BookstoreApp.Data.Contracts;
 using BookstoreApp.Models;
 using BookstoreApp.Services.Contracts;
+using BookstoreApp.Services.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,32 +12,42 @@ namespace BookstoreApp.Services.Implementation
     public class WishlistService : IWishlistService
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
 
-        public WishlistService(IUnitOfWork unitOfWork)
+        public WishlistService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
 
 
-        public int AddBookToWishlist(int bookId, int userId)
+        public int AddBookToWishlist(Book book, int userId)
         {
-            var wishlist = this.unitOfWork.Wishlists.GetById(userId);
-            var book = this.unitOfWork.Books.GetById(bookId);
+            var wishlist = this.unitOfWork
+              .Wishlists
+              .All()
+              .Where(w => w.UserId == userId)
+              .FirstOrDefault();
 
             if (wishlist == null)
             {
-                return -1;
+                wishlist = new Wishlist()
+                {
+                    UserId = userId
+                };
             }
 
             wishlist.Books.Add(book);
-
             return this.unitOfWork.SaveChanges();
         }
 
-        public int DeleteBookFromWishlist(int bookId, int userId)
+        public int DeleteBookFromWishlist(Book book, int userId)
         {
-            var wishlist = this.unitOfWork.Wishlists.GetById(userId);
-            var book = this.unitOfWork.Books.GetById(bookId);
+            var wishlist = this.unitOfWork
+              .Wishlists
+              .All()
+              .Where(w => w.UserId == userId)
+              .FirstOrDefault();
 
             if (wishlist == null)
             {
@@ -42,22 +55,27 @@ namespace BookstoreApp.Services.Implementation
             }
 
             wishlist.Books.Remove(book);
-
             return this.unitOfWork.SaveChanges();
         }
 
-        public ICollection<Book> GetUserWishlistBooks(int userId)
+        public List<BookViewModel> GetUserWishlistBooks(int userId)
         {
-            var wishlist = this.unitOfWork.Wishlists.GetById(userId);
+            var wishlist = this.unitOfWork.Wishlists
+               .All()
+               .Where(w => w.UserId == userId)
+               .FirstOrDefault();
 
-            if(wishlist == null)
+            if (wishlist == null)
             {
                 return null;
             }
 
-            var wishlistUser = wishlist.Books.AsQueryable().ToList();
+            var model = wishlist.Books
+                .AsQueryable()
+                .ProjectTo<BookViewModel>()
+                .ToList();
 
-            return wishlistUser;
+            return model;
         }
     }
 }

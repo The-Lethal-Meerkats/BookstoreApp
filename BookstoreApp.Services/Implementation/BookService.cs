@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using BookstoreApp.Data.Contracts;
-using BookstoreApp.Models;
 using BookstoreApp.Services.Contracts;
 using BookstoreApp.Services.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BookstoreApp.Services.Implementation
-
 {
     public class BookService: IBookService
     {
@@ -22,6 +19,7 @@ namespace BookstoreApp.Services.Implementation
             this.mapper = mapper;
         }
 
+
         public List<BookViewModel> GetAllBooks()
         {
             var storedBooks = this.unitOfWork.Books
@@ -32,30 +30,37 @@ namespace BookstoreApp.Services.Implementation
             return storedBooks;
         }
 
-        public IList<Book> GetBookByTitle(string title)
+        public List<BookViewModel> GetBookByTitle(string title)
         {
-            var bookList = this.unitOfWork.Books.All().ToList();
-            return bookList.Where(x => x.Title.ToLower().Contains(title.ToLower())).ToList();
+            var bookList = this.unitOfWork.Books
+                .All()
+                .Where(t => t.Title.ToLower().Contains(title.ToLower()))
+                .ProjectTo<BookViewModel>()
+                .ToList();
+
+            return bookList;
         }
 
-        public IList<Book> GetBooksByAuthor(string authorName)
+        public List<BookViewModel> GetBooksByAuthor(string authorName)
         {
-            var authorListIds = new List<int>();
+            var bookList = this.unitOfWork.Books
+                .All()
+                .Where(a => a.Author.AuthorName.ToLower().Contains(authorName.ToLower()))
+                .ProjectTo<BookViewModel>()
+                .ToList();
 
-            foreach (var author in this.unitOfWork.Authors.All())
-            {
-                if(author.AuthorName.ToLower() == authorName.ToLower())
-                {
-                    authorListIds.Add(author.Id);
-                }
-            }
-
-            return this.unitOfWork.Books.All().ToList().Where(x => authorListIds.Contains(x.AuthorId)).ToList();
+            return bookList;
         }
 
-        public IList<Book> GetBooksByCategoryId(int id)
+        public List<BookViewModel> GetBooksByCategoryId(int id)
         {
-            return this.unitOfWork.Books.All().ToList().Where(x => x.CategoryId == id).ToList();
+            var bookList = this.unitOfWork.Books
+                .All()
+                .Where(cat => cat.CategoryId == id)
+                .ProjectTo<BookViewModel>()
+                .ToList();
+
+            return bookList;
         }
     }
 }

@@ -20,5 +20,26 @@ namespace BookstoreApp.Client.Controllers
 
             return books;
         }
+
+        public List<BookViewModel> GetBookByTitle(string title)
+        {
+            var books = this.bookService.GetBookByTitle(title);
+
+            return books;
+        }
+
+        public List<BookViewModel> GetBooksByAuthor(string authorName)
+        {
+            var books = this.bookService.GetBooksByAuthor(authorName);
+
+            return books;
+        }
+
+        public List<BookViewModel> GetBooksByCategoryId(int id)
+        {
+            var books = this.bookService.GetBooksByCategoryId(id);
+
+            return books;
+        }
     }
 }

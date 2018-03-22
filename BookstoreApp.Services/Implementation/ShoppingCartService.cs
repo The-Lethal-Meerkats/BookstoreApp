@@ -1,30 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using BookstoreApp.Data.Contracts;
 using BookstoreApp.Models;
 using BookstoreApp.Services.Contracts;
 using BookstoreApp.Services.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BookstoreApp.Services.Implementation
 {
     public class ShoppingCartService : IShoppingCartService
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
 
-        public ShoppingCartService(IUnitOfWork unitOfWork)
+        public ShoppingCartService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
+
 
         public int AddBookToShoppingCart(Book book, int userId)
         {
-
-            var shoppingCart = this.unitOfWork.ShoppingCarts.GetById(userId);
+            var shoppingCart = this.unitOfWork.ShoppingCarts
+              .All()
+              .Where(sc => sc.UserId == userId)
+              .FirstOrDefault();
 
             if (shoppingCart == null)
             {
-                return -1;
+                shoppingCart = new ShoppingCart()
+                {
+                    UserId = userId
+                };
             }
 
             shoppingCart.Books.Add(book);
@@ -33,7 +43,11 @@ namespace BookstoreApp.Services.Implementation
 
         public int DeleteBookFromShoppingCart(Book book, int userId)
         {
-            var shoppingCart = this.unitOfWork.ShoppingCarts.GetById(userId);
+            var shoppingCart = this.unitOfWork
+              .ShoppingCarts
+              .All()
+              .Where(sc => sc.UserId == userId)
+              .FirstOrDefault();
 
             if (shoppingCart == null)
             {
@@ -60,18 +74,19 @@ namespace BookstoreApp.Services.Implementation
             throw new NotImplementedException();
         }
 
-        public IList<Book> ShowUserShoppingCart(int userId)
+        public List<BookViewModel> ShowUserShoppingCart(int userId)
         {
-            var shoppingCart = this.unitOfWork.ShoppingCarts.GetById(userId);
+            var shoppingCart = this.unitOfWork.ShoppingCarts
+                .All()
+                .Where(sc => sc.UserId == userId)
+                .FirstOrDefault();
 
-            if (shoppingCart == null)
-            {
-                return null;
-            }
+            var model = shoppingCart.Books
+                .AsQueryable()
+                .ProjectTo<BookViewModel>()
+                .ToList();
 
-            var shoppingCartBooks = shoppingCart.Books.AsQueryable().ToList();
-
-            return shoppingCartBooks;
+            return model;
         }
     }
 }

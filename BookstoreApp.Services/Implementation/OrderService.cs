@@ -21,19 +21,22 @@ namespace BookstoreApp.Services.Implementation
 
         public List<OrderViewModel> GetUserOrders(int userId)
         {
-            var user = this.unitOfWork.Users.GetById(userId);
-
             var orders = this.unitOfWork.Orders
                 .All()
-                .ProjectTo<OrderViewModel>()
+                .Where(or => or.UserId == userId)
                 .ToList();
 
-            if(orders == null)
+            if (orders == null)
             {
                 return null;
             }
 
-            return orders.Where(x => x.Username == user.Username).ToList();
+            var model = orders
+               .AsQueryable()
+               .ProjectTo<OrderViewModel>()
+               .ToList();
+
+            return model;
         }
     }
 }

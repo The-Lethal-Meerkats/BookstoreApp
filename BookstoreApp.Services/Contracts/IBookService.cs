@@ -1,7 +1,5 @@
-﻿using BookstoreApp.Models;
-using BookstoreApp.Services.ViewModels;
+﻿using BookstoreApp.Services.ViewModels;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BookstoreApp.Services.Contracts
 {
@@ -9,10 +7,10 @@ namespace BookstoreApp.Services.Contracts
     {
         List<BookViewModel> GetAllBooks();
 
-        IList<Book> GetBookByTitle(string title);
+        List<BookViewModel> GetBookByTitle(string title);
 
-        IList<Book> GetBooksByAuthor(string authorName);
+        List<BookViewModel> GetBooksByAuthor(string authorName);
 
-        IList<Book> GetBooksByCategoryId(int id);
+        List<BookViewModel> GetBooksByCategoryId(int id);
     }
 }
