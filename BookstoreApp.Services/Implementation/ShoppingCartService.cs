@@ -90,6 +90,17 @@ namespace BookstoreApp.Services.Implementation
                 return -1;
             }
 
+            string deliveryAddress = this.BuildAddress(shoppingCart.User.UserAddress);
+
+            var orderToPlace = new Order()
+            {
+                Books = shoppingCart.Books,
+                DeliveryAddress = deliveryAddress,
+                OrderStatusId = 1,
+                PhoneNumber = ""
+            };
+
+            throw new NotImplementedException();
         }
 
         public List<BookViewModel> ShowUserShoppingCart(int userId)
@@ -121,11 +132,18 @@ namespace BookstoreApp.Services.Implementation
             return user;
         }
 
-        private string BuildAddress(UserAddress address)
+        private string BuildAddress(UserAddress userAddress)
         {
-            string addressToBuild = JsonConvert.SerializeObject(address);
+            var addressToBuild = new
+            {
+                Street = userAddress.Street,
+                City = userAddress.City.CityName,
+                Country = userAddress.City.Country.CountryName
+            };
 
-            return addressToBuild;
+            string address = JsonConvert.SerializeObject(addressToBuild);
+
+            return address;
         }
     }
 }
