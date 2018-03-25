@@ -31,10 +31,9 @@ namespace BookstoreApp.Services.Implementation
             return storedBooks;
         }
 
-        public IList<Book> GetBookByTitle(string title)
+        public List<BookViewModel> GetBooksByTitle(string title)
         {
-            var bookList = this.unitOfWork.Books.All().ToList();
-            return bookList.Where(x => x.Title.ToLower().Contains(title.ToLower())).ToList();
+            throw new NotImplementedException();
         }
 
         public IList<Book> GetBooksByAuthor(string authorName)

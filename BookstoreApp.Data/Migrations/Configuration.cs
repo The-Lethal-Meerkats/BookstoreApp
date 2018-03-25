@@ -4,6 +4,7 @@ namespace BookstoreApp.Migrations
     using BookstoreApp.Models;
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.IO;
     using System.Linq;
@@ -21,14 +22,14 @@ namespace BookstoreApp.Migrations
         {
             try
             {
+                this.SeedUsers(context);
                 this.SeedBookCategories(context);
                 this.SeedBooks(context);
-
-                context.SaveChanges();
+                this.SeedOrders(context);
             }
             catch (Exception ex)
             {
-
+                throw ex;
             }
         }
 
@@ -43,14 +44,16 @@ namespace BookstoreApp.Migrations
 
                 context.Categories.AddOrUpdate(c => c.CategoryName, category);
             }
+
+            context.SaveChanges();
         }
 
         private void SeedBooks(BookstoreContext context)
         {
-            var client = new HttpClient();
-
             using (StreamReader reader = new StreamReader(@"D:\Telerik Academy\TeamProjects\BookstoreApp\bookstore.csv"))
             {
+                var client = new HttpClient();
+
                 while (!reader.EndOfStream)
                 {
                     try
@@ -91,10 +94,108 @@ namespace BookstoreApp.Migrations
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine(ex.Message);
+                        throw ex;
                     }
                 }
             }
+
+            context.SaveChanges();
+        }
+
+        private void SeedUsers(BookstoreContext context)
+        {
+            #region Users
+            var country = new Country()
+            {
+                CountryName = "Bulgaria"
+            };
+
+            var city = new City()
+            {
+                CityName = "Sofia",
+                Country = country
+            };
+
+            var userAddress = new UserAddress()
+            {
+                City = city,
+                Street = "asdasd"
+            };
+
+            var userSofi = new User()
+            {
+                FirstName = "Sofia",
+                LastName = "Kiryakova",
+                Email = "sf@kiryakova.me",
+                Password = "NeSiPomnqParolata",
+                UserAddress = userAddress,
+                Username = "sofilofi"
+            };
+
+            var userMe = new User()
+            {
+                FirstName = "Ivan",
+                LastName = "Gargov",
+                Email = "me@me",
+                Password = "112312",
+                UserAddress = userAddress,
+                Username = "vanchopancho"
+            };
+
+            var userNick = new User()
+            {
+                FirstName = "Nikolay",
+                LastName = "Nikolov",
+                Email = "you@you",
+                Password = "345dsfswe425",
+                UserAddress = userAddress,
+                Username = "nickpick"
+            };
+            #endregion
+
+            //context.Users.AddOrUpdate(u => u.Username, userSofi);
+            //context.Users.AddOrUpdate(u => u.Username, userMe);
+            //context.Users.AddOrUpdate(u => u.Username, userNick);
+            context.Users.Add(userSofi);
+            context.Users.Add(userMe);
+            context.Users.Add(userNick);
+
+            context.SaveChanges();
+        }
+
+        private void SeedOrders(BookstoreContext context)
+        {
+            var statusInProgress = new OrderStatus()
+            {
+                OrderStatusDescription = "InProgress"
+            };
+
+            var rand = new Random();
+            var entries = context.ChangeTracker.Entries<User>();
+
+            foreach (var entry in entries)
+            {
+                var books = context.Books
+                .Include(b => b.InOrders)
+                .OrderBy(b => b.Id)
+                .Skip(rand.Next(1, 100))
+                .Take(3)
+                .ToList();
+
+                var order = new Order()
+                {
+                    Books = books,
+                    OrderCompletedTime = DateTime.Now,
+                    ReceivedOrderTime = DateTime.Now,
+                    PhoneNumber = "1234567",
+                    User = entry.Entity,
+                    OrderStatus = statusInProgress
+                };
+
+                context.Orders.Add(order);
+            }
+
+            context.SaveChanges();
         }
 
         public static List<string> BookCategories = new List<string>()
