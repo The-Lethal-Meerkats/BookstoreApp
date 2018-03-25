@@ -19,7 +19,6 @@ namespace BookstoreApp.Services.Implementation
             this.mapper = mapper;
         }
 
-
         public List<BookViewModel> GetAllBooks()
         {
             var storedBooks = this.unitOfWork.Books

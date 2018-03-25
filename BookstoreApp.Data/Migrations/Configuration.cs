@@ -177,7 +177,6 @@ namespace BookstoreApp.Migrations
             foreach (var entry in entries)
             {
                 var books = context.Books
-                .Include(b => b.InOrders)
                 .OrderBy(b => b.Id)
                 .Skip(rand.Next(1, 100))
                 .Take(3)
@@ -210,7 +209,6 @@ namespace BookstoreApp.Migrations
             var rand = new Random();
 
             var books = context.Books
-                .Include(b => b.InOrders)
                 .OrderBy(b => b.Id)
                 .Skip(rand.Next(1, 100))
                 .Take(5)

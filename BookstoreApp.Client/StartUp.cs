@@ -24,11 +24,11 @@ namespace BookstoreApp.Client
             var container = builder.Build();
             var shoppingController = container.Resolve<ShoppingCartController>();
 
-            var addToCart = shoppingController.AddBookToShoppingCart(10, 1);
+            //var addToCart = shoppingController.AddBookToShoppingCart(10, 3);
 
-            var list = shoppingController.ShowUserShoppingCart(1);
+            var list = shoppingController.ShowUserShoppingCart(3);
 
-            var place = shoppingController.PlaceOrderFromShoppingCart(1);
+            //var place = shoppingController.PlaceOrderFromShoppingCart(3);
 
         }
     }

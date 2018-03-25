@@ -41,7 +41,8 @@ namespace BookstoreApp.Services.Implementation
             {
                 shoppingCart = new ShoppingCart()
                 {
-                    User = user
+                    User = user,
+                    ShoppingCartStatusId = 1
                 };
             }
 
@@ -81,7 +82,6 @@ namespace BookstoreApp.Services.Implementation
             var shoppingCart = this.unitOfWork.ShoppingCarts
                 .All()
                 .Where(sc => sc.UserId == userId)
-                .Include(sci => sci.Books)
                 .FirstOrDefault();
 
             if (shoppingCart == null)
@@ -106,9 +106,13 @@ namespace BookstoreApp.Services.Implementation
 
         public List<BookViewModel> ShowUserShoppingCart(int userId)
         {
-            var booksModel = this.unitOfWork.ShoppingCarts
+            var shoppingCart = this.unitOfWork.ShoppingCarts
                 .All()
                 .Where(sc => sc.UserId == userId)
+                .FirstOrDefault();
+
+            var booksModel = shoppingCart.Books
+                .AsQueryable()
                 .ProjectTo<BookViewModel>()
                 .ToList();
 

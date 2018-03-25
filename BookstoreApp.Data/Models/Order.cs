@@ -12,7 +12,7 @@ namespace BookstoreApp.Models
 
         public int Id { get; set; }       
 
-        public DateTime ReceivedOrderTime { get; set; }
+        public DateTime? ReceivedOrderTime { get; set; }
 
         public DateTime? OrderCompletedTime { get; set; }
 
