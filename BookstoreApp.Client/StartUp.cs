@@ -5,6 +5,7 @@ using BookstoreApp.Data.DI;
 using BookstoreApp.Models;
 using BookstoreApp.Services.AutoMapper;
 using BookstoreApp.Services.DI;
+using Newtonsoft.Json;
 using System;
 
 namespace BookstoreApp.Client
@@ -23,9 +24,25 @@ namespace BookstoreApp.Client
             var container = builder.Build();
             var shoppingController = container.Resolve<ShoppingCartController>();
 
-            var book = new Book();
+            var country = new Country()
+            {
+                CountryName = "Bulgaria"
+            };
 
-            shoppingController.AddBookToShoppingCart(1, 1);
+            var city = new City()
+            {
+                CityName = "Sofia",
+                Country = country
+            };
+
+            var userAddress = new UserAddress()
+            {
+                City = city,
+                Street = "asdasd"
+            };
+
+            var output = JsonConvert.SerializeObject(userAddress);
+            Console.WriteLine(output);
         }
     }
 }

@@ -4,6 +4,7 @@ using BookstoreApp.Data.Contracts;
 using BookstoreApp.Models;
 using BookstoreApp.Services.Contracts;
 using BookstoreApp.Services.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -89,7 +90,6 @@ namespace BookstoreApp.Services.Implementation
                 return -1;
             }
 
-            throw new NotImplementedException();
         }
 
         public List<BookViewModel> ShowUserShoppingCart(int userId)
@@ -119,6 +119,13 @@ namespace BookstoreApp.Services.Implementation
             var user = this.unitOfWork.Users.GetById(userId);
 
             return user;
+        }
+
+        private string BuildAddress(UserAddress address)
+        {
+            string addressToBuild = JsonConvert.SerializeObject(address);
+
+            return addressToBuild;
         }
     }
 }
