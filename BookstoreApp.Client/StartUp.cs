@@ -24,25 +24,6 @@ namespace BookstoreApp.Client
             var container = builder.Build();
             var shoppingController = container.Resolve<ShoppingCartController>();
 
-            var country = new Country()
-            {
-                CountryName = "Bulgaria"
-            };
-
-            var city = new City()
-            {
-                CityName = "Sofia",
-                Country = country
-            };
-
-            var userAddress = new UserAddress()
-            {
-                City = city,
-                Street = "asdasd"
-            };
-
-            var output = JsonConvert.SerializeObject(userAddress);
-            Console.WriteLine(output);
         }
     }
 }

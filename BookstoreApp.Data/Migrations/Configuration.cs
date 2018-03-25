@@ -127,6 +127,7 @@ namespace BookstoreApp.Migrations
                 FirstName = "Sofia",
                 LastName = "Kiryakova",
                 Email = "sf@kiryakova.me",
+                PhoneNumber = "123456",
                 Password = "NeSiPomnqParolata",
                 UserAddress = userAddress,
                 Username = "sofilofi"
@@ -137,6 +138,7 @@ namespace BookstoreApp.Migrations
                 FirstName = "Ivan",
                 LastName = "Gargov",
                 Email = "me@me",
+                PhoneNumber = "123456",
                 Password = "112312",
                 UserAddress = userAddress,
                 Username = "vanchopancho"
@@ -147,15 +149,13 @@ namespace BookstoreApp.Migrations
                 FirstName = "Nikolay",
                 LastName = "Nikolov",
                 Email = "you@you",
+                PhoneNumber = "123456",
                 Password = "345dsfswe425",
                 UserAddress = userAddress,
                 Username = "nickpick"
             };
             #endregion
 
-            //context.Users.AddOrUpdate(u => u.Username, userSofi);
-            //context.Users.AddOrUpdate(u => u.Username, userMe);
-            //context.Users.AddOrUpdate(u => u.Username, userNick);
             context.Users.Add(userSofi);
             context.Users.Add(userMe);
             context.Users.Add(userNick);
