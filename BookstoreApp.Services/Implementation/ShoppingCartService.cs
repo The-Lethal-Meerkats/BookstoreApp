@@ -6,6 +6,7 @@ using BookstoreApp.Services.Contracts;
 using BookstoreApp.Services.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace BookstoreApp.Services.Implementation
@@ -21,9 +22,16 @@ namespace BookstoreApp.Services.Implementation
             this.mapper = mapper;
         }
 
-
-        public int AddBookToShoppingCart(Book book, int userId)
+        public int AddBookToShoppingCart(int bookId, int userId)
         {
+            var user = this.GetUser(userId);
+            var bookToAdd = this.GetBook(bookId);
+
+            if (bookToAdd == null || user == null)
+            {
+                return -1;
+            }
+
             var shoppingCart = this.unitOfWork.ShoppingCarts
               .All()
               .Where(sc => sc.UserId == userId)
@@ -33,18 +41,26 @@ namespace BookstoreApp.Services.Implementation
             {
                 shoppingCart = new ShoppingCart()
                 {
-                    UserId = userId
+                    User = user
                 };
             }
 
-            shoppingCart.Books.Add(book);
+            shoppingCart.Books.Add(bookToAdd);
+            this.unitOfWork.ShoppingCarts.AddOrUpdate(sc => sc.Id, shoppingCart);
+
             return this.unitOfWork.SaveChanges();
         }
 
-        public int DeleteBookFromShoppingCart(Book book, int userId)
+        public int RemoveBookFromShoppingCart(int bookId, int userId)
         {
-            var shoppingCart = this.unitOfWork
-              .ShoppingCarts
+            var bookToRemove = this.GetBook(bookId);
+
+            if (bookToRemove == null)
+            {
+                return -1;
+            }
+
+            var shoppingCart = this.unitOfWork.ShoppingCarts
               .All()
               .Where(sc => sc.UserId == userId)
               .FirstOrDefault();
@@ -54,22 +70,24 @@ namespace BookstoreApp.Services.Implementation
                 return -1;
             }
 
-            shoppingCart.Books.Remove(book);
+            shoppingCart.Books.Remove(bookToRemove);
+            this.unitOfWork.ShoppingCarts.AddOrUpdate(sc => sc.Id, shoppingCart);
+
             return this.unitOfWork.SaveChanges();
         }
 
-        public int PlaceOrderFromShoppingCart(int userId, OrderViewModel orderModel)
+        public int PlaceOrderFromShoppingCart(int userId)
         {
-            var shoppingCart = this.unitOfWork.ShoppingCarts.GetById(userId);
+            var shoppingCart = this.unitOfWork.ShoppingCarts
+                .All()
+                .Where(sc => sc.UserId == userId)
+                .Include(sci => sci.Books)
+                .FirstOrDefault();
 
             if (shoppingCart == null)
             {
                 return -1;
             }
-
-            var shoppingCartBooks = shoppingCart.Books.AsQueryable().ToList();
-
-            // TODO: - OrderModel to be implemented + CreateOrder Service method to be implemented? 
 
             throw new NotImplementedException();
         }
@@ -87,6 +105,20 @@ namespace BookstoreApp.Services.Implementation
                 .ToList();
 
             return model;
+        }
+
+        private Book GetBook(int bookId)
+        {
+            var book = this.unitOfWork.Books.GetById(bookId);
+
+            return book;
+        }
+
+        private User GetUser(int userId)
+        {
+            var user = this.unitOfWork.Users.GetById(userId);
+
+            return user;
         }
     }
 }

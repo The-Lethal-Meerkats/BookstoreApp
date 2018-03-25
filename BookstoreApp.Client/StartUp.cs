@@ -2,6 +2,7 @@
 using BookstoreApp.Client.Controllers;
 using BookstoreApp.Client.DI;
 using BookstoreApp.Data.DI;
+using BookstoreApp.Models;
 using BookstoreApp.Services.AutoMapper;
 using BookstoreApp.Services.DI;
 using System;
@@ -20,9 +21,11 @@ namespace BookstoreApp.Client
             builder.RegisterModule(new AutofacServiceModule());
 
             var container = builder.Build();
-            var ordersController = container.Resolve<OrderController>();
+            var shoppingController = container.Resolve<ShoppingCartController>();
 
-            var orders = ordersController.GetUserOrders(1);
+            var book = new Book();
+
+            shoppingController.AddBookToShoppingCart(book, 1);
         }
     }
 }
