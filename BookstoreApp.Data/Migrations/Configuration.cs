@@ -187,6 +187,7 @@ namespace BookstoreApp.Migrations
                     Books = books,
                     OrderCompletedTime = DateTime.Now,
                     ReceivedOrderTime = DateTime.Now,
+                    DeliveryAddress = "some address",
                     PhoneNumber = "1234567",
                     User = entry.Entity,
                     OrderStatus = statusInProgress

@@ -25,7 +25,7 @@ namespace BookstoreApp.Client
 
             var book = new Book();
 
-            shoppingController.AddBookToShoppingCart(book, 1);
+            shoppingController.AddBookToShoppingCart(1, 1);
         }
     }
 }

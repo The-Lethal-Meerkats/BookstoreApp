@@ -16,14 +16,14 @@ namespace BookstoreApp.Client.Controllers
         }
 
 
-        public int AddBookToShoppingCart(Book book, int userId)
+        public int AddBookToShoppingCart(int bookId, int userId)
         {
-            return this.shoppingCartService.AddBookToShoppingCart(book, userId);
+            return this.shoppingCartService.AddBookToShoppingCart(bookId, userId);
         }
 
-        public int DeleteBookFromShoppingCart(Book book, int userId)
+        public int DeleteBookFromShoppingCart(int bookId, int userId)
         {
-            return this.shoppingCartService.DeleteBookFromShoppingCart(book, userId);
+            return this.shoppingCartService.RemoveBookFromShoppingCart(bookId, userId);
         }
 
         public List<BookViewModel> ShowUserShoppingCart(int userId)
