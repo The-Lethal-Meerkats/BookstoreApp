@@ -23,7 +23,7 @@ namespace BookstoreApp.Client.Controllers
 
         public List<BookViewModel> GetBookByTitle(string title)
         {
-            var books = this.bookService.GetBookByTitle(title);
+            var books = this.bookService.GetBooksByTitle(title);
 
             return books;
         }

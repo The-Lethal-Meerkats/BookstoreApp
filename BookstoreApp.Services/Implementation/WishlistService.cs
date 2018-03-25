@@ -20,11 +20,9 @@ namespace BookstoreApp.Services.Implementation
             this.mapper = mapper;
         }
 
-
         public int AddBookToWishlist(Book book, int userId)
         {
-            var wishlist = this.unitOfWork
-              .Wishlists
+            var wishlist = this.unitOfWork.Wishlists
               .All()
               .Where(w => w.UserId == userId)
               .FirstOrDefault();
@@ -43,8 +41,7 @@ namespace BookstoreApp.Services.Implementation
 
         public int DeleteBookFromWishlist(Book book, int userId)
         {
-            var wishlist = this.unitOfWork
-              .Wishlists
+            var wishlist = this.unitOfWork.Wishlists
               .All()
               .Where(w => w.UserId == userId)
               .FirstOrDefault();
@@ -70,12 +67,12 @@ namespace BookstoreApp.Services.Implementation
                 return null;
             }
 
-            var model = wishlist.Books
+            var booksModel = wishlist.Books
                 .AsQueryable()
                 .ProjectTo<BookViewModel>()
                 .ToList();
 
-            return model;
+            return booksModel;
         }
     }
 }

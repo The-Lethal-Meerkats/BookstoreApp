@@ -20,14 +20,9 @@ namespace BookstoreApp.Client
             builder.RegisterModule(new AutofacServiceModule());
 
             var container = builder.Build();
-            var bookController = container.Resolve<BookController>();
+            var ordersController = container.Resolve<OrderController>();
 
-            var books = bookController.GetAllBooks();
-
-            foreach (var item in books)
-            {
-                Console.WriteLine($"Author: {item.Author}\nISBN: {item.ISBN}\nTitle: {item.Title}\n\n");
-            }
+            var orders = ordersController.GetUserOrders(1);
         }
     }
 }
