@@ -5,7 +5,6 @@ using BookstoreApp.Models;
 using BookstoreApp.Services.Contracts;
 using BookstoreApp.Services.ViewModels;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -97,25 +96,23 @@ namespace BookstoreApp.Services.Implementation
                 Books = shoppingCart.Books,
                 DeliveryAddress = deliveryAddress,
                 OrderStatusId = 1,
-                PhoneNumber = ""
+                PhoneNumber = shoppingCart.User.PhoneNumber,
+                UserId = userId
             };
 
-            throw new NotImplementedException();
+            this.unitOfWork.Orders.Add(orderToPlace);
+            return this.unitOfWork.SaveChanges();
         }
 
         public List<BookViewModel> ShowUserShoppingCart(int userId)
         {
-            var shoppingCart = this.unitOfWork.ShoppingCarts
+            var booksModel = this.unitOfWork.ShoppingCarts
                 .All()
                 .Where(sc => sc.UserId == userId)
-                .FirstOrDefault();
-
-            var model = shoppingCart.Books
-                .AsQueryable()
                 .ProjectTo<BookViewModel>()
                 .ToList();
 
-            return model;
+            return booksModel;
         }
 
         private Book GetBook(int bookId)

@@ -26,6 +26,7 @@ namespace BookstoreApp.Migrations
                 this.SeedBookCategories(context);
                 this.SeedBooks(context);
                 this.SeedOrders(context);
+                this.SeedShoppingCarts(context);
             }
             catch (Exception ex)
             {
@@ -196,6 +197,35 @@ namespace BookstoreApp.Migrations
                 context.Orders.Add(order);
             }
 
+            context.SaveChanges();
+        }
+
+        private void SeedShoppingCarts(BookstoreContext context)
+        {
+            var shoppingCartStatus = new ShoppingCartStatus()
+            {
+                ShoppingCartStatusDescription = "Created"
+            };
+
+            var rand = new Random();
+
+            var books = context.Books
+                .Include(b => b.InOrders)
+                .OrderBy(b => b.Id)
+                .Skip(rand.Next(1, 100))
+                .Take(5)
+                .ToList();
+
+            var user = context.Users.FirstOrDefault();
+
+            var shoppingCart = new ShoppingCart()
+            {
+                Books = books,
+                ShoppingCartStatus = shoppingCartStatus,
+                User = user
+            };
+
+            context.ShoppingCarts.Add(shoppingCart);
             context.SaveChanges();
         }
 
