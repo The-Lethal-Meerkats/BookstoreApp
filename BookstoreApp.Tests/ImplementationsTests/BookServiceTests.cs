@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using BookstoreApp.Data.Contracts;
+using BookstoreApp.Data.Repository.Contracts;
+using BookstoreApp.Models;
 using BookstoreApp.Services.Implementation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
