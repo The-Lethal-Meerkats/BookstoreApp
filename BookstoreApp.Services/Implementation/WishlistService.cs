@@ -20,8 +20,16 @@ namespace BookstoreApp.Services.Implementation
             this.mapper = mapper;
         }
 
-        public int AddBookToWishlist(Book book, int userId)
+        public int AddBookToWishlist(int bookId, int userId)
         {
+            var user = this.GetUser(userId);
+            var book = this.GetBook(bookId);
+
+            if (user == null || book == null)
+            {
+                return -1;
+            }
+
             var wishlist = this.unitOfWork.Wishlists
               .All()
               .Where(w => w.UserId == userId)
@@ -31,16 +39,26 @@ namespace BookstoreApp.Services.Implementation
             {
                 wishlist = new Wishlist()
                 {
-                    UserId = userId
+                    User = user
                 };
             }
 
             wishlist.Books.Add(book);
+            this.unitOfWork.Wishlists.AddOrUpdate(wl => wl.Id, wishlist);
+
             return this.unitOfWork.SaveChanges();
         }
 
-        public int DeleteBookFromWishlist(Book book, int userId)
+        public int DeleteBookFromWishlist(int bookId, int userId)
         {
+            var user = this.GetUser(userId);
+            var book = this.GetBook(bookId);
+
+            if (user == null || book == null)
+            {
+                return -1;
+            }
+
             var wishlist = this.unitOfWork.Wishlists
               .All()
               .Where(w => w.UserId == userId)
@@ -52,6 +70,8 @@ namespace BookstoreApp.Services.Implementation
             }
 
             wishlist.Books.Remove(book);
+            this.unitOfWork.Wishlists.AddOrUpdate(wl => wl.Id, wishlist);
+
             return this.unitOfWork.SaveChanges();
         }
 
@@ -73,6 +93,20 @@ namespace BookstoreApp.Services.Implementation
                 .ToList();
 
             return booksModel;
+        }
+
+        private Book GetBook(int bookId)
+        {
+            var book = this.unitOfWork.Books.GetById(bookId);
+
+            return book;
+        }
+
+        private User GetUser(int userId)
+        {
+            var user = this.unitOfWork.Users.GetById(userId);
+
+            return user;
         }
     }
 }

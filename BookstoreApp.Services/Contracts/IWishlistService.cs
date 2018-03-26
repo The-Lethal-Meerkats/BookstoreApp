@@ -6,9 +6,9 @@ namespace BookstoreApp.Services.Contracts
 {
     public interface IWishlistService
     {
-        int AddBookToWishlist(Book book, int userId);
+        int AddBookToWishlist(int bookId, int userId);
 
-        int DeleteBookFromWishlist(Book book, int userId);
+        int DeleteBookFromWishlist(int bookId, int userId);
 
         List<BookViewModel> GetUserWishlistBooks(int userId);
     }
