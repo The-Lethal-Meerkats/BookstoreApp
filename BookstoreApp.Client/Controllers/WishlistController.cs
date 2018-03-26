@@ -16,14 +16,14 @@ namespace BookstoreApp.Client.Controllers
         }
 
 
-        public int AddBookToWishlist(Book book, int userId)
+        public int AddBookToWishlist(int bookId, int userId)
         {
-            return this.wishlistService.AddBookToWishlist(book, userId);
+            return this.wishlistService.AddBookToWishlist(bookId, userId);
         }
 
-        public int DeleteBookFromWishlist(Book book, int userId)
+        public int DeleteBookFromWishlist(int bookId, int userId)
         {
-            return this.wishlistService.DeleteBookFromWishlist(book, userId);
+            return this.wishlistService.DeleteBookFromWishlist(bookId, userId);
         }
 
         public List<BookViewModel> GetUserWishlistBooks(int userId)
