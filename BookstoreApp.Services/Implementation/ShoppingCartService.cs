@@ -37,12 +37,15 @@ namespace BookstoreApp.Services.Implementation
               .Where(sc => sc.UserId == userId)
               .FirstOrDefault();
 
+            var cartStatus = this.unitOfWork.ShoppingCartStatuses
+                .GetById(1);
+
             if (shoppingCart == null)
             {
                 shoppingCart = new ShoppingCart()
                 {
                     User = user,
-                    ShoppingCartStatusId = 1
+                    ShoppingCartStatus = cartStatus
                 };
             }
 
