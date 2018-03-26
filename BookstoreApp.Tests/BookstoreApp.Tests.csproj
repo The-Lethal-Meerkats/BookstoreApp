@@ -67,6 +67,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ImplementationsTests\BookServiceTests.cs" />
+    <Compile Include="ImplementationsTests\OrderServiceTests.cs" />
+    <Compile Include="ImplementationsTests\ShoppingCartServiceTests.cs" />
+    <Compile Include="ImplementationsTests\WishlistServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryTests\BookRepositoryTests.cs" />
   </ItemGroup>

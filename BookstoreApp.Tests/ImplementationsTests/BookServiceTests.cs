@@ -16,10 +16,10 @@ namespace BookstoreApp.ImplementationsTests
         [TestMethod]
         public void Should_NotReturnNull_When_BookServiceCalled()
         {
-            var mockUnitOfWork = new Mock<IUnitOfWork>();
-            var mockMapper = new Mock<IMapper>();
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var mapperMock = new Mock<IMapper>();
 
-            var bookService = new BookService(mockUnitOfWork.Object, mockMapper.Object);
+            var bookService = new BookService(unitOfWorkMock.Object, mapperMock.Object);
 
             Assert.IsNotNull(bookService);
         }
