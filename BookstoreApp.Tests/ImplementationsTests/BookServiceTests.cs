@@ -40,23 +40,26 @@ namespace BookstoreApp.ImplementationsTests
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             var repoMock = new Mock<IRepository<Book>>();
 
-            var books = new List<Book>
+            var author1 = new Author { Id = 1, AuthorName = "Auhtor1" };
+            var author2 = new Author { Id = 2, AuthorName = "Auhtor2" };
+            var author3 = new Author { Id = 3, AuthorName = "Auhtor3" };
+
+            List<Book> books = new List<Book>
             {
                 new Book { Id = 1, Isbn = "123",
-                    Title = "C# Unleashed", AuthorId = 1, CategoryId = 1},
+                    Title = "C# Unleashed", Author = author1, CategoryId = 1},
                 new Book { Id = 2, Isbn = "213",
-                    Title = "ASP.Net Unleashed", AuthorId = 2, CategoryId = 1},
+                    Title = "ASP.Net Unleashed", Author = author2, CategoryId = 1},
                 new Book { Id = 3, Isbn = "312",
-                    Title = "Java Unleashed", AuthorId = 3, CategoryId = 1}
+                    Title = "Java Unleashed", Author = author3, CategoryId = 1}
             };
 
-            mapperMock.Setup(x => 
-                x.Map<List<Book>>(It.IsAny<List<BookViewModel>>()))
-                .Returns(new List<Book>(books));
+            mapperMock.Setup(x =>
+                x.Map<List<BookViewModel>>(It.IsAny<List<Book>>()))
+                .Returns(new List<BookViewModel>());
 
             repoMock.Setup(r => r.All()).Returns(books.AsQueryable());
             unitOfWorkMock.Setup(u => u.Books).Returns(repoMock.Object);
-
 
             var bookService = new BookService(unitOfWorkMock.Object, mapperMock.Object);
 
