@@ -5,13 +5,13 @@ using BookstoreApp.Services.Implementation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace BookstoreApp.Tests.ImplementationsTests
+namespace BookstoreApp.Tests.ImplementationsTests.ShoppingCartServiceTests
 {
     [TestClass]
-    public class ShoppingCartServiceTests
+    public class Constructor_Should
     {
         [TestMethod]
-        public void Should_NotReturnNull_When_ShoppingCartServiceCalled()
+        public void NotReturnNull_When_ShoppingCartServiceCalled()
         {
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             var mapperMock = new Mock<IMapper>();

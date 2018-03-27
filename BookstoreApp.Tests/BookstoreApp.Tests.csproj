@@ -72,7 +72,8 @@
   <ItemGroup>
     <Compile Include="ImplementationsTests\BookServiceTests.cs" />
     <Compile Include="ImplementationsTests\OrderServiceTests.cs" />
-    <Compile Include="ImplementationsTests\ShoppingCartServiceTests.cs" />
+    <Compile Include="ImplementationsTests\ShoppingCartServiceTests\AddBookToShoppingCart_Should.cs" />
+    <Compile Include="ImplementationsTests\ShoppingCartServiceTests\Constructor_Should.cs" />
     <Compile Include="ImplementationsTests\WishlistServiceTests.cs" />
     <Compile Include="ModelsTests\BookTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
