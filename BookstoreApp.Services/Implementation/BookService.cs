@@ -5,6 +5,7 @@ using BookstoreApp.Services.Contracts;
 using BookstoreApp.Services.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
+using BookstoreApp.Models;
 
 namespace BookstoreApp.Services.Implementation
 {
@@ -24,6 +25,15 @@ namespace BookstoreApp.Services.Implementation
             var storedBooks = this.unitOfWork.Books
                 .All()
                 .ProjectTo<BookViewModel>()
+                .ToList();
+
+            return storedBooks;
+        }
+
+        public List<Book> IztriiMe()
+        {
+            var storedBooks = this.unitOfWork.Books
+                .All()
                 .ToList();
 
             return storedBooks;
