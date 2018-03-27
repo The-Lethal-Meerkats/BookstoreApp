@@ -30,15 +30,6 @@ namespace BookstoreApp.Services.Implementation
             return storedBooks;
         }
 
-        public List<Book> IztriiMe()
-        {
-            var storedBooks = this.unitOfWork.Books
-                .All()
-                .ToList();
-
-            return storedBooks;
-        }
-
         public List<BookViewModel> GetBooksByTitle(string title)
         {
             var bookList = this.unitOfWork.Books

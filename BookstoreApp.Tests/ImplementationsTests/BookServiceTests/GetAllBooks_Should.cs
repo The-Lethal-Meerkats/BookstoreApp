@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using BookstoreApp.Data;
 using BookstoreApp.Data.Contracts;
 using BookstoreApp.Data.Repository.Contracts;
 using BookstoreApp.Models;
@@ -11,38 +11,26 @@ using BookstoreApp.Services.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace BookstoreApp.ImplementationsTests
+namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
 {
     [TestClass]
-    public class BookServiceTests
+    public class GetAllBooks_Should
     {
-        // Should_ExpectedBehavior_When_StateUnderTest
         [ClassInitialize]
         public static void InitilizeAutomapper(TestContext context)
         {
             AutomapperConfig.Initialize();
         }
         [TestMethod]
-        public void Should_NotReturnNull_When_BookServiceCalled()
-        {
-            var unitOfWorkMock = new Mock<IUnitOfWork>();
-            var mapperMock = new Mock<IMapper>();
-
-            var bookService = new BookService(unitOfWorkMock.Object, mapperMock.Object);
-
-            Assert.IsNotNull(bookService);
-        }
-
-        [TestMethod]
-        public void Should_Something()
+        public void ReturnAllBooks_WhenInvoked()
         {
             var mapperMock = new Mock<IMapper>();
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             var repoMock = new Mock<IRepository<Book>>();
 
-            var author1 = new Author { Id = 1, AuthorName = "Auhtor1" };
-            var author2 = new Author { Id = 2, AuthorName = "Auhtor2" };
-            var author3 = new Author { Id = 3, AuthorName = "Auhtor3" };
+            var author1 = new Author { Id = 1, AuthorName = "Author1" };
+            var author2 = new Author { Id = 2, AuthorName = "Author2" };
+            var author3 = new Author { Id = 3, AuthorName = "Author3" };
 
             List<Book> books = new List<Book>
             {
@@ -55,7 +43,7 @@ namespace BookstoreApp.ImplementationsTests
             };
 
             mapperMock.Setup(x =>
-                x.Map<List<BookViewModel>>(It.IsAny<List<Book>>()))
+                    x.Map<List<BookViewModel>>(It.IsAny<List<Book>>()))
                 .Returns(new List<BookViewModel>());
 
             repoMock.Setup(r => r.All()).Returns(books.AsQueryable());

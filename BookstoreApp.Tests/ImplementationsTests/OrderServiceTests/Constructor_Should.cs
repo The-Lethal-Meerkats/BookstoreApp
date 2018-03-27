@@ -8,10 +8,10 @@ using Moq;
 namespace BookstoreApp.Tests.ImplementationsTests
 {
     [TestClass]
-    public class OrderServiceTests
+    public class Constructor_Should
     {
         [TestMethod]
-        public void Should_NotReturnNull_When_OrderServiceCalled()
+        public void NotReturnNull_When_OrderServiceCalled()
         {
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             var mapperMock = new Mock<IMapper>();

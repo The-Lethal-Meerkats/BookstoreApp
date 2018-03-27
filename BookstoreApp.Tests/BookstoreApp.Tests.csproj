@@ -79,8 +79,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImplementationsTests\BookServiceTests.cs" />
-    <Compile Include="ImplementationsTests\OrderServiceTests.cs" />
+    <Compile Include="ImplementationsTests\BookServiceTests\Constructor_Should.cs" />
+    <Compile Include="ImplementationsTests\BookServiceTests\GetAllBooks_Should.cs" />
+    <Compile Include="ImplementationsTests\BookServiceTests\GetBooksByAuthor_Should.cs" />
+    <Compile Include="ImplementationsTests\BookServiceTests\GetBooksByCategoryId_Should.cs" />
+    <Compile Include="ImplementationsTests\BookServiceTests\GetBooksByTitle_Should.cs" />
+    <Compile Include="ImplementationsTests\OrderServiceTests\Constructor_Should.cs" />
+    <Compile Include="ImplementationsTests\OrderServiceTests\GetUserOrders_Should.cs" />
     <Compile Include="ImplementationsTests\ShoppingCartServiceTests.cs" />
     <Compile Include="ImplementationsTests\WishlistServiceTests.cs" />
     <Compile Include="ModelsTests\BookTests.cs" />
