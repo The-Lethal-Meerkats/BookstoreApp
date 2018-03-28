@@ -21,6 +21,10 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
 
         }
 
-        
+        [TestMethod]
+        public void ThrowOutOfrangeException_WhenGivenInvalidParams()
+        {
+
+        }
     }
 }
