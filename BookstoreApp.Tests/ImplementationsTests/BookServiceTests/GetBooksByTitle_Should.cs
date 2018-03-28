@@ -24,7 +24,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
         }
 
         
-
         [TestMethod]
         public void ReturnAllBooksWithSpecifiedTitle_WhenInvokedWithCorrectParams()
         {
@@ -36,9 +35,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
             var author2 = new Author {Id = 2, AuthorName = "Author2"};
             var author3 = new Author {Id = 3, AuthorName = "Author3"};
 
-
-
-            List<Book> books = new List<Book>
+            var books = new List<Book>
             {
                 new Book
                 {
@@ -78,7 +75,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
             var cut = bookService.GetBooksByTitle("Java Unleashed");
 
             Assert.AreEqual(1, cut.Count);
-
         }
 
         [TestMethod]
@@ -91,8 +87,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
             var author1 = new Author { Id = 1, AuthorName = "Author1" };
             var author2 = new Author { Id = 2, AuthorName = "Author2" };
 
-
-            List<Book> books = new List<Book>
+            var books = new List<Book>
             {
                 new Book
                 {
@@ -135,7 +130,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
             var author2 = new Author { Id = 2, AuthorName = "Author2" };
 
 
-            List<Book> books = new List<Book>
+            var books = new List<Book>
             {
                 new Book
                 {
@@ -166,7 +161,5 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
 
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => bookService.GetBooksByTitle("a"));
         }
-
-        
     }
 }

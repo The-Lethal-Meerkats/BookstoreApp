@@ -1,11 +1,10 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using BookstoreApp.Data.Contracts;
 using BookstoreApp.Services.Implementation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace BookstoreApp.Tests.ImplementationsTests
+namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
 {
     [TestClass]
     public class Constructor_Should

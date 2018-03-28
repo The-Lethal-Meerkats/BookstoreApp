@@ -35,9 +35,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
             var author2 = new Author { Id = 2, AuthorName = "Author2" };
             var author3 = new Author { Id = 3, AuthorName = "Author3" };
 
-
-
-            List<Book> books = new List<Book>
+            var books = new List<Book>
             {
                 new Book
                 {
@@ -77,7 +75,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
             var cut = bookService.GetBooksByCategoryId(1);
 
             Assert.AreEqual(2, cut.Count);
-
         }
 
         [TestMethod]
@@ -90,9 +87,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
             var author1 = new Author { Id = 1, AuthorName = "Author1" };
             var author2 = new Author { Id = 2, AuthorName = "Author2" };
 
-
-
-            List<Book> books = new List<Book>
+            var books = new List<Book>
             {
                 new Book
                 {
@@ -123,7 +118,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
 
 
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => bookService.GetBooksByCategoryId(-1));
-
         }
     }
 }
