@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using BookstoreApp.Data.Contracts;
 using BookstoreApp.Models;
@@ -22,6 +23,11 @@ namespace BookstoreApp.Services.Implementation
 
         public int AddBookToWishlist(Book book, int userId)
         {
+            if (book == null || userId <=0) 
+            {
+                throw new ArgumentNullException();
+            }
+
             var wishlist = this.unitOfWork.Wishlists
               .All()
               .Where(w => w.UserId == userId)
@@ -41,6 +47,11 @@ namespace BookstoreApp.Services.Implementation
 
         public int DeleteBookFromWishlist(Book book, int userId)
         {
+            if (book == null || userId <= 0)
+            {
+                throw new ArgumentNullException();
+            }
+
             var wishlist = this.unitOfWork.Wishlists
               .All()
               .Where(w => w.UserId == userId)
@@ -57,6 +68,11 @@ namespace BookstoreApp.Services.Implementation
 
         public List<BookViewModel> GetUserWishlistBooks(int userId)
         {
+            if (userId <= 0)
+            {
+                throw new ArgumentNullException();
+            }
+
             var wishlist = this.unitOfWork.Wishlists
                .All()
                .Where(w => w.UserId == userId)
