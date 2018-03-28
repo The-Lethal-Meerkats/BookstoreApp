@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using BookstoreApp.Data.Contracts;
 using BookstoreApp.Data.Repository.Contracts;
 using BookstoreApp.Models;
-using BookstoreApp.Services.AutoMapper;
 using BookstoreApp.Services.Implementation;
 using BookstoreApp.Services.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
 {
     [TestClass]
     public class GetAllBooks_Should
     {
-        [ClassInitialize]
-        public static void InitilizeAutomapper(TestContext context)
-        {
-            AutomapperConfig.Initialize();
-        }
+
         [TestMethod]
         public void ReturnAllBooks_WhenInvoked()
         {

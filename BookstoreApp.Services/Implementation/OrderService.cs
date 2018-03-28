@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using BookstoreApp.Data.Contracts;
 using BookstoreApp.Services.Contracts;
@@ -21,6 +22,10 @@ namespace BookstoreApp.Services.Implementation
 
         public List<OrderViewModel> GetUserOrders(int userId)
         {
+            if (userId < 1)
+            {
+                throw new ArgumentOutOfRangeException("UserID has to be equal or bigger than one.");
+            }
             var ordersModel = this.unitOfWork.Orders
                 .All()
                 .Where(or => or.UserId == userId)

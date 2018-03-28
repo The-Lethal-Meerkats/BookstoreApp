@@ -16,12 +16,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
     [TestClass]
     public class GetBooksByCategoryId_Should
     {
-        [ClassInitialize]
-        public static void InitilizeAutomapper(TestContext context)
-        {
-            AutomapperConfig.Initialize();
-        }
-
+       
         [TestMethod]
         public void ReturnAllBooksWithSpecifiedCategoryId_WhenInvokedWithCorrectParams()
         {
@@ -75,6 +70,52 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
             var cut = bookService.GetBooksByCategoryId(1);
 
             Assert.AreEqual(2, cut.Count);
+
+        }
+
+        [TestMethod]
+        public void ThrowOutOfRangeException_WhenInvokedWithInvalidParams()
+        {
+            var mapperMock = new Mock<IMapper>();
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var repoMock = new Mock<IRepository<Book>>();
+
+            var author1 = new Author { Id = 1, AuthorName = "Author1" };
+            var author2 = new Author { Id = 2, AuthorName = "Author2" };
+
+
+
+            List<Book> books = new List<Book>
+            {
+                new Book
+                {
+                    Id = 1,
+                    Isbn = "123",
+                    Title = "C# Unleashed",
+                    Author = author1,
+                    CategoryId = 1
+                },
+                new Book
+                {
+                    Id = 2,
+                    Isbn = "213",
+                    Title = "ASP.Net Unleashed",
+                    Author = author2,
+                    CategoryId = 2
+                }
+            };
+
+            mapperMock.Setup(x =>
+                    x.Map<List<BookViewModel>>(It.IsAny<List<Book>>()))
+                .Returns(new List<BookViewModel>());
+
+            repoMock.Setup(r => r.All()).Returns(books.AsQueryable());
+            unitOfWorkMock.Setup(u => u.Books).Returns(repoMock.Object);
+
+            var bookService = new BookService(unitOfWorkMock.Object, mapperMock.Object);
+
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => bookService.GetBooksByCategoryId(-1));
 
         }
     }

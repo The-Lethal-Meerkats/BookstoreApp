@@ -3,9 +3,9 @@ using AutoMapper.QueryableExtensions;
 using BookstoreApp.Data.Contracts;
 using BookstoreApp.Services.Contracts;
 using BookstoreApp.Services.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using BookstoreApp.Models;
 
 namespace BookstoreApp.Services.Implementation
 {
@@ -32,6 +32,16 @@ namespace BookstoreApp.Services.Implementation
 
         public List<BookViewModel> GetBooksByTitle(string title)
         {
+            if (title == null)
+            {
+                throw new ArgumentNullException("Book's title should not be null.");
+            }
+
+            if (title.Length < 2)
+            {
+                throw new ArgumentOutOfRangeException("Title's length should be at least two symbols long.");
+            }
+
             var bookList = this.unitOfWork.Books
                 .All()
                 .Where(t => t.Title.ToLower().Contains(title.ToLower()))
@@ -43,6 +53,16 @@ namespace BookstoreApp.Services.Implementation
 
         public List<BookViewModel> GetBooksByAuthor(string authorName)
         {
+            if (authorName == null)
+            {
+                throw new ArgumentNullException("Author's name should not be null.");
+            }
+
+            if (authorName.Length < 2)
+            {
+                throw new ArgumentOutOfRangeException("Author's name length should be at least two symbols long.");
+            }
+
             var bookList = this.unitOfWork.Books
                 .All()
                 .Where(a => a.Author.AuthorName.ToLower().Contains(authorName.ToLower()))
@@ -54,6 +74,11 @@ namespace BookstoreApp.Services.Implementation
 
         public List<BookViewModel> GetBooksByCategoryId(int id)
         {
+            if (id < 1)
+            {
+                throw new ArgumentOutOfRangeException("Category ID should be equal or bigger than 1.");
+            }
+
             var bookList = this.unitOfWork.Books
                 .All()
                 .Where(cat => cat.CategoryId == id)
