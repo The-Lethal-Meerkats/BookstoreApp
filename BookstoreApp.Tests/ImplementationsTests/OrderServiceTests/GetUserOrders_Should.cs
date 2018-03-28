@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using AutoMapper;
-using BookstoreApp.Data;
+﻿using AutoMapper;
 using BookstoreApp.Data.Contracts;
-using BookstoreApp.Data.Repository;
 using BookstoreApp.Data.Repository.Contracts;
 using BookstoreApp.Models;
 using BookstoreApp.Services.AutoMapper;
@@ -14,6 +7,10 @@ using BookstoreApp.Services.Implementation;
 using BookstoreApp.Services.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
 {
@@ -32,7 +29,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
         {
             var mapperMock = new Mock<IMapper>();
             var unitOfWorkMock = new Mock<IUnitOfWork>();
-
             var repoMock = new Mock<IRepository<Order>>();
 
             var author1 = new Author { Id = 1, AuthorName = "Author1" };
@@ -52,8 +48,8 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
             var books = new Collection<Book>()
             {
                 book1
-            }
-            ;
+            };
+
             var user1 = new User()
             {
                 FirstName = "Pesho",
@@ -64,9 +60,9 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                 PhoneNumber = "0888888",
                 UserAddress = address,
                 UserAddressId = 1,
-                Username = "Pesho"
-                
+                Username = "Pesho"                
             };
+
             IList<Order> orders = new List<Order>()
             {
                 new Order
@@ -80,9 +76,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                     UserId = 1,
                     User = user1,
                     OrderCompletedTime = null,
-                    ReceivedOrderTime = null
-                   
-
+                    ReceivedOrderTime = null                 
                 },
                 new Order
                 {
@@ -96,7 +90,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                     User = user1,
                     OrderCompletedTime = null,
                     ReceivedOrderTime = null
-
                 }
             };
 
@@ -114,7 +107,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
         }
 
         [TestMethod]
-        public void ThrowOutOfrangeException_WhenGivenInvalidParams()
+        public void ThrowOutOfRangeException_WhenGivenInvalidParams()
         {
             var mapperMock = new Mock<IMapper>();
             var unitOfWorkMock = new Mock<IUnitOfWork>();
@@ -138,8 +131,8 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
             var books = new Collection<Book>()
             {
                 book1
-            }
-            ;
+            };
+
             var user1 = new User()
             {
                 FirstName = "Pesho",
@@ -151,8 +144,8 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                 UserAddress = address,
                 UserAddressId = 1,
                 Username = "Pesho"
-
             };
+
             IList<Order> orders = new List<Order>()
             {
                 new Order
@@ -167,8 +160,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                     User = user1,
                     OrderCompletedTime = null,
                     ReceivedOrderTime = null
-
-
                 },
                 new Order
                 {
@@ -182,7 +173,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                     User = user1,
                     OrderCompletedTime = null,
                     ReceivedOrderTime = null
-
                 }
             };
 

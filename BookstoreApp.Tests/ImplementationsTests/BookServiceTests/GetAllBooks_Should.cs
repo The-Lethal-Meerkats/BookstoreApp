@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using BookstoreApp.Data.Contracts;
 using BookstoreApp.Data.Repository.Contracts;
 using BookstoreApp.Models;
@@ -10,6 +7,8 @@ using BookstoreApp.Services.Implementation;
 using BookstoreApp.Services.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
 {
@@ -35,7 +34,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
             var author2 = new Author { Id = 2, AuthorName = "Author2" };
             var author3 = new Author { Id = 3, AuthorName = "Author3" };
 
-            List<Book> books = new List<Book>
+            var books = new List<Book>
             {
                 new Book { Id = 1, Isbn = "123",
                     Title = "C# Unleashed", Author = author1, CategoryId = 1},
@@ -58,7 +57,5 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
 
             Assert.AreEqual(3, res.Count);
         }
-
-        
     }
 }
