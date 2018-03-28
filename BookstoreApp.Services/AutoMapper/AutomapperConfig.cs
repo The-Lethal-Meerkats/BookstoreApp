@@ -25,7 +25,7 @@ namespace BookstoreApp.Services.AutoMapper
                 .SelectMany(x => x.GetReferencedAssemblies())
                 .Select(x => Assembly.Load(x))
                 .SelectMany(x => x.GetTypes());
-
+            
             Mapper.Initialize(cfg => Load(types, cfg));
         }
 
@@ -66,6 +66,11 @@ namespace BookstoreApp.Services.AutoMapper
             {
                 type.CreateMappings(cfg);
             }
+        }
+
+        public static void Reset()
+        {
+            Mapper.Reset();
         }
     }
 }

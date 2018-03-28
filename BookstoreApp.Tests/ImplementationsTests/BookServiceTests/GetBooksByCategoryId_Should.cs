@@ -19,8 +19,10 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
         [ClassInitialize]
         public static void InitilizeAutomapper(TestContext context)
         {
+            AutomapperConfig.Reset();
             AutomapperConfig.Initialize();
         }
+        
 
         [TestMethod]
         public void ReturnAllBooksWithSpecifiedCategoryId_WhenInvokedWithCorrectParams()
@@ -77,5 +79,8 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
             Assert.AreEqual(2, cut.Count);
 
         }
+
+        
+
     }
 }

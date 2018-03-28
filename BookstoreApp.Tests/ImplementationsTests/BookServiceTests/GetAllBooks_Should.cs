@@ -19,8 +19,11 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
         [ClassInitialize]
         public static void InitilizeAutomapper(TestContext context)
         {
+            AutomapperConfig.Reset();
             AutomapperConfig.Initialize();
         }
+
+       
         [TestMethod]
         public void ReturnAllBooks_WhenInvoked()
         {
@@ -55,5 +58,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
 
             Assert.AreEqual(3, res.Count);
         }
+
+        
     }
 }

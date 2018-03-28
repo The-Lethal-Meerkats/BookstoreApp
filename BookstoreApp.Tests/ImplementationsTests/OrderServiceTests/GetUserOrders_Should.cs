@@ -1,4 +1,5 @@
 ﻿using System;
+using AutoMapper;
 using BookstoreApp.Services.AutoMapper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -10,6 +11,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
         [ClassInitialize]
         public static void InitilizeAutomapper(TestContext context)
         {
+            AutomapperConfig.Reset();
             AutomapperConfig.Initialize();
         }
 
@@ -18,5 +20,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
         {
 
         }
+
+        
     }
 }
