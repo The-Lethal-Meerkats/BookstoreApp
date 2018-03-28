@@ -11,7 +11,7 @@ namespace BookstoreApp.Tests.ImplementationsTests
     public class WishlistServiceTests
     {
         [TestMethod]
-        public void Should_NotReturnNull_When_WishlistServiceCalled()
+        public void NotReturnNull_When_WishlistServiceCalled()
         {
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             var mapperMock = new Mock<IMapper>();

@@ -23,9 +23,14 @@ namespace BookstoreApp.Services.Implementation
 
         public int AddBookToWishlist(Book book, int userId)
         {
-            if (book == null || userId <=0) 
+            if (book == null) 
             {
                 throw new ArgumentNullException();
+            }
+
+            if (userId <= 1)
+            {
+                throw new ArgumentException();
             }
 
             var wishlist = this.unitOfWork.Wishlists
@@ -47,9 +52,14 @@ namespace BookstoreApp.Services.Implementation
 
         public int DeleteBookFromWishlist(Book book, int userId)
         {
-            if (book == null || userId <= 0)
+            if (book == null)
             {
                 throw new ArgumentNullException();
+            }
+
+            if (userId <= 1)
+            {
+                throw new ArgumentException();
             }
 
             var wishlist = this.unitOfWork.Wishlists
@@ -70,7 +80,7 @@ namespace BookstoreApp.Services.Implementation
         {
             if (userId <= 0)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentOutOfRangeException();
             }
 
             var wishlist = this.unitOfWork.Wishlists
