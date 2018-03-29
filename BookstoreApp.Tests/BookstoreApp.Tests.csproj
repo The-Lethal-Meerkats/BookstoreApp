@@ -85,6 +85,7 @@
     <Compile Include="ImplementationsTests\BookServiceTests\GetBooksByCategoryId_Should.cs" />
     <Compile Include="ImplementationsTests\BookServiceTests\GetBooksByTitle_Should.cs" />
     <Compile Include="ImplementationsTests\OrderServiceTests\Constructor_Should.cs" />
+    <Compile Include="ImplementationsTests\OrderServiceTests\GetTotalOrderPrice_Should.cs" />
     <Compile Include="ImplementationsTests\OrderServiceTests\GetUserOrders_Should.cs" />
     <Compile Include="ImplementationsTests\ShoppingCartServiceTests.cs" />
     <Compile Include="ImplementationsTests\WishlistTests\Constructor_Should.cs" />

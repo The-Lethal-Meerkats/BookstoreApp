@@ -15,7 +15,7 @@ using System.Linq;
 namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
 {
     [TestClass]
-    public class GetUserOrders_Should
+    public class GetTotalOrderPrice_Should
     {
         [ClassInitialize]
         public static void InitilizeAutomapper(TestContext context)
@@ -25,7 +25,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
         }
 
         [TestMethod]
-        public void ReturnAllOrders_WhenInvokedWithCorrectUserId()
+        public void ReturnTotalOrderPrice_WhenInvokedWithCorrectUserId()
         {
             var mapperMock = new Mock<IMapper>();
             var unitOfWorkMock = new Mock<IUnitOfWork>();
@@ -38,17 +38,25 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                 Isbn = "123",
                 Title = "C# Unleashed",
                 Author = author1,
+                Price = 10,
+                CategoryId = 1               
+            };
+
+            var book2 = new Book()
+            {
+                Id = 2,
+                Isbn = "457123",
+                Title = "Java Unleashed",
+                Author = author1,
+                Price = 30,
                 CategoryId = 1
             };
 
-            var country = new Country(){CountryName = "Bulgaria",Id = 1};
-            var city = new City() {CityName = "Sofia", Country = country, CountryId = 1, Id = 1};
-            var address = new UserAddress() { City = city,CityId = 1, Id = 1, Street = "street"};
-            var orderStatus = new OrderStatus() {Id = 1, OrderStatusDescription = "Status"};
-            var books = new Collection<Book>()
-            {
-                book1
-            };
+            var country = new Country() { CountryName = "Bulgaria", Id = 1 };
+            var city = new City() { CityName = "Sofia", Country = country, CountryId = 1, Id = 1 };
+            var address = new UserAddress() { City = city, CityId = 1, Id = 1, Street = "street" };
+            var orderStatus = new OrderStatus() { Id = 1, OrderStatusDescription = "Status" };
+            var books = new Collection<Book>() { book1, book2 };
 
             var user1 = new User()
             {
@@ -60,24 +68,11 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                 PhoneNumber = "0888888",
                 UserAddress = address,
                 UserAddressId = 1,
-                Username = "Pesho"                
+                Username = "Pesho"
             };
 
             var orders = new List<Order>()
             {
-                new Order
-                {
-                    Books = books,
-                    DeliveryAddress = "address",
-                    Id = 100,
-                    OrderStatusId = 1,
-                    OrderStatus = orderStatus,
-                    PhoneNumber = user1.PhoneNumber,
-                    UserId = 1,
-                    User = user1,
-                    OrderCompletedTime = null,
-                    ReceivedOrderTime = null                 
-                },
                 new Order
                 {
                     Books = books,
@@ -101,9 +96,9 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
 
             var orderService = new OrderService(unitOfWorkMock.Object, mapperMock.Object);
 
-            var sut = orderService.GetUserOrders(1);
+            var sut = orderService.GetTotalOrderPrice(1);
 
-            Assert.AreEqual(2, sut.Count);
+            Assert.AreEqual(40, sut);
         }
 
         [TestMethod]
@@ -121,6 +116,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                 Isbn = "123",
                 Title = "C# Unleashed",
                 Author = author1,
+                Price = 30,
                 CategoryId = 1
             };
 
@@ -128,10 +124,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
             var city = new City() { CityName = "Sofia", Country = country, CountryId = 1, Id = 1 };
             var address = new UserAddress() { City = city, CityId = 1, Id = 1, Street = "street" };
             var orderStatus = new OrderStatus() { Id = 1, OrderStatusDescription = "Status" };
-            var books = new Collection<Book>()
-            {
-                book1
-            };
+            var books = new Collection<Book>() { book1 };
 
             var user1 = new User()
             {
@@ -160,19 +153,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                     User = user1,
                     OrderCompletedTime = null,
                     ReceivedOrderTime = null
-                },
-                new Order
-                {
-                    Books = books,
-                    DeliveryAddress = "address",
-                    Id = 100,
-                    OrderStatusId = 1,
-                    OrderStatus = orderStatus,
-                    PhoneNumber = user1.PhoneNumber,
-                    UserId = 1,
-                    User = user1,
-                    OrderCompletedTime = null,
-                    ReceivedOrderTime = null
                 }
             };
 
@@ -184,8 +164,8 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
 
             var orderService = new OrderService(unitOfWorkMock.Object, mapperMock.Object);
 
-           
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => orderService.GetUserOrders(-1));
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => orderService.GetTotalOrderPrice(-1));
         }
     }
 }
