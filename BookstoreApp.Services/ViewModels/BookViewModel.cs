@@ -12,6 +12,8 @@ namespace BookstoreApp.Services.ViewModels
 
         public string Author { get; set; }
 
+        public decimal Price { get; set; }
+
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Book, BookViewModel>().ForMember(d => d.Author, opt => opt.MapFrom(s => s.Author.AuthorName));

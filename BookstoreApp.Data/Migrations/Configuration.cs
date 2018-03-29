@@ -65,6 +65,8 @@ namespace BookstoreApp.Migrations
                         string isbn = line[0];
                         string bookName = line[2];
                         string url = line[1];
+                        var Random = new Random();
+                        decimal price = Random.Next(10,20);
 
                         var image = client.GetByteArrayAsync(url).GetAwaiter().GetResult();
 
@@ -88,7 +90,8 @@ namespace BookstoreApp.Migrations
                             Isbn = isbn,
                             Author = authorToAdd,
                             Category = categoryToAdd,
-                            BookImage = bookImageToAdd
+                            BookImage = bookImageToAdd,
+                            Price = price
                         };
 
                         context.Books.AddOrUpdate(b => b.Isbn, bookToAdd);
