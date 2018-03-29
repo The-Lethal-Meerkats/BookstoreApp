@@ -39,5 +39,32 @@ namespace BookstoreApp.Services.Implementation
 
             return ordersModel;
         }
+
+        public decimal GetTotalOrderPrice(int userId)
+        {
+            if (userId < 1)
+            {
+                throw new ArgumentOutOfRangeException("UserID has to be equal or bigger than one.");
+            }
+
+            var order = this.unitOfWork.Orders
+                .All()
+                .Where(or => or.UserId == userId)
+                .FirstOrDefault();
+
+            if (order == null)
+            {
+                return -1;
+            }
+
+            decimal totalPrice = 0;
+
+            foreach (var book in order.Books)
+            {
+                totalPrice += book.Price;
+            }
+
+            return totalPrice;
+        }
     }
 }
