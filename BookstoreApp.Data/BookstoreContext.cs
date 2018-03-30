@@ -1,4 +1,5 @@
-﻿using BookstoreApp.Models;
+﻿using System.Data.Common;
+using BookstoreApp.Models;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
@@ -9,6 +10,12 @@ namespace BookstoreApp.Data
         public BookstoreContext() 
             : base("Bookstore")
         { }
+
+        public BookstoreContext(DbConnection connection)
+            :base (connection, true)
+        {
+            
+        }
 
         public IDbSet<User> Users { get; set; }
         public IDbSet<UserAddress> UserAddresses { get; set; }

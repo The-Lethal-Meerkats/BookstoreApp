@@ -27,17 +27,40 @@ namespace BookstoreApp.Tests.RepositoryTests
         [TestMethod]
         public void ThrowNullException_When_RepositoryInvokedWithNullContext()
         {
-            BookstoreContext mockBookstoreContext = null;
+            IBookstoreContext mockBookstoreContext = null;
 
             Assert.ThrowsException<ArgumentNullException>((() => new GenericRepository<Book>(mockBookstoreContext)));
         }
 
+        [TestMethod]
+        public void ReturnAllBooks_When_GetAllIsCalled()
+        {
+            var context = new BookstoreContext(Effort.DbConnectionFactory.CreateTransient());
+
+            var bookRepository = new GenericRepository<Book>(context);
+
+            Book book1 = new Book()
+            {
+                Id = 1,
+                Isbn = "123",
+                Title = "C# Unleashed",
+                AuthorId = 1,
+                CategoryId = 1
+            };
+
+            bookRepository.Add(book1);
+
+            var sut = bookRepository.All().ToList().Count;
+
+            Assert.IsNotNull(sut);
+
+        }
         //[TestMethod]
         //public void NotReturnNull_When_GetAllIsCalled()
         //{
         //    var mockBookstoreContext = new Mock<IBookstoreContext>();
         //    var DBsetMock = new Mock<IDbSet<Book>>();
-            
+
         //    var bookRepository = new GenericRepository<Book>(mockBookstoreContext.Object);
 
         //    var books = new List<Book>
@@ -50,9 +73,9 @@ namespace BookstoreApp.Tests.RepositoryTests
         //            Title = "Java Unleashed", AuthorId = 3, CategoryId = 1}
         //    };
         //    DBsetMock.SetupGet()
-            
+
         //    mockBookstoreContext.Setup(x => x.Books).Returns(books);
-           
+
 
         //    Assert.IsNotNull(bookRepository.All());
         //}
@@ -145,106 +168,91 @@ namespace BookstoreApp.Tests.RepositoryTests
         //    Assert.IsNotNull(testBook);
         //}
 
-        //[TestMethod]
-        //public void Should_ThrowAnException_When_GetByIdCalledWithAnInvalidId()
-        //{
-        //    var mockBookRepository = new Mock<IRepository<Book>>();
+        [TestMethod]
+        public void ThrowArgumentNullException_When_GetByIdCalledWithAnInvalidId()
+        {
+            var context = new BookstoreContext(Effort.DbConnectionFactory.CreateTransient());
 
-        //    var books = new List<Book>
-        //        {
-        //            new Book { Id = 1, Isbn = "123",
-        //                Title = "C# Unleashed", AuthorId = 1, CategoryId = 1},
-        //            new Book { Id = 2, Isbn = "213",
-        //                Title = "ASP.Net Unleashed", AuthorId = 2, CategoryId = 1},
-        //            new Book { Id = 3, Isbn = "312",
-        //                Title = "Java Unleashed", AuthorId = 3, CategoryId = 1}
-        //        }.AsQueryable();
+            var bookRepository = new GenericRepository<Book>(context);
 
-        //    mockBookRepository.Setup(x => x.GetById(It.IsAny<int>()))
-        //       .Returns((int i) => books.Where(y => y.Id == i).Single());
+            var invalidId = -1;
 
-        //    Assert.ThrowsException<InvalidOperationException>(() => mockBookRepository.Object.GetById(5));
-        //}
+            Assert.ThrowsException<ArgumentNullException>(() => bookRepository.GetById(invalidId));
+        }
 
-        //[TestMethod]
-        //public void Should_ReturnAnInstanceOfBook_When_GetByIdCalledWithAValidId()
-        //{
-        //    var mockBookRepository = new Mock<IRepository<Book>>();
 
-        //    var books = new List<Book>
-        //        {
-        //            new Book { Id = 1, Isbn = "123",
-        //                Title = "C# Unleashed", AuthorId = 1, CategoryId = 1},
-        //            new Book { Id = 2, Isbn = "213",
-        //                Title = "ASP.Net Unleashed", AuthorId = 2, CategoryId = 1},
-        //            new Book { Id = 3, Isbn = "312",
-        //                Title = "Java Unleashed", AuthorId = 3, CategoryId = 1}
-        //        }.AsQueryable();
 
-        //    mockBookRepository.Setup(x => x.GetById(It.IsAny<int>()))
-        //       .Returns((int i) => books.Where(y => y.Id == i).Single());
+        [TestMethod]
+        public void ReturnCorrectBook_When_GetByIdCalledWithAValidId()
+        {
+            var context = new BookstoreContext(Effort.DbConnectionFactory.CreateTransient());
 
-        //    var testBook = mockBookRepository.Object.GetById(2);
+            var bookRepository = new GenericRepository<Book>(context);
 
-        //    Assert.IsInstanceOfType(testBook, typeof(Book));
-        //}
+            Book book1 = new Book()
+            {
+                Id = 1,
+                Isbn = "123",
+                Title = "C# Unleashed",
+                AuthorId = 1,
+                CategoryId = 1
+            };
 
-        //[TestMethod]
-        //public void Should_ReturnRightBook_When_GetByIdCalledWithAValidId()
-        //{
-        //    var mockBookRepository = new Mock<IRepository<Book>>();
+            bookRepository.Add(book1);
 
-        //    var books = new List<Book>
-        //        {
-        //            new Book { Id = 1, Isbn = "123",
-        //                Title = "C# Unleashed", AuthorId = 1, CategoryId = 1},
-        //            new Book { Id = 2, Isbn = "213",
-        //                Title = "ASP.Net Unleashed", AuthorId = 2, CategoryId = 1},
-        //            new Book { Id = 3, Isbn = "312",
-        //                Title = "Java Unleashed", AuthorId = 3, CategoryId = 1}
-        //        }.AsQueryable();
+            var sut = bookRepository.GetById(1);
 
-        //    mockBookRepository.Setup(x => x.GetById(It.IsAny<int>()))
-        //       .Returns((int i) => books.Where(y => y.Id == i).Single());
+            Assert.AreEqual(book1, sut);
+        }
 
-        //    var testBook = mockBookRepository.Object.GetById(2);
+        [TestMethod]
+        public void DeleteTheCorrectBook_When_CalledWithAValidId()
+        {
+            var context = new BookstoreContext(Effort.DbConnectionFactory.CreateTransient());
 
-        //    Assert.AreEqual("ASP.Net Unleashed", testBook.Title);
-        //}
+            var bookRepository = new GenericRepository<Book>(context);
 
-        //[TestMethod]
-        //public void Should_CallMethodOnlyOnce_When_AddCalled()
-        //{
-        //    var newBook = new Book
-        //    {
-        //        Id = 4,
-        //        Isbn = "2213",
-        //        Title = "Pro C#",
-        //        AuthorId = 4,
-        //        CategoryId = 2
-        //    };
-        //    var mockBookRepository = new Mock<IRepository<Book>>();
-        //    mockBookRepository.Setup(x => x.Add(It.IsAny<Book>())).Verifiable();
-        //    mockBookRepository.Object.Add(newBook);
-        //    mockBookRepository.Verify(x => x.Add(It.IsAny<Book>()), Times.Once);
-        //}
+            Book book1 = new Book()
+            {
+                Id = 1,
+                Isbn = "123",
+                Title = "C# Unleashed",
+                AuthorId = 1,
+                CategoryId = 1
+            };
 
-        //[TestMethod]
-        //public void Should_CallMethodOnlyOnce_When_DeleteCalled()
-        //{
-        //    var newBook = new Book
-        //    {
-        //        Id = 4,
-        //        Isbn = "2213",
-        //        Title = "Pro C#",
-        //        AuthorId = 4,
-        //        CategoryId = 2
-        //    };
-        //    var mockBookRepository = new Mock<IRepository<Book>>();
-        //    mockBookRepository.Setup(x => x.Delete(It.IsAny<Book>())).Verifiable();
-        //    mockBookRepository.Object.Delete(newBook);
-        //    mockBookRepository.Verify(x => x.Delete(It.IsAny<Book>()), Times.Once);
-        //}
+            bookRepository.Add(book1);
+
+            int bookId = book1.Id;
+            bookRepository.Delete(bookId);
+
+            Assert.IsFalse(bookRepository.All().ToList().Contains(book1));
+        }
+        [TestMethod]
+        public void DeleteTheCorrectBook_When_CalledWithAValidBook()
+        {
+            var context = new BookstoreContext(Effort.DbConnectionFactory.CreateTransient());
+
+            var bookRepository = new GenericRepository<Book>(context);
+
+            Book book1 = new Book()
+            {
+                Id = 1,
+                Isbn = "123",
+                Title = "C# Unleashed",
+                AuthorId = 1,
+                CategoryId = 1
+            };
+
+            bookRepository.Add(book1);
+
+            
+            bookRepository.Delete(book1);
+
+            Assert.IsFalse(bookRepository.All().ToList().Contains(book1));
+        }
+
+
 
         //[TestMethod]
         //public void Should_CallMethodOnlyOnce_When_DeleteWithIntegerAsParameterCalled()

@@ -31,7 +31,14 @@ namespace BookstoreApp.Data.Repository
 
         public virtual T GetById(int id)
         {
-            return this.dbSet.Find(id);
+            var item = this.dbSet.Find(id);
+
+            if (item == null)
+            {
+                throw new ArgumentNullException("No such item found");
+            }
+
+            return item ;
         }
 
         public virtual void Add(T entity)
