@@ -67,7 +67,7 @@ namespace BookstoreApp.Services.Implementation
 
             if (user == null || book == null)
             {
-                return -1;
+                throw new ArgumentNullException();
             }
 
             var wishlist = this.unitOfWork.Wishlists

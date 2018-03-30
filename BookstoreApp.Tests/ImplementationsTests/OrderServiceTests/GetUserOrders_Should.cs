@@ -187,5 +187,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
            
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => orderService.GetUserOrders(-1));
         }
+        
     }
 }
