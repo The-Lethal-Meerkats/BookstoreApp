@@ -24,6 +24,11 @@ textarea {
 }
 
 .meerkat-img {
-    display: inline-block;
+    display: inline;
     float: right;
+}
+
+.login-register-btn-group {
+    padding-top: 15px;
+    padding-bottom: 20px;
 }
