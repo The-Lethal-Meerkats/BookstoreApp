@@ -108,9 +108,12 @@ namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
 
             unitOfWorkMock.Setup(x => x.Wishlists).Returns(repoMock.Object);
             unitOfWorkMock.Setup(x => x.Users).Returns(repoMock1.Object);
+            unitOfWorkMock.Setup(x => x.Books.GetById(1)).Returns(book1);
+
             var wishlistService = new WishlistService(unitOfWorkMock.Object, mapperMock.Object);
             unitOfWorkMock.Object.Users.Add(user1);
-            //wishlistService.AddBookToWishlist(book1.Id, user1.Id);
+
+            wishlistService.AddBookToWishlist(book1.Id, user1.Id);
 
             var actualBookCountInWishlist = wishlist.Books.Count;
 
