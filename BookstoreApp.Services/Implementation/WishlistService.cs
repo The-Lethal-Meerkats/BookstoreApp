@@ -23,6 +23,11 @@ namespace BookstoreApp.Services.Implementation
 
         public int AddBookToWishlist(int bookId, int userId)
         {
+            if (bookId < 1 || userId < 1)
+            {
+                throw new ArgumentOutOfRangeException("BookID and UserID can not be less than 1.");
+            }
+
             var user = this.GetUser(userId);
             var book = this.GetBook(bookId);
 
@@ -52,6 +57,11 @@ namespace BookstoreApp.Services.Implementation
 
         public int DeleteBookFromWishlist(int bookId, int userId)
         {
+            if (bookId < 1 || userId < 1)
+            {
+                throw new ArgumentOutOfRangeException("BookID and UserID can not be less than 1.");
+            }
+
             var user = this.GetUser(userId);
             var book = this.GetBook(bookId);
 

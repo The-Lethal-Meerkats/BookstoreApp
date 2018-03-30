@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using BookstoreApp.Data.Contracts;
 using BookstoreApp.Services.Implementation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

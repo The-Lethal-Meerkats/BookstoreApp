@@ -14,7 +14,7 @@ using System.Linq;
 
 namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
 {
-    //[TestClass]
+    [TestClass]
     public class DeleteBookFromWishlist_Should
     {
         [ClassInitialize]
@@ -24,44 +24,31 @@ namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
             AutomapperConfig.Initialize();
         }
 
+
         [TestMethod]
-        public void ThrowArgumentNullException_WhenInvokedWithNullBook()
+        public void ThrowArgumentOutOfRangeException_WhenInvokedWithIncorrectUserId()
         {
             var mapperMock = new Mock<IMapper>();
             var unitOfWorkMock = new Mock<IUnitOfWork>();
 
             var wishlistService = new WishlistService(unitOfWorkMock.Object, mapperMock.Object);
 
-            //Assert.ThrowsException<ArgumentNullException>(() => wishlistService.DeleteBookFromWishlist(null, 1));
-
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => wishlistService.DeleteBookFromWishlist(1, -1));
         }
 
         [TestMethod]
-        public void ThrowArgumentException_WhenInvokedWithIncorrectUserId()
+        public void ThrowArgumentOutOfRangeException_WhenInvokedWithIncorrectBookId()
         {
             var mapperMock = new Mock<IMapper>();
             var unitOfWorkMock = new Mock<IUnitOfWork>();
 
-            var author1 = new Author { Id = 1, AuthorName = "Author1" };
-            var book1 = new Book()
-            {
-                Id = 1,
-                Isbn = "123",
-                Title = "C# Unleashed",
-                Author = author1,
-                CategoryId = 1,
-
-
-            };
-
             var wishlistService = new WishlistService(unitOfWorkMock.Object, mapperMock.Object);
 
-            //Assert.ThrowsException<ArgumentException>(() => wishlistService.DeleteBookFromWishlist(book1, -1));
-
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => wishlistService.DeleteBookFromWishlist(-1, 1));
         }
 
-        [TestMethod]
-        public void AddsBookToWishlist_WhenInvokedWithCorrectParams()
+    //    [TestMethod]
+        public void DeleteBookFromWishlist_WhenInvokedWithCorrectParams()
         {
             var mapperMock = new Mock<IMapper>();
             var unitOfWorkMock = new Mock<IUnitOfWork>();
@@ -76,8 +63,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
                 Title = "C# Unleashed",
                 Author = author1,
                 CategoryId = 1,
-
-
             };
             var book2 = new Book()
             {
@@ -90,12 +75,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
             var country = new Country() { CountryName = "Bulgaria", Id = 1 };
             var city = new City() { CityName = "Sofia", Country = country, CountryId = 1, Id = 1 };
             var address = new UserAddress() { City = city, CityId = 1, Id = 1, Street = "street" };
-            var books = new Collection<Book>()
-                {
-                    book1,
-                    book2
-                }
-                ;
+            var books = new Collection<Book>() { book1, book2 };
             var user1 = new User()
             {
                 FirstName = "Pesho",
@@ -107,7 +87,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
                 UserAddress = address,
                 UserAddressId = 1,
                 Username = "Pesho"
-
             };
             var wishlist = new Wishlist()
             {
@@ -116,10 +95,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
                 User = user1,
                 UserId = 2
             };
-            var wishlists = new List<Wishlist>()
-            {
-                wishlist
-            };
+            var wishlists = new List<Wishlist>() { wishlist };
 
             mapperMock.Setup(x =>
                     x.Map<List<WishlistViewModel>>(It.IsAny<List<Wishlist>>()))
@@ -135,7 +111,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
 
             var wishlistService = new WishlistService(unitOfWorkMock.Object, mapperMock.Object);
 
-            //wishlistService.DeleteBookFromWishlist(book1, 2);
+            wishlistService.DeleteBookFromWishlist(book1.Id, user1.Id);
 
             var actualBookCountInWishlist = wishlist.Books.Count;
 

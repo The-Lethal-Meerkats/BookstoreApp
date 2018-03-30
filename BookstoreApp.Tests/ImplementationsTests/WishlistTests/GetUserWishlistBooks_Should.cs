@@ -32,7 +32,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
             var wishlistService = new WishlistService(unitOfWorkMock.Object, mapperMock.Object);
 
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => wishlistService.GetUserWishlistBooks(-1));
-
         }
 
         [TestMethod]
@@ -51,18 +50,13 @@ namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
                 Title = "C# Unleashed",
                 Author = author1,
                 CategoryId = 1,
-                
-
             };
 
             var country = new Country() { CountryName = "Bulgaria", Id = 1 };
             var city = new City() { CityName = "Sofia", Country = country, CountryId = 1, Id = 1 };
             var address = new UserAddress() {City = city, CityId = 1, Id = 1, Street = "street"};
-            var books = new Collection<Book>()
-                {
-                    book1
-                }
-                ;
+            var books = new Collection<Book>() { book1 };
+
             var user1 = new User()
             {
                 FirstName = "Pesho",
