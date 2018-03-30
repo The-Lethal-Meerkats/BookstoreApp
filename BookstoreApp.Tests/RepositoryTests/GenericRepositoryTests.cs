@@ -9,7 +9,7 @@ using System.Linq;
 namespace BookstoreApp.Tests.RepositoryTests
 {
     [TestClass]
-    public class BookRepositoryTests
+    public class GenericRepositoryTests
     {
         [TestMethod]
         public void TShould_NotReturnNull_When_GetAllIsCalled()
@@ -33,6 +33,7 @@ namespace BookstoreApp.Tests.RepositoryTests
 
             Assert.IsNotNull(testBooks);
         }
+
         [TestMethod]
         public void Should_NotReturnNull_When_GetAllIsCalled()
         {

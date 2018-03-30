@@ -51,9 +51,10 @@ namespace BookstoreApp.Migrations
 
         private void SeedBooks(BookstoreContext context)
         {
-            using (StreamReader reader = new StreamReader(@"C:\Users\Nikolay\Desktop\Teamwork\BookstoreApp\BookstoreApp\bookstore.csv"))
+            using (StreamReader reader = new StreamReader(@"D:\Telerik Academy\TeamProjects\BookstoreApp\bookstore.csv"))
             {
                 var client = new HttpClient();
+                var Random = new Random();
 
                 while (!reader.EndOfStream)
                 {
@@ -65,7 +66,6 @@ namespace BookstoreApp.Migrations
                         string isbn = line[0];
                         string bookName = line[2];
                         string url = line[1];
-                        var Random = new Random();
                         decimal price = Random.Next(10,20);
 
                         var image = client.GetByteArrayAsync(url).GetAwaiter().GetResult();
