@@ -31,4 +31,14 @@ textarea {
 .login-register-btn-group {
     padding-top: 15px;
     padding-bottom: 20px;
+    list-style-type: none;
+}
+
+.login-form {
+    text-decoration: none;
+}
+
+.login-form a {
+    text-decoration: none;
+    display: block;
 }

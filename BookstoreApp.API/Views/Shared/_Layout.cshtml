@@ -26,27 +26,32 @@
                 <a class="nav-link navbar-brand" href="@Url.Action("Contact", "Home")">Contact</a>
             </li>
         </ul>
+
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        </form>       
     </div>
 </nav>
-<div class="login-register-btn-group" data-toggle="buttons">
-    <button type="button" class="btn btn-outline-primary">Register</button>
-    <button type="button" class="btn btn-outline-primary">Log in</button>
-</div>
+    <ul class="nav navbar-nav navbar-right login-register-btn-group">
+        <li class="login-form">
+            <button type="button" class="btn btn-outline-primary login-form">@Html.Partial("_RegisterPartial")</button>
+        </li>
+        <li class="login-form">
+            <button type="button" class="btn btn-outline-primary login-form"> @Html.Partial("_LoginPartial")</button>
+        </li>
+    </ul>
 
-<div class="container body-content">
-    @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - The Lethal Meerkats, Telerik Academy Alpha 2018</p>
-    </footer>
-</div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - The Lethal Meerkats, Telerik Academy Alpha 2018</p>
+        </footer>
+    </div>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>
