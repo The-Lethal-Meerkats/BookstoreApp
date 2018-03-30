@@ -17,7 +17,7 @@ namespace BookstoreApp.Data.Repository
         {
             if (context == null)
             {
-                throw new ArgumentException("An instance of BookstoreContext is required to use this repository.", "context");
+                throw new ArgumentNullException("An instance of BookstoreContext is required to use this repository.", "context");
             }
 
             this.context = context;
