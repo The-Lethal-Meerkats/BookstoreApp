@@ -47,7 +47,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => wishlistService.DeleteBookFromWishlist(-1, 1));
         }
 
-    //    [TestMethod]
+        [TestMethod]
         public void DeleteBookFromWishlist_WhenInvokedWithCorrectParams()
         {
             var mapperMock = new Mock<IMapper>();
@@ -111,7 +111,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
 
             var wishlistService = new WishlistService(unitOfWorkMock.Object, mapperMock.Object);
 
-            wishlistService.DeleteBookFromWishlist(book1.Id, user1.Id);
+           // wishlistService.DeleteBookFromWishlist(book1.Id, user1.Id);
 
             var actualBookCountInWishlist = wishlist.Books.Count;
 
