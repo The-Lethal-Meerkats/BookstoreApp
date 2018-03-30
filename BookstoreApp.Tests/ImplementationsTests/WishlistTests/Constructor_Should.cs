@@ -8,17 +8,17 @@ using Moq;
 namespace BookstoreApp.Tests.ImplementationsTests
 {
     [TestClass]
-    public class OrderServiceTests
+    public class WishlistServiceTests
     {
         [TestMethod]
-        public void Should_NotReturnNull_When_OrderServiceCalled()
+        public void NotReturnNull_When_WishlistServiceCalled()
         {
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             var mapperMock = new Mock<IMapper>();
 
-            var orderService = new OrderService(unitOfWorkMock.Object, mapperMock.Object);
+            var wishlistService = new WishlistService(unitOfWorkMock.Object, mapperMock.Object);
 
-            Assert.IsNotNull(orderService);
+            Assert.IsNotNull(wishlistService);
         }
     }
 }

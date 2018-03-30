@@ -1,20 +1,16 @@
 ﻿using AutoMapper;
 using BookstoreApp.Data.Contracts;
-using BookstoreApp.Data.Repository.Contracts;
-using BookstoreApp.Models;
 using BookstoreApp.Services.Implementation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace BookstoreApp.ImplementationsTests
+namespace BookstoreApp.Tests.ImplementationsTests.BookServiceTests
 {
     [TestClass]
-    public class BookServiceTests
-    {
-        // Should_ExpectedBehavior_When_StateUnderTest
-
+    public class Constructor_Should
+    {        
         [TestMethod]
-        public void Should_NotReturnNull_When_BookServiceCalled()
+        public void NotReturnNull_When_BookServiceCalled()
         {
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             var mapperMock = new Mock<IMapper>();

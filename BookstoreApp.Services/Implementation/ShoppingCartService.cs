@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using BookstoreApp.Data.Contracts;
 using BookstoreApp.Models;
@@ -119,6 +120,33 @@ namespace BookstoreApp.Services.Implementation
                 .ToList();
 
             return booksModel;
+        }
+
+        public decimal GetCartTotalPrice(int userId)
+        {
+            if (userId < 1)
+            {
+                throw new ArgumentOutOfRangeException("UserID has to be equal or bigger than one.");
+            }
+
+            var shoppingCart = this.unitOfWork.ShoppingCarts
+                .All()
+                .Where(or => or.UserId == userId)
+                .FirstOrDefault();
+
+            if (shoppingCart == null)
+            {
+                return -1;
+            }
+
+            decimal totalPrice = 0;
+
+            foreach (var book in shoppingCart.Books)
+            {
+                totalPrice += book.Price;
+            }
+
+            return totalPrice;
         }
 
         private Book GetBook(int bookId)

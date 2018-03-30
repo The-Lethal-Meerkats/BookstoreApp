@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using BookstoreApp.Data.Contracts;
 using BookstoreApp.Models;
@@ -77,6 +78,11 @@ namespace BookstoreApp.Services.Implementation
 
         public List<BookViewModel> GetUserWishlistBooks(int userId)
         {
+            if (userId <= 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
             var wishlist = this.unitOfWork.Wishlists
                .All()
                .Where(w => w.UserId == userId)

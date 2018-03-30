@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using BookstoreApp.Data.Contracts;
 using BookstoreApp.Services.Contracts;
@@ -19,8 +20,13 @@ namespace BookstoreApp.Services.Implementation
             this.mapper = mapper;
         }
 
+
         public List<OrderViewModel> GetUserOrders(int userId)
         {
+            if (userId < 1)
+            {
+                throw new ArgumentOutOfRangeException("UserID has to be equal or bigger than one.");
+            }
             var ordersModel = this.unitOfWork.Orders
                 .All()
                 .Where(or => or.UserId == userId)
@@ -33,6 +39,33 @@ namespace BookstoreApp.Services.Implementation
             }
 
             return ordersModel;
+        }
+
+        public decimal GetTotalOrderPrice(int userId)
+        {
+            if (userId < 1)
+            {
+                throw new ArgumentOutOfRangeException("UserID has to be equal or bigger than one.");
+            }
+
+            var order = this.unitOfWork.Orders
+                .All()
+                .Where(or => or.UserId == userId)
+                .FirstOrDefault();
+
+            if (order == null)
+            {
+                return -1;
+            }
+
+            decimal totalPrice = 0;
+
+            foreach (var book in order.Books)
+            {
+                totalPrice += book.Price;
+            }
+
+            return totalPrice;
         }
     }
 }
