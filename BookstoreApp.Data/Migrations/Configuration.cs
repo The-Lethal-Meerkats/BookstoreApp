@@ -110,22 +110,6 @@ namespace BookstoreApp.Migrations
         private void SeedUsers(BookstoreContext context)
         {
             #region Users
-            var country = new Country()
-            {
-                CountryName = "Bulgaria"
-            };
-
-            var city = new City()
-            {
-                CityName = "Sofia",
-                Country = country
-            };
-
-            var userAddress = new UserAddress()
-            {
-                City = city,
-                Street = "asdasd"
-            };
 
             var userSofi = new BookstoreUser()
             {
@@ -133,8 +117,8 @@ namespace BookstoreApp.Migrations
                 LastName = "Kiryakova",
                 Email = "sf@kiryakova.me",
                 PhoneNumber = "123456",
-                Password = "NeSiPomnqParolata",
-                UserAddress = userAddress,
+                PasswordHash = "NeSiPomnqParolata",
+                UserAddress = "asd",
                 UserName = "sofilofi"
             };
 
@@ -144,8 +128,8 @@ namespace BookstoreApp.Migrations
                 LastName = "Gargov",
                 Email = "me@me",
                 PhoneNumber = "123456",
-                Password = "112312",
-                UserAddress = userAddress,
+                PasswordHash = "112312",
+                UserAddress = "asd",
                 UserName = "vanchopancho"
             };
 
@@ -155,8 +139,8 @@ namespace BookstoreApp.Migrations
                 LastName = "Nikolov",
                 Email = "you@you",
                 PhoneNumber = "123456",
-                Password = "345dsfswe425",
-                UserAddress = userAddress,
+                PasswordHash = "345dsfswe425",
+                UserAddress = "asd",
                 UserName = "nickpick"
             };
             #endregion

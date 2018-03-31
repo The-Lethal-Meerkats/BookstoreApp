@@ -7,10 +7,6 @@ namespace BookstoreApp.Data
 {
     public interface IBookstoreContext : IDisposable
     {
-        IDbSet<UserAddress> UserAddresses { get; set; }
-        IDbSet<Country> Countries { get; set; }
-        IDbSet<City> Cities { get; set; }
-
         IDbSet<Wishlist> Wishlists { get; set; }
 
         IDbSet<Book> Books { get; set; }

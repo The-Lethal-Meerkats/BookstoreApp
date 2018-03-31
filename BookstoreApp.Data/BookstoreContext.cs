@@ -12,10 +12,6 @@ namespace BookstoreApp.Data
             : base("Bookstore")
         { }
         
-        public IDbSet<UserAddress> UserAddresses { get; set; }
-        public IDbSet<Country> Countries { get; set; }
-        public IDbSet<City> Cities { get; set; }
-
         public IDbSet<Wishlist> Wishlists { get; set; }
         
         public IDbSet<Book> Books { get; set; }
@@ -36,6 +32,10 @@ namespace BookstoreApp.Data
 
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+
+            modelBuilder.Entity<BookstoreUser>()
+                .Property(p => p.PasswordHash)
+                .HasColumnName("Password");
 
             modelBuilder.Entity<BookstoreUser>().ToTable("BookstoreUsers");
             modelBuilder.Entity<BookstoreRole>().ToTable("BookstoreRoles");

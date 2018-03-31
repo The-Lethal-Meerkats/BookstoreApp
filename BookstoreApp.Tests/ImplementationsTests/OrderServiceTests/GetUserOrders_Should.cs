@@ -42,9 +42,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                 CategoryId = 1
             };
 
-            var country = new Country(){CountryName = "Bulgaria",Id = 1};
-            var city = new City() {CityName = "Sofia", Country = country, CountryId = 1, Id = 1};
-            var address = new UserAddress() { City = city,CityId = 1, Id = 1, Street = "street"};
             var orderStatus = new OrderStatus() {Id = 1, OrderStatusDescription = "Status"};
             var books = new Collection<Book>()
             {
@@ -56,11 +53,10 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                 FirstName = "Pesho",
                 LastName = "Petrov",
                 Id = 2,
-                Password = "secret",
+                PasswordHash = "secret",
                 Email = "email",
                 PhoneNumber = "0888888",
-                UserAddress = address,
-                UserAddressId = 1,
+                UserAddress = "asd",
                 UserName = "Pesho"                
             };
 
@@ -125,9 +121,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                 CategoryId = 1
             };
 
-            var country = new Country() { CountryName = "Bulgaria", Id = 1 };
-            var city = new City() { CityName = "Sofia", Country = country, CountryId = 1, Id = 1 };
-            var address = new UserAddress() { City = city, CityId = 1, Id = 1, Street = "street" };
             var orderStatus = new OrderStatus() { Id = 1, OrderStatusDescription = "Status" };
             var books = new Collection<Book>()
             {
@@ -139,11 +132,10 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                 FirstName = "Pesho",
                 LastName = "Petrov",
                 Id = 2,
-                Password = "secret",
+                PasswordHash = "secret",
                 Email = "email",
                 PhoneNumber = "0888888",
-                UserAddress = address,
-                UserAddressId = 1,
+                UserAddress = "asd",
                 UserName = "Pesho"
             };
 

@@ -10,9 +10,6 @@ namespace BookstoreApp.Data
     {
         private IBookstoreContext bookstoreContext;
         private IRepository<BookstoreUser> users;
-        private IRepository<UserAddress> userAddresses;
-        private IRepository<City> cities;
-        private IRepository<Country> countries;
         private IRepository<Book> books;
         private IRepository<Author> authors;
         private IRepository<Category> categories;
@@ -30,9 +27,6 @@ namespace BookstoreApp.Data
         public UnitOfWork(
             IBookstoreContext bookstoreContext, 
             IRepository<BookstoreUser> users, 
-            IRepository<UserAddress> userAddresses,
-            IRepository<City> cities,
-            IRepository<Country> countries,
             IRepository<Book> books,
             IRepository<Author> authors,
             IRepository<Category> categories,
@@ -44,9 +38,6 @@ namespace BookstoreApp.Data
         {
             this.bookstoreContext = bookstoreContext;
             this.users = users;
-            this.userAddresses = userAddresses;
-            this.cities = cities;
-            this.countries = countries;
             this.books = books;
             this.authors = authors;
             this.categories = categories;
@@ -67,45 +58,6 @@ namespace BookstoreApp.Data
                 }
 
                 return this.users;
-            }
-        }
-
-        public IRepository<UserAddress> UserAddresses
-        {
-            get
-            {
-                if (this.userAddresses == null)
-                {
-                    this.userAddresses = new GenericRepository<UserAddress>(bookstoreContext);
-                }
-
-                return this.userAddresses;
-            }
-        }
-
-        public IRepository<City> Cities
-        {
-            get
-            {
-                if (this.cities == null)
-                {
-                    this.cities = new GenericRepository<City>(bookstoreContext);
-                }
-
-                return this.cities;
-            }
-        }
-
-        public IRepository<Country> Countries
-        {
-            get
-            {
-                if (this.countries == null)
-                {
-                    this.countries = new GenericRepository<Country>(bookstoreContext);
-                }
-
-                return this.countries;
             }
         }
 

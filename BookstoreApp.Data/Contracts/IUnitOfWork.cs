@@ -8,11 +8,6 @@ namespace BookstoreApp.Data.Contracts
     public interface IUnitOfWork
     {
         IRepository<BookstoreUser> Users { get; }
-
-        IRepository<UserAddress> UserAddresses{ get; }
-        IRepository<City> Cities{ get; }
-        IRepository<Country> Countries { get; }
-
         IRepository<Book> Books { get; }
         IRepository<Author> Authors { get; }
         IRepository<Category> Categories { get; }

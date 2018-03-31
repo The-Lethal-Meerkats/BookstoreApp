@@ -53,9 +53,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
                 CategoryId = 1,
             };
 
-            var country = new Country() { CountryName = "Bulgaria", Id = 1 };
-            var city = new City() { CityName = "Sofia", Country = country, CountryId = 1, Id = 1 };
-            var address = new UserAddress() {City = city, CityId = 1, Id = 1, Street = "street"};
             var books = new Collection<Book>() { book1 };
 
             var user1 = new BookstoreUser()
@@ -63,11 +60,10 @@ namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
                 FirstName = "Pesho",
                 LastName = "Petrov",
                 Id = 2,
-                Password = "secret",
+                PasswordHash = "secret",
                 Email = "email",
                 PhoneNumber = "0888888",
-                UserAddress = address,
-                UserAddressId = 1,
+                UserAddress = "asd",
                 UserName = "Pesho"
 
             };
