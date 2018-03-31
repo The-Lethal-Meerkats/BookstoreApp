@@ -1,4 +1,4 @@
-﻿@model BookstoreApp.Models.Book
+﻿@model BookstoreApp.Services.ViewModels.BookViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -11,35 +11,19 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Author.AuthorName)
+            @Html.DisplayNameFor(model => model.Author)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Author.AuthorName)
+            @Html.DisplayFor(model => model.Author)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BookImage.Id)
+            @Html.DisplayNameFor(model => model.ISBN)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BookImage.Id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Category.CategoryName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Isbn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Isbn)
+            @Html.DisplayFor(model => model.ISBN)
         </dd>
 
         <dt>

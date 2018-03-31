@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BookstoreApp.Models.Book>
+﻿@model IEnumerable<BookstoreApp.Services.ViewModels.BookViewModel>
 
 @{
     ViewBag.Title = "Book Collection";
@@ -9,13 +9,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Author.AuthorName)
+            @Html.DisplayNameFor(model => model.Author)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Isbn)
+            @Html.DisplayNameFor(model => model.ISBN)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
@@ -28,13 +25,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Author.AuthorName)
+            @Html.DisplayFor(modelItem => item.Author)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Category.CategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Isbn)
+            @Html.DisplayFor(modelItem => item.ISBN)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
@@ -42,9 +36,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Price)
         </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-        </td>
+        @*<td>
+            @Html.ActionLink("Details", "Details", new { id = item. }) |
+        </td>*@
     </tr>
 }
 

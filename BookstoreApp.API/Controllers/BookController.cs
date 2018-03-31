@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper;
-using BookstoreApp.Data;
-using BookstoreApp.Models;
+﻿using System.Web.Mvc;
 using BookstoreApp.Services.Contracts;
-using BookstoreApp.Services.ViewModels;
 
 namespace BookstoreApp.API.Controllers
 {
@@ -18,66 +7,21 @@ namespace BookstoreApp.API.Controllers
     {
         private readonly IBookService bookService;
 
-        public BookController(IBookService bookService, IMapper mapper)
+        public BookController(IBookService bookService)
         {
             this.bookService = bookService;
         }
 
-        public BookController()
-        {
-
-        }
-        public List<BookViewModel> GetAllBooks()
-        {
-            var books = new List<BookViewModel>();
-            books = this.bookService.GetAllBooks();
-
-            return books;
-        }
-
-        public List<BookViewModel> GetBookByTitle(string title)
-        {
-            var books = this.bookService.GetBooksByTitle(title);
-
-            return books;
-        }
-
-        public List<BookViewModel> GetBooksByAuthor(string authorName)
-        {
-            var books = this.bookService.GetBooksByAuthor(authorName);
-
-            return books;
-        }
-
-        public List<BookViewModel> GetBooksByCategoryId(int id)
-        {
-            var books = this.bookService.GetBooksByCategoryId(id);
-
-            return books;
-        }
-        private BookstoreContext db = new BookstoreContext();
-
         //// GET: Book
         public ActionResult Index()
         {
-            var books = db.Books.Include(b => b.Author).Include(b => b.BookImage).Include(b => b.Category);
-
-            return View(books.ToList());
+            return View();
         }
 
-        // GET: Book/Details/5
+        // GET: Book/Details/
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Book book = db.Books.Find(id);
-            if (book == null)
-            {
-                return HttpNotFound();
-            }
-            return View(book);
+            return View();
         }
 
         //// GET: Book/Create
