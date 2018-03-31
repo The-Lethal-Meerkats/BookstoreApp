@@ -32,12 +32,16 @@ namespace BookstoreApp.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
-            modelBuilder.Entity<BookstoreUser>().ToTable("User");
-
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<BookstoreUser>().ToTable("BookstoreUsers");
+            modelBuilder.Entity<BookstoreRole>().ToTable("BookstoreRoles");
+            modelBuilder.Entity<BookstoreUserClaim>().ToTable("BookstoreUserClaims");
+            modelBuilder.Entity<BookstoreUserRole>().ToTable("BookstoreUserRoles");
+            modelBuilder.Entity<BookstoreUserLogin>().ToTable("BookstoreUserLogins");
         }
 
         public new IDbSet<T> Set<T>() where T : class

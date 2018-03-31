@@ -13,6 +13,9 @@ namespace BookstoreApp.API.DI
         {
             var builder = new ContainerBuilder();
 
+            //builder.RegisterType<BookstoreUserManager>().AsSelf().InstancePerRequest();
+            //builder.RegisterType<BookstoreSignInManager>().AsSelf().InstancePerRequest();
+
             //Register modules
             builder.RegisterModule(new AutofacDataModule());
             builder.RegisterModule(new AutofacServiceModule());
