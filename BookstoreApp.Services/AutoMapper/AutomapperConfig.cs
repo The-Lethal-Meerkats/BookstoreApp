@@ -23,6 +23,7 @@ namespace BookstoreApp.Services.AutoMapper
                 .GetAssemblies()
                 .Where(x => !x.IsDynamic)
                 .SelectMany(x => x.GetReferencedAssemblies())
+                .Where(x => x.Name.StartsWith("Bookstore"))
                 .Select(x => Assembly.Load(x))
                 .SelectMany(x => x.GetTypes());
             
