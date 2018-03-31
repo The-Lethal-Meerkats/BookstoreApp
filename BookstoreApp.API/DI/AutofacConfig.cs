@@ -20,6 +20,7 @@ namespace BookstoreApp.API.DI
             //Register MVC controllers
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
 
+            // Set the dependency resolver to be Autofac.
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
