@@ -1,15 +1,18 @@
 ﻿using System.Web.Mvc;
 using BookstoreApp.Services.Contracts;
+using Microsoft.Owin.Security;
 
 namespace BookstoreApp.API.Controllers
 {
     public class BookController : Controller
     {
-        private readonly IBookService bookService;
+        private IBookService bookService;
+        private IAuthenticationManager authManager;
 
-        public BookController(IBookService bookService)
+        public BookController(IBookService bookService, IAuthenticationManager authenticationManager)
         {
             this.bookService = bookService;
+            this.authManager = authenticationManager;
         }
 
         //// GET: Book
@@ -20,7 +23,7 @@ namespace BookstoreApp.API.Controllers
             return View(books);
         }
 
-        // GET: Book/Details/
+        // GET: Book/Details/1
         public ActionResult BookDetails(int id)
         {
             var bookModel = this.bookService.GetBookById(id);

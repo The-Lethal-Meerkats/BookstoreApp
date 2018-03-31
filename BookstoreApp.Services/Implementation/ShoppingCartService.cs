@@ -5,7 +5,6 @@ using BookstoreApp.Data.Contracts;
 using BookstoreApp.Models;
 using BookstoreApp.Services.Contracts;
 using BookstoreApp.Services.ViewModels;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using BookstoreApp.Models.Accounts;
