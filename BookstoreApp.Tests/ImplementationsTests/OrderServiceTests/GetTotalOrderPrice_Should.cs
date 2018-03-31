@@ -2,6 +2,7 @@
 using BookstoreApp.Data.Contracts;
 using BookstoreApp.Data.Repository.Contracts;
 using BookstoreApp.Models;
+using BookstoreApp.Models.Accounts;
 using BookstoreApp.Services.AutoMapper;
 using BookstoreApp.Services.Implementation;
 using BookstoreApp.Services.ViewModels;
@@ -58,7 +59,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
             var orderStatus = new OrderStatus() { Id = 1, OrderStatusDescription = "Status" };
             var books = new Collection<Book>() { book1, book2 };
 
-            var user1 = new User()
+            var user1 = new BookstoreUser()
             {
                 FirstName = "Pesho",
                 LastName = "Petrov",
@@ -68,7 +69,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                 PhoneNumber = "0888888",
                 UserAddress = address,
                 UserAddressId = 1,
-                Username = "Pesho"
+                UserName = "Pesho"
             };
 
             var orders = new List<Order>()
@@ -126,7 +127,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
             var orderStatus = new OrderStatus() { Id = 1, OrderStatusDescription = "Status" };
             var books = new Collection<Book>() { book1 };
 
-            var user1 = new User()
+            var user1 = new BookstoreUser()
             {
                 FirstName = "Pesho",
                 LastName = "Petrov",
@@ -136,7 +137,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                 PhoneNumber = "0888888",
                 UserAddress = address,
                 UserAddressId = 1,
-                Username = "Pesho"
+                UserName = "Pesho"
             };
 
             IList<Order> orders = new List<Order>()

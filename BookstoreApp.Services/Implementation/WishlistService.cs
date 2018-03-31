@@ -7,6 +7,7 @@ using BookstoreApp.Services.Contracts;
 using BookstoreApp.Services.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
+using BookstoreApp.Models.Accounts;
 
 namespace BookstoreApp.Services.Implementation
 {
@@ -118,7 +119,7 @@ namespace BookstoreApp.Services.Implementation
             return book;
         }
 
-        private User GetUser(int userId)
+        private BookstoreUser GetUser(int userId)
         {
             var user = this.unitOfWork.Users.GetById(userId);
 
