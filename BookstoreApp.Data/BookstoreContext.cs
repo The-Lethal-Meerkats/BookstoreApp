@@ -1,16 +1,17 @@
 ﻿using BookstoreApp.Models;
+using BookstoreApp.Models.Accounts;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace BookstoreApp.Data
 {
-    public class BookstoreContext : DbContext, IBookstoreContext
+    public class BookstoreContext : IdentityDbContext<BookstoreUser, BookstoreRole, int, BookstoreUserLogin, BookstoreUserRole, BookstoreUserClaim>, IBookstoreContext 
     {
         public BookstoreContext() 
             : base("Bookstore")
         { }
-
-        public IDbSet<User> Users { get; set; }
+        
         public IDbSet<UserAddress> UserAddresses { get; set; }
         public IDbSet<Country> Countries { get; set; }
         public IDbSet<City> Cities { get; set; }
@@ -33,6 +34,8 @@ namespace BookstoreApp.Data
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+
+            modelBuilder.Entity<BookstoreUser>().ToTable("User");
 
             base.OnModelCreating(modelBuilder);
         }

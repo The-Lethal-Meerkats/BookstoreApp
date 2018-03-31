@@ -1,12 +1,13 @@
 ﻿using BookstoreApp.Data.Repository.Contracts;
 using BookstoreApp.Models;
+using BookstoreApp.Models.Accounts;
 using System;
 
 namespace BookstoreApp.Data.Contracts
 {
     public interface IUnitOfWork
     {
-        IRepository<User> Users { get; }
+        IRepository<BookstoreUser> Users { get; }
 
         IRepository<UserAddress> UserAddresses{ get; }
         IRepository<City> Cities{ get; }

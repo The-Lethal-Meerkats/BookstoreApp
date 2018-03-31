@@ -2,13 +2,14 @@
 using BookstoreApp.Data.Repository;
 using BookstoreApp.Data.Repository.Contracts;
 using BookstoreApp.Models;
+using BookstoreApp.Models.Accounts;
 
 namespace BookstoreApp.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
         private IBookstoreContext bookstoreContext;
-        private IRepository<User> users;
+        private IRepository<BookstoreUser> users;
         private IRepository<UserAddress> userAddresses;
         private IRepository<City> cities;
         private IRepository<Country> countries;
@@ -28,7 +29,7 @@ namespace BookstoreApp.Data
 
         public UnitOfWork(
             IBookstoreContext bookstoreContext, 
-            IRepository<User> users, 
+            IRepository<BookstoreUser> users, 
             IRepository<UserAddress> userAddresses,
             IRepository<City> cities,
             IRepository<Country> countries,
@@ -56,13 +57,13 @@ namespace BookstoreApp.Data
             this.shoppingCartStatuses = shoppingCartStatuses;
         }
 
-        public IRepository<User> Users
+        public IRepository<BookstoreUser> Users
         {
             get
             {
                 if (this.users == null)
                 {
-                    this.users = new GenericRepository<User>(bookstoreContext);
+                    this.users = new GenericRepository<BookstoreUser>(bookstoreContext);
                 }
 
                 return this.users;
