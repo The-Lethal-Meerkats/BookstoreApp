@@ -44,7 +44,7 @@ namespace BookstoreApp.Data.Repository
                 throw new ArgumentNullException("No such item found");
             }
 
-            return item ;
+            return item;
         }
 
         public virtual void Add(T entity)
@@ -115,14 +115,7 @@ namespace BookstoreApp.Data.Repository
 
             var entity = this.GetById(id);
 
-            if (entity != null)
-            {
-                this.Delete(entity);
-            }
-            else
-            {
-                throw  new ArgumentNullException("No entity with such Id found");
-            }
+            this.Delete(entity);
         }
     }
 }
