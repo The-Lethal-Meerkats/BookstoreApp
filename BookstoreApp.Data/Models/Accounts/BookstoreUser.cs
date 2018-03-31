@@ -14,7 +14,7 @@ namespace BookstoreApp.Models.Accounts
         public string Password { get; set; }
 
 
-        public int UserAddressId { get; set; }
+        public int? UserAddressId { get; set; }
         public virtual UserAddress UserAddress { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<BookstoreUser, int> manager)
