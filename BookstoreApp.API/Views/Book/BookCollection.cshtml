@@ -12,9 +12,6 @@
             @Html.DisplayNameFor(model => model.Author)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ISBN)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
@@ -28,17 +25,14 @@
             @Html.DisplayFor(modelItem => item.Author)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ISBN)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)
         </td>
-        @*<td>
-            @Html.ActionLink("Details", "Details", new { id = item. }) |
-        </td>*@
+        <td>
+            @Html.ActionLink("BookDetails", "Details", new { id = item. }) |
+        </td>
     </tr>
 }
 

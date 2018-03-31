@@ -13,7 +13,7 @@ namespace BookstoreApp.API.Controllers
         }
 
         //// GET: Book
-        public ActionResult Index()
+        public ActionResult BookCollection()
         {
             var books = this.bookService.GetAllBooks();
 
@@ -21,7 +21,7 @@ namespace BookstoreApp.API.Controllers
         }
 
         // GET: Book/Details/
-        public ActionResult Details(int? id)
+        public ActionResult BookDetails(int? id)
         {
             return View();
         }
