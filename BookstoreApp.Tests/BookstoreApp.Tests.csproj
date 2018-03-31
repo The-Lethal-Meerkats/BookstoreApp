@@ -81,23 +81,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImplementationsTests\BookServiceTests\Constructor_Should.cs" />
-    <Compile Include="ImplementationsTests\BookServiceTests\GetAllBooks_Should.cs" />
-    <Compile Include="ImplementationsTests\BookServiceTests\GetBooksByAuthor_Should.cs" />
-    <Compile Include="ImplementationsTests\BookServiceTests\GetBooksByCategoryId_Should.cs" />
-    <Compile Include="ImplementationsTests\BookServiceTests\GetBooksByTitle_Should.cs" />
-    <Compile Include="ImplementationsTests\OrderServiceTests\Constructor_Should.cs" />
-    <Compile Include="ImplementationsTests\OrderServiceTests\GetTotalOrderPrice_Should.cs" />
-    <Compile Include="ImplementationsTests\OrderServiceTests\GetUserOrders_Should.cs" />
-    <Compile Include="ImplementationsTests\ShoppingCartServiceTests\AddBookToShoppingCart_Should.cs" />
-    <Compile Include="ImplementationsTests\ShoppingCartServiceTests\Constructor_Should.cs" />
-    <Compile Include="ImplementationsTests\WishlistTests\Constructor_Should.cs" />
-    <Compile Include="ImplementationsTests\WishlistTests\AddBookToWishlist_Should.cs" />
-    <Compile Include="ImplementationsTests\WishlistTests\DeleteBookFromWishlist_Should.cs" />
-    <Compile Include="ImplementationsTests\WishlistTests\GetUserWishlistBooks_Should.cs" />
-    <Compile Include="ModelsTests\BookTests.cs" />
+    <Compile Include="BookstoreApp.DataTests\UnitOfWork\Constructor_Should.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\BookServiceTests\Constructor_Should.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\BookServiceTests\GetAllBooks_Should.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\BookServiceTests\GetBooksByAuthor_Should.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\BookServiceTests\GetBooksByCategoryId_Should.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\BookServiceTests\GetBooksByTitle_Should.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\OrderServiceTests\Constructor_Should.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\OrderServiceTests\GetTotalOrderPrice_Should.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\OrderServiceTests\GetUserOrders_Should.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\ShoppingCartServiceTests\AddBookToShoppingCart_Should.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\ShoppingCartServiceTests\Constructor_Should.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\WishlistTests\Constructor_Should.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\WishlistTests\AddBookToWishlist_Should.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\WishlistTests\DeleteBookFromWishlist_Should.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\WishlistTests\GetUserWishlistBooks_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositoryTests\GenericRepository_Should.cs" />
+    <Compile Include="BookstoreApp.DataTests\RepositoryTests\GenericRepository_Should.cs" />
+    <Compile Include="BookstoreApp.DataTests\RepositoryTests\GetById_Should.cs" />
+    <Compile Include="BookstoreApp.DataTests\RepositoryTests\Add_Should.cs" />
+    <Compile Include="BookstoreApp.DataTests\RepositoryTests\Delete_Should.cs" />
+    <Compile Include="BookstoreApp.DataTests\RepositoryTests\AddOrUpdate_Should.cs" />
+    <Compile Include="BookstoreApp.DataTests\RepositoryTests\Update_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

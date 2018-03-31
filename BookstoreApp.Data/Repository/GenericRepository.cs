@@ -31,6 +31,12 @@ namespace BookstoreApp.Data.Repository
 
         public virtual T GetById(int id)
         {
+            if (id < 1)
+            {
+                throw new ArgumentException("Id cannot be less than 1");
+            }
+
+
             var item = this.dbSet.Find(id);
 
             if (item == null)
@@ -43,6 +49,10 @@ namespace BookstoreApp.Data.Repository
 
         public virtual void Add(T entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("Entity cannot be null");
+            }
             DbEntityEntry entry = this.context.Entry(entity);
             if (entry.State != EntityState.Detached)
             {
@@ -56,6 +66,10 @@ namespace BookstoreApp.Data.Repository
 
         public virtual void Update(T entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("Entity cannot be null");
+            }
             DbEntityEntry entry = this.context.Entry(entity);
             if (entry.State == EntityState.Detached)
             {
@@ -67,11 +81,19 @@ namespace BookstoreApp.Data.Repository
 
         public void AddOrUpdate(Expression<Func<T, object>> condition, T entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("Entity cannot be null");
+            }
             this.dbSet.AddOrUpdate(condition, entity);
         }
 
         public virtual void Delete(T entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("Entity cannot be null");
+            }
             DbEntityEntry entry = this.context.Entry(entity);
             if (entry.State != EntityState.Deleted)
             {
@@ -86,11 +108,20 @@ namespace BookstoreApp.Data.Repository
 
         public virtual void Delete(int id)
         {
+            if (id < 1)
+            {
+                throw new ArgumentException("Id cannot be less than 1");
+            }
+
             var entity = this.GetById(id);
 
             if (entity != null)
             {
                 this.Delete(entity);
+            }
+            else
+            {
+                throw  new ArgumentNullException("No entity with such Id found");
             }
         }
     }
