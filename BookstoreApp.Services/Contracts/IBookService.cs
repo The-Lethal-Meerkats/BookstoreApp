@@ -5,6 +5,8 @@ namespace BookstoreApp.Services.Contracts
 {
     public interface IBookService
     {
+        BookViewModel GetBookById(int id);
+
         List<BookViewModel> GetAllBooks();
 
         List<BookViewModel> GetBooksByTitle(string title);

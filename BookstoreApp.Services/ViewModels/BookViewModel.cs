@@ -6,6 +6,8 @@ namespace BookstoreApp.Services.ViewModels
 {
     public class BookViewModel : IMapFrom<Book>, IHaveCustomMappings
     {
+        public int Id { get; set; }
+
         public string ISBN { get; set; }
 
         public string Title { get; set; }

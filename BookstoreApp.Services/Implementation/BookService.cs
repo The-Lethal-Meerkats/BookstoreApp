@@ -20,6 +20,20 @@ namespace BookstoreApp.Services.Implementation
             this.mapper = mapper;
         }
 
+        public BookViewModel GetBookById(int id)
+        {
+            var book = this.unitOfWork.Books.GetById(id);
+
+            if (book == null)
+            {
+                return null;
+            }
+
+            var bookModel = this.mapper.Map<BookViewModel>(book);
+
+            return bookModel;
+        }
+
         public List<BookViewModel> GetAllBooks()
         {
             var storedBooks = this.unitOfWork.Books
