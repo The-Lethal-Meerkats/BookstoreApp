@@ -20,7 +20,7 @@ namespace BookstoreApp.Services.Implementation
             this.mapper = mapper;
         }
 
-        public BookViewModel GetBookById(int id)
+        public BookImageViewModel GetBookById(int id)
         {
             var book = this.unitOfWork.Books.GetById(id);
 
@@ -29,7 +29,7 @@ namespace BookstoreApp.Services.Implementation
                 return null;
             }
 
-            var bookModel = this.mapper.Map<BookViewModel>(book);
+            var bookModel = this.mapper.Map<BookImageViewModel>(book);
 
             return bookModel;
         }

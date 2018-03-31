@@ -21,9 +21,16 @@ namespace BookstoreApp.API.Controllers
         }
 
         // GET: Book/Details/
-        public ActionResult BookDetails(int? id)
+        public ActionResult BookDetails(int id)
         {
-            return View();
+            var bookModel = this.bookService.GetBookById(id);
+
+            if (bookModel == null)
+            {
+                return HttpNotFound("No such book found in collection.");
+            }
+
+            return View(bookModel);
         }
     }
 }
