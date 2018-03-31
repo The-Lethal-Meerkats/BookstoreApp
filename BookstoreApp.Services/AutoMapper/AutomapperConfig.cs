@@ -9,14 +9,6 @@ namespace BookstoreApp.Services.AutoMapper
 {
     public static class AutomapperConfig
     {
-        // Not automatic automapper
-        //public static void Initialize()
-        //{
-        //    Mapper.Initialize(cfg =>
-        //    {
-        //        cfg.CreateMap<BookModel, Book>().ReverseMap();
-        //    });
-        //}
         public static void Initialize()
         {
             var types = AppDomain.CurrentDomain
@@ -29,7 +21,6 @@ namespace BookstoreApp.Services.AutoMapper
             
             Mapper.Initialize(cfg => Load(types, cfg));
         }
-
 
         private static void Load(IEnumerable<Type> types, IMapperConfigurationExpression cfg)
         {
