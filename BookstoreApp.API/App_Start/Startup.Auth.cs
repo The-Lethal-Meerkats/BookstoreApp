@@ -4,6 +4,10 @@ using Microsoft.Owin.Security.Cookies;
 using Owin;
 using BookstoreApp.Data;
 using System.Web.Mvc;
+using BookstoreApp.API.Identity;
+using BookstoreApp.Models.Accounts;
+using System;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace BookstoreApp.API
 {
@@ -13,8 +17,8 @@ namespace BookstoreApp.API
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
             app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<IBookstoreContext>());
-            app.CreatePerOwinContext<BookstoreUserManager>(BookstoreUserManager.Create);
-            app.CreatePerOwinContext<BookstoreSignInManager>(BookstoreSignInManager.Create);
+            app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<BookstoreUserManager>());
+            app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<BookstoreSignInManager>());
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider

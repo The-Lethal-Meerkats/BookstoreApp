@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BookstoreApp.API.Models;
 using BookstoreApp.Models.Accounts;
+using BookstoreApp.API.Identity;
 
 namespace BookstoreApp.API.Controllers
 {
@@ -17,32 +18,8 @@ namespace BookstoreApp.API.Controllers
 
         public AccountController(BookstoreUserManager userManager, BookstoreSignInManager signInManager )
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
-
-        public BookstoreSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<BookstoreSignInManager>();
-            }
-            private set 
-            { 
-                _signInManager = value; 
-            }
-        }
-
-        public BookstoreUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<BookstoreUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         // GET: /Account/Login
@@ -65,7 +42,7 @@ namespace BookstoreApp.API.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -97,10 +74,10 @@ namespace BookstoreApp.API.Controllers
             if (ModelState.IsValid)
             {
                 var user = new BookstoreUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    await _signInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     return RedirectToAction("Index", "Home");
                 }
@@ -128,8 +105,8 @@ namespace BookstoreApp.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                var user = await _userManager.FindByNameAsync(model.Email);
+                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
@@ -174,13 +151,13 @@ namespace BookstoreApp.API.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await _userManager.FindByNameAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            var result = await _userManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
