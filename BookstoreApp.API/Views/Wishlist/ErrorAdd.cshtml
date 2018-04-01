@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Error";
+}
+<br />
+<h1>Oh no! Somthing happened!</h1>
+
+<br />
+<br />
+<div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
+    <div class="card-header">Error!</div>
+    <div class="card-body">
+        <h4 class="card-title">Book was NOT added to your wishlist :(</h4>
+        <p class="card-text"><a class="btn btn-default" href=@Url.Action("BookCollection", "Book")>Go back to Books Collection &raquo;</a></p>
+    </div>
+</div>

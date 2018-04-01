@@ -198,6 +198,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Identity\BookstoreSignInManager.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -267,14 +268,17 @@
     <Content Include="Views\Book\BookDetails.cshtml" />
     <Content Include="Views\Book\BookCollection.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
-    <Content Include="Views\Wishlist\Index.cshtml" />
-    <Content Include="Views\Wishlist\_Error.cshtml" />
-    <Content Include="Views\Wishlist\_Success.cshtml" />
+    <Content Include="Views\Wishlist\ErrorAdd.cshtml" />
+    <Content Include="Views\Wishlist\SuccessAdd.cshtml" />
+    <Content Include="Views\Wishlist\WishlistBookCollection.cshtml" />
+    <Content Include="Views\Wishlist\SuccessDelete.cshtml" />
+    <Content Include="Views\Wishlist\ErrorDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_GlobalResources\" />
     <Folder Include="Views\Search\" />
+    <Folder Include="Views\ShoppingCart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

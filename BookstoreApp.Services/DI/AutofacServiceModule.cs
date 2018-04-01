@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using AutoMapper;
+using BookstoreApp.Models.Accounts;
 using BookstoreApp.Services.Contracts;
 
 namespace BookstoreApp.Services.DI
@@ -14,6 +15,7 @@ namespace BookstoreApp.Services.DI
                 .InstancePerRequest();
 
             builder.Register(m => Mapper.Instance);
+            builder.RegisterType<BookstoreUserContext>().As<IBookstoreUserContext>().InstancePerRequest();
 
             base.Load(builder);
         }
