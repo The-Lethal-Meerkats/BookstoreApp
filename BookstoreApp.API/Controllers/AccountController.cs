@@ -102,26 +102,6 @@ namespace BookstoreApp.API.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (this.userManager != null)
-                {
-                    this.userManager.Dispose();
-                    this.userManager = null;
-                }
-
-                if (this.signInManager != null)
-                {
-                    this.signInManager.Dispose();
-                    this.signInManager = null;
-                }
-            }
-
-            base.Dispose(disposing);
-        }
-
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
