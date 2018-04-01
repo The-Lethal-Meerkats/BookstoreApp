@@ -64,8 +64,7 @@ namespace BookstoreApp.API.Controllers
                 shoppingCartService.PlaceOrderFromShoppingCart(userId);
             }
             catch (Exception ex)
-            {
-                //TODO: Unsuccesful view
+            {             
                 return View("OrderFail");
             }
 
