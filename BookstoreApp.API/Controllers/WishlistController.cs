@@ -22,12 +22,15 @@ namespace BookstoreApp.API.Controllers
             this.authenticationManager = authenticationManager;
             this.userContext = userContext;
         }
+
+
         // GET: Wishlist
         public ActionResult WishlistBookCollection()
         {
             
             var userId = this.userContext.UserId;
             var books = wishlistService.GetUserWishlistBooks(userId);
+
             return View(books);
         }
 
@@ -41,12 +44,10 @@ namespace BookstoreApp.API.Controllers
             }
             catch (Exception ex)
             {
-                //TODO : Add unsuccessful result
-                return View();
+                return View("ErrorAdd");
             }
 
-            //TODO: Add success view 
-            return View();
+            return View("SuccessAdd");
         }
 
         public ActionResult DeleteFromWishlist(int bookId)
@@ -63,7 +64,7 @@ namespace BookstoreApp.API.Controllers
             }
 
             //TODO: Add success view 
-            return View();
+            return View("SuccessDelete");
         }
     }
 }

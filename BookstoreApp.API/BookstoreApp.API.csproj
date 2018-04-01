@@ -268,7 +268,11 @@
     <Content Include="Views\Book\BookDetails.cshtml" />
     <Content Include="Views\Book\BookCollection.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
-    <Content Include="Views\Wishlist\Wishlist.cshtml" />
+    <Content Include="Views\Wishlist\ErrorAdd.cshtml" />
+    <Content Include="Views\Wishlist\SuccessAdd.cshtml" />
+    <Content Include="Views\Wishlist\WishlistBookCollection.cshtml" />
+    <Content Include="Views\Wishlist\SuccessDelete.cshtml" />
+    <Content Include="Views\Wishlist\ErrorDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
