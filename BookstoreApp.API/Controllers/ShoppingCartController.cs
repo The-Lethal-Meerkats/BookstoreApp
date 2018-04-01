@@ -66,7 +66,6 @@ namespace BookstoreApp.API.Controllers
 
             //TODO: Succesful view
             return View();
-
         }
 
         public ActionResult PlaceOrderFromShoppingCart()

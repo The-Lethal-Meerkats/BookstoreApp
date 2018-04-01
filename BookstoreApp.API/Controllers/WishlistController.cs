@@ -18,7 +18,6 @@ namespace BookstoreApp.API.Controllers
             this.userContext = userContext;
         }
 
-
         // GET: Wishlist
         public ActionResult WishlistBookCollection()
         {
