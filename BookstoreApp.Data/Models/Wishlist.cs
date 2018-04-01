@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BookstoreApp.Models.Accounts;
+using System.Collections.Generic;
 
 namespace BookstoreApp.Models
 {
@@ -12,7 +13,7 @@ namespace BookstoreApp.Models
         public int Id { get; set; }
 
         public int UserId { get; set; }
-        public virtual User User { get; set; }
+        public virtual BookstoreUser User { get; set; }
 
         public virtual ICollection<Book> Books { get; set; }
     }

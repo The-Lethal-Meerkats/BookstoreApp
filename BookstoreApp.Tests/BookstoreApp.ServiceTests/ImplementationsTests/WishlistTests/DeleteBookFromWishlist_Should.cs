@@ -11,6 +11,7 @@ using BookstoreApp.Services.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Linq;
+using BookstoreApp.Models.Accounts;
 
 namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
 {
@@ -72,21 +73,17 @@ namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
                 Author = author1,
                 CategoryId = 2,
             };
-            var country = new Country() { CountryName = "Bulgaria", Id = 1 };
-            var city = new City() { CityName = "Sofia", Country = country, CountryId = 1, Id = 1 };
-            var address = new UserAddress() { City = city, CityId = 1, Id = 1, Street = "street" };
             var books = new Collection<Book>() { book1, book2 };
-            var user1 = new User()
+            var user1 = new BookstoreUser()
             {
                 FirstName = "Pesho",
                 LastName = "Petrov",
                 Id = 2,
-                Password = "secret",
+                PasswordHash = "secret",
                 Email = "email",
                 PhoneNumber = "0888888",
-                UserAddress = address,
-                UserAddressId = 1,
-                Username = "Pesho"
+                UserAddress = "asd",
+                UserName = "Pesho"
             };
             var wishlist = new Wishlist()
             {

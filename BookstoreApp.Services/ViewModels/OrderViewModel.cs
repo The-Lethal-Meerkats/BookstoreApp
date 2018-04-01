@@ -25,7 +25,7 @@ namespace BookstoreApp.Services.ViewModels
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Order, OrderViewModel>()
-                .ForMember(d => d.Username, opt => opt.MapFrom(s => s.User.Username))
+                .ForMember(d => d.Username, opt => opt.MapFrom(s => s.User.UserName))
                 .ForMember(d => d.FirstName, opt => opt.MapFrom(s => s.User.FirstName))
                 .ForMember(d => d.LastName, opt => opt.MapFrom(s => s.User.LastName))
                 .ForMember(d => d.Books, opt => opt.MapFrom(s => s.Books));

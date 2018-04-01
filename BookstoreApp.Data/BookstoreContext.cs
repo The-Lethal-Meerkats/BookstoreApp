@@ -1,11 +1,13 @@
 ﻿using System.Data.Common;
 using BookstoreApp.Models;
+using BookstoreApp.Models.Accounts;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace BookstoreApp.Data
 {
-    public class BookstoreContext : DbContext, IBookstoreContext
+    public class BookstoreContext : IdentityDbContext<BookstoreUser, BookstoreRole, int, BookstoreUserLogin, BookstoreUserRole, BookstoreUserClaim>, IBookstoreContext 
     {
         public BookstoreContext() 
             : base("Bookstore")
@@ -38,10 +40,20 @@ namespace BookstoreApp.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<BookstoreUser>()
+                .Property(p => p.PasswordHash)
+                .HasColumnName("Password");
+
+            modelBuilder.Entity<BookstoreUser>().ToTable("BookstoreUsers");
+            modelBuilder.Entity<BookstoreRole>().ToTable("BookstoreRoles");
+            modelBuilder.Entity<BookstoreUserClaim>().ToTable("BookstoreUserClaims");
+            modelBuilder.Entity<BookstoreUserRole>().ToTable("BookstoreUserRoles");
+            modelBuilder.Entity<BookstoreUserLogin>().ToTable("BookstoreUserLogins");
         }
 
         public new IDbSet<T> Set<T>() where T : class
