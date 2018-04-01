@@ -4,15 +4,14 @@ using Microsoft.Owin.Security;
 
 namespace BookstoreApp.API.Controllers
 {
+    [Authorize]
     public class BookController : Controller
     {
         private IBookService bookService;
-        private IAuthenticationManager authManager;
 
-        public BookController(IBookService bookService, IAuthenticationManager authenticationManager)
+        public BookController(IBookService bookService)
         {
             this.bookService = bookService;
-            this.authManager = authenticationManager;
         }
 
         //// GET: Book
