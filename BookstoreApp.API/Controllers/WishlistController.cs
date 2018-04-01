@@ -42,12 +42,10 @@ namespace BookstoreApp.API.Controllers
             }
             catch (Exception ex)
             {
-                //TODO : Add unsuccessful result
-                return PartialView("_Error");
+                return View("Error");
             }
 
-            //TODO: Add success view 
-            return View("_Success");
+            return View("Success");
         }
 
         public ActionResult DeleteFromWishlist(int bookId)
