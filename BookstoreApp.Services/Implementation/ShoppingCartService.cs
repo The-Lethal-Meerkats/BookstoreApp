@@ -112,6 +112,11 @@ namespace BookstoreApp.Services.Implementation
                 .Where(sc => sc.UserId == userId)
                 .FirstOrDefault();
 
+            if (shoppingCart == null)
+            {
+                return null;
+            }
+
             var booksModel = shoppingCart.Books
                 .AsQueryable()
                 .ProjectTo<BookViewModel>()
