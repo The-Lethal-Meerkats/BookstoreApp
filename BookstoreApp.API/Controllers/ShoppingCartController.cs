@@ -41,15 +41,13 @@ namespace BookstoreApp.API.Controllers
                 shoppingCartService.AddBookToShoppingCart(bookId, userId);
             }
             catch (Exception ex)
-            {
-                //TODO: Unsuccesful view
-                return View();
+            {                
+                return View("ErrorAdd");
             }
 
-            //TODO: Succesful view
-            return View();
-
+            return View("SuccessAdd");
         }
+
         public ActionResult DeleteBookToShoppingCart(int bookId)
         {
             var userId = userContext.UserId;
@@ -60,12 +58,10 @@ namespace BookstoreApp.API.Controllers
             }
             catch (Exception ex)
             {
-                //TODO: Unsuccesful view
-                return View();
+                return View("ErrorDelete");
             }
 
-            //TODO: Succesful view
-            return View();
+            return View("SuccessDelete");
         }
 
         public ActionResult PlaceOrderFromShoppingCart()
@@ -77,12 +73,11 @@ namespace BookstoreApp.API.Controllers
                 shoppingCartService.PlaceOrderFromShoppingCart(userId);
             }
             catch (Exception ex)
-            {
-                //TODO: Unsuccesful view
-                return View();
+            {             
+                return View("OrderFail");
             }
 
-            return View();
+            return View("OrderSuccess");
         }
     }
 }
