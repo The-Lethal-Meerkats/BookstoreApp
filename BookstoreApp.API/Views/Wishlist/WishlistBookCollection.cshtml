@@ -18,6 +18,7 @@
             @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>Shopping Cart</th>
+        <th>Delete</th>
     </tr>
 
     @foreach (var item in Model)
@@ -34,6 +35,8 @@
             </td>
 
             <td><button type="button" class="btn btn-info">Add</button></td>
+            <td> @Html.ActionLink("Delete", "DeleteFromWishlist", "Wishlist", new { bookId = item.Id }, new { @class = "btn btn-danger" })
+            </td>
         </tr>
     }
 

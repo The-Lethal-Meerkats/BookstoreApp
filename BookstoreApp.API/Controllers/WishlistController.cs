@@ -42,16 +42,17 @@ namespace BookstoreApp.API.Controllers
             }
             catch (Exception ex)
             {
-                return View("Error");
+                return View("ErrorAdd");
             }
 
-            return View("Success");
+            return View("SuccessAdd");
         }
 
         public ActionResult DeleteFromWishlist(int bookId)
         {
             var user = this.authenticationManager.User.FindFirst(c => c.Type == "UserId");
             var userId = int.Parse(user.Value);
+
             try
             {
                 wishlistService.DeleteBookFromWishlist(bookId, userId);
@@ -63,7 +64,7 @@ namespace BookstoreApp.API.Controllers
             }
 
             //TODO: Add success view 
-            return View();
+            return View("SuccessDelete");
         }
     }
 }
