@@ -13,11 +13,14 @@ namespace BookstoreApp.API.Controllers
     {
         private IWishlistService wishlistService;
         private IAuthenticationManager authenticationManager;
+
         public WishlistController(IWishlistService wishlistService, IAuthenticationManager authenticationManager)
         {
             this.wishlistService = wishlistService ?? throw new ArgumentNullException();
             this.authenticationManager = authenticationManager ?? throw new ArgumentNullException();
         }
+
+
         // GET: Wishlist
         public ActionResult WishlistBookCollection()
         {
