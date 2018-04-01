@@ -24,18 +24,19 @@ namespace BookstoreApp.Services.Implementation
 
         public int AddBookToShoppingCart(int bookId, int userId)
         {
+            if (bookId < 1)
+            {
+                throw new ArgumentException("Invalid bookId");
+            }
+            if (userId < 1)
+            {
+                throw new ArgumentException("Invalid userId");
+            }
+
             var user = this.GetUser(userId);
             var bookToAdd = this.GetBook(bookId);
 
-            if (bookToAdd == null || user == null)
-            {
-                return -1;
-            }
-
-            var shoppingCart = this.unitOfWork.ShoppingCarts
-              .All()
-              .Where(sc => sc.UserId == userId)
-              .FirstOrDefault();
+            var shoppingCart = GetShoppingCart(userId);
 
             var cartStatus = this.unitOfWork.ShoppingCartStatuses
                 .GetById(1);
@@ -57,22 +58,19 @@ namespace BookstoreApp.Services.Implementation
 
         public int RemoveBookFromShoppingCart(int bookId, int userId)
         {
+            if (bookId < 1)
+            {
+                throw new ArgumentException("Invalid bookId");
+            }
+            if (userId < 1)
+            {
+                throw new ArgumentException("Invalid userId");
+            }
+
             var bookToRemove = this.GetBook(bookId);
+            var user = this.GetUser(userId);
 
-            if (bookToRemove == null)
-            {
-                return -1;
-            }
-
-            var shoppingCart = this.unitOfWork.ShoppingCarts
-              .All()
-              .Where(sc => sc.UserId == userId)
-              .FirstOrDefault();
-
-            if (shoppingCart == null)
-            {
-                return -1;
-            }
+            var shoppingCart = GetShoppingCart(userId);
 
             shoppingCart.Books.Remove(bookToRemove);
             this.unitOfWork.ShoppingCarts.AddOrUpdate(sc => sc.Id, shoppingCart);
@@ -82,15 +80,14 @@ namespace BookstoreApp.Services.Implementation
 
         public int PlaceOrderFromShoppingCart(int userId)
         {
-            var shoppingCart = this.unitOfWork.ShoppingCarts
-                .All()
-                .Where(sc => sc.UserId == userId)
-                .FirstOrDefault();
-
-            if (shoppingCart == null)
+            if (userId < 1)
             {
-                return -1;
+                throw new ArgumentException("Invalid userId");
             }
+
+            var user = this.GetUser(userId);
+
+            var shoppingCart = GetShoppingCart(userId);
 
             string deliveryAddress = this.BuildAddress(shoppingCart.User.UserAddress);
 
@@ -109,10 +106,13 @@ namespace BookstoreApp.Services.Implementation
 
         public List<BookViewModel> ShowUserShoppingCart(int userId)
         {
-            var shoppingCart = this.unitOfWork.ShoppingCarts
-                .All()
-                .Where(sc => sc.UserId == userId)
-                .FirstOrDefault();
+            if (userId < 1)
+            {
+                throw new ArgumentException("Invalid userId");
+            }
+            var user = this.GetUser(userId);
+
+            var shoppingCart = GetShoppingCart(userId);
 
             var booksModel = shoppingCart.Books
                 .AsQueryable()
@@ -126,18 +126,13 @@ namespace BookstoreApp.Services.Implementation
         {
             if (userId < 1)
             {
-                throw new ArgumentOutOfRangeException("UserID has to be equal or bigger than one.");
+                throw new ArgumentException("Invalid userId");
             }
 
-            var shoppingCart = this.unitOfWork.ShoppingCarts
-                .All()
-                .Where(or => or.UserId == userId)
-                .FirstOrDefault();
+            var user = this.GetUser(userId);
 
-            if (shoppingCart == null)
-            {
-                return -1;
-            }
+
+            var shoppingCart = GetShoppingCart(userId);
 
             decimal totalPrice = 0;
 
@@ -151,18 +146,57 @@ namespace BookstoreApp.Services.Implementation
 
         private Book GetBook(int bookId)
         {
+            if (bookId < 1)
+            {
+                throw new ArgumentException("Invalid userId");
+            }
+
             var book = this.unitOfWork.Books.GetById(bookId);
+
+            if (book == null)
+            {
+                throw new ArgumentNullException("No existing book with such ID");
+            }
 
             return book;
         }
 
         private User GetUser(int userId)
         {
+            if (userId < 1)
+            {
+                throw new ArgumentException("Invalid userId");
+            }
+
             var user = this.unitOfWork.Users.GetById(userId);
+
+            if (user == null)
+            {
+                throw new ArgumentNullException("No existing user with such ID");
+            }
 
             return user;
         }
 
+        private ShoppingCart GetShoppingCart(int userId)
+        {
+            if (userId < 1)
+            {
+                throw new ArgumentException("Invalid userId");
+            }
+
+            var shoppingCart = this.unitOfWork.ShoppingCarts
+                .All()
+                .Where(or => or.UserId == userId)
+                .FirstOrDefault();
+
+            if (shoppingCart == null)
+            {
+                throw new ArgumentNullException("No existing user with such ID");
+            }
+
+            return shoppingCart;
+        }
         private string BuildAddress(UserAddress userAddress)
         {
             var addressToBuild = new
