@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using BookstoreApp.Data;
 using BookstoreApp.Data.Repository;
 using BookstoreApp.Models;
@@ -7,20 +8,20 @@ using Moq;
 
 namespace BookstoreApp.Tests.RepositoryTests
 {
-    //[TestClass]
-    //public class AddOrUpdate_Should
-    //{
-        
-    //    [TestMethod]
-    //    public void ThrowArgumentNullException_When_InvokedWithNullValue()
-    //    {
-    //        var contextMock = new Mock<IBookstoreContext>();
+    [TestClass]
+    public class AddOrUpdate_Should
+    {
 
-    //        var bookRepository = new GenericRepository<Book>(contextMock.Object);
+        [TestMethod]
+        public void ThrowArgumentNullException_When_InvokedWithNullValue()
+        {
+            var contextMock = new Mock<IBookstoreContext>();
 
-    //        Book nullBook = null;
-            
-    //        Assert.ThrowsException<ArgumentNullException>(() => bookRepository.AddOrUpdate(condition, nullBook));
-    //    }
-    //}
+            var bookRepository = new GenericRepository<Book>(contextMock.Object);
+
+            Book nullBook = null;
+
+            Assert.ThrowsException<ArgumentNullException>(() => bookRepository.AddOrUpdate(It.IsAny<Expression<Func<Book, object>>>(), nullBook));
+        }
+    }
 }

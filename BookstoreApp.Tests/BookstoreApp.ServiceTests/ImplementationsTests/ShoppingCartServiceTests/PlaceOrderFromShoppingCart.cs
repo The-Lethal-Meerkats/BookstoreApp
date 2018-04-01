@@ -23,5 +23,6 @@ namespace BookstoreApp.Tests.BookstoreApp.ServiceTests.ImplementationsTests.Shop
 
             Assert.ThrowsException<ArgumentException>(() => shoppingCartService.PlaceOrderFromShoppingCart(invalidUserId));
         }
+        
     }
 }
