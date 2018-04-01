@@ -272,7 +272,6 @@
     <Content Include="Views\Wishlist\ErrorDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_GlobalResources\" />
     <Folder Include="Views\Search\" />
     <Folder Include="Views\ShoppingCart\" />
   </ItemGroup>
