@@ -5,9 +5,9 @@ using BookstoreApp.Data.Contracts;
 using BookstoreApp.Models;
 using BookstoreApp.Services.Contracts;
 using BookstoreApp.Services.ViewModels;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using BookstoreApp.Models.Accounts;
 
 namespace BookstoreApp.Services.Implementation
 {
@@ -92,12 +92,10 @@ namespace BookstoreApp.Services.Implementation
                 return -1;
             }
 
-            string deliveryAddress = this.BuildAddress(shoppingCart.User.UserAddress);
-
             var orderToPlace = new Order()
             {
                 Books = shoppingCart.Books,
-                DeliveryAddress = deliveryAddress,
+                DeliveryAddress = shoppingCart.User.UserAddress,
                 OrderStatusId = 1,
                 PhoneNumber = shoppingCart.User.PhoneNumber,
                 UserId = userId
@@ -156,25 +154,11 @@ namespace BookstoreApp.Services.Implementation
             return book;
         }
 
-        private User GetUser(int userId)
+        private BookstoreUser GetUser(int userId)
         {
             var user = this.unitOfWork.Users.GetById(userId);
 
             return user;
-        }
-
-        private string BuildAddress(UserAddress userAddress)
-        {
-            var addressToBuild = new
-            {
-                Street = userAddress.Street,
-                City = userAddress.City.CityName,
-                Country = userAddress.City.Country.CountryName
-            };
-
-            string address = JsonConvert.SerializeObject(addressToBuild);
-
-            return address;
         }
     }
 }

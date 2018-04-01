@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookstoreApp.Models.Accounts;
+using System;
 using System.Collections.Generic;
 
 namespace BookstoreApp.Models
@@ -22,7 +23,7 @@ namespace BookstoreApp.Models
 
 
         public int UserId { get; set; }
-        public virtual User User { get; set; }
+        public virtual BookstoreUser User { get; set; }
 
         public int OrderStatusId { get; set; }
         public virtual OrderStatus OrderStatus { get; set; }       

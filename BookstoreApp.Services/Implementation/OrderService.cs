@@ -6,6 +6,7 @@ using BookstoreApp.Services.Contracts;
 using BookstoreApp.Services.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
+using BookstoreApp.Models;
 
 namespace BookstoreApp.Services.Implementation
 {
@@ -27,35 +28,25 @@ namespace BookstoreApp.Services.Implementation
             {
                 throw new ArgumentOutOfRangeException("UserID has to be equal or bigger than one.");
             }
-            var ordersModel = this.unitOfWork.Orders
-                .All()
-                .Where(or => or.UserId == userId)
-                .ProjectTo<OrderViewModel>()
-                .ToList();
 
-            if (ordersModel == null)
-            {
-                return null;
-            }
+            var ordersModel = GetOrdersByUserId(userId);
 
             return ordersModel;
         }
 
-        public decimal GetTotalOrderPrice(int userId)
+        public decimal GetTotalOrderPrice(int orderId)
         {
-            if (userId < 1)
+            
+            if (orderId < 1)
             {
-                throw new ArgumentOutOfRangeException("UserID has to be equal or bigger than one.");
+                throw new ArgumentOutOfRangeException("orderID has to be equal or bigger than one.");
             }
 
-            var order = this.unitOfWork.Orders
-                .All()
-                .Where(or => or.UserId == userId)
-                .FirstOrDefault();
+            var order = GetOrderByOrderId(orderId);
 
             if (order == null)
             {
-                return -1;
+                throw new ArgumentNullException("Order cannot be found");
             }
 
             decimal totalPrice = 0;
@@ -66,6 +57,24 @@ namespace BookstoreApp.Services.Implementation
             }
 
             return totalPrice;
+        }
+
+        private Order GetOrderByOrderId(int orderId)
+        {
+            var order = this.unitOfWork.Orders.GetById(orderId);
+
+            return order;
+        }
+
+        private List<OrderViewModel> GetOrdersByUserId(int userId)
+        {
+            var ordersModel = this.unitOfWork.Orders
+                .All()
+                .Where(or => or.UserId == userId)
+                .ProjectTo<OrderViewModel>()
+                .ToList();
+
+            return ordersModel;
         }
     }
 }
