@@ -108,10 +108,12 @@ namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
             repoMock.Setup(x => x.All()).Returns(wishlists.AsQueryable);
 
             unitOfWorkMock.Setup(x => x.Wishlists).Returns(repoMock.Object);
+            unitOfWorkMock.Setup(x => x.Books.GetById(1)).Returns(book1);
+            unitOfWorkMock.Setup(x => x.Users.GetById(2)).Returns(user1);
 
             var wishlistService = new WishlistService(unitOfWorkMock.Object, mapperMock.Object);
 
-           // wishlistService.DeleteBookFromWishlist(book1.Id, user1.Id);
+            wishlistService.DeleteBookFromWishlist(book1.Id, user1.Id);
 
             var actualBookCountInWishlist = wishlist.Books.Count;
 

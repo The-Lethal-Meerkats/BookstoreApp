@@ -36,10 +36,7 @@ namespace BookstoreApp.Services.Implementation
                 return -1;
             }
 
-            var wishlist = this.unitOfWork.Wishlists
-              .All()
-              .Where(w => w.UserId == userId)
-              .FirstOrDefault();
+            var wishlist = GetUserWishlist(userId);
 
             if (wishlist == null)
             {
@@ -67,13 +64,10 @@ namespace BookstoreApp.Services.Implementation
 
             if (user == null || book == null)
             {
-                return -1;
+                throw new ArgumentNullException();
             }
 
-            var wishlist = this.unitOfWork.Wishlists
-              .All()
-              .Where(w => w.UserId == userId)
-              .FirstOrDefault();
+            var wishlist = GetUserWishlist(userId);
 
             if (wishlist == null)
             {
@@ -93,10 +87,7 @@ namespace BookstoreApp.Services.Implementation
                 throw new ArgumentOutOfRangeException();
             }
 
-            var wishlist = this.unitOfWork.Wishlists
-               .All()
-               .Where(w => w.UserId == userId)
-               .FirstOrDefault();
+            var wishlist = GetUserWishlist(userId);
 
             if (wishlist == null)
             {
@@ -123,6 +114,15 @@ namespace BookstoreApp.Services.Implementation
             var user = this.unitOfWork.Users.GetById(userId);
 
             return user;
+        }
+        private Wishlist GetUserWishlist(int userId)
+        {
+            var wishlist = this.unitOfWork.Wishlists
+                .All()
+                .Where(w => w.UserId == userId)
+                .FirstOrDefault();
+
+            return wishlist;
         }
     }
 }

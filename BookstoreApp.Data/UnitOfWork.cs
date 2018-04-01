@@ -1,4 +1,5 @@
-﻿using BookstoreApp.Data.Contracts;
+﻿using System;
+using BookstoreApp.Data.Contracts;
 using BookstoreApp.Data.Repository;
 using BookstoreApp.Data.Repository.Contracts;
 using BookstoreApp.Models;
@@ -23,6 +24,10 @@ namespace BookstoreApp.Data
 
         public UnitOfWork(IBookstoreContext bookstoreContext)
         {
+            if (bookstoreContext == null)
+            {
+                throw new ArgumentNullException("Context should not be null");
+            }
             this.bookstoreContext = bookstoreContext;
         }
 
