@@ -13,13 +13,15 @@ namespace BookstoreApp.API.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private BookstoreSignInManager _signInManager;
-        private BookstoreUserManager _userManager;
+        private BookstoreSignInManager signInManager;
+        private BookstoreUserManager userManager;
+        private IAuthenticationManager authManager;
 
-        public AccountController(BookstoreUserManager userManager, BookstoreSignInManager signInManager )
+        public AccountController(BookstoreUserManager userManager, BookstoreSignInManager signInManager, IAuthenticationManager authenticationManager)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+            this.authManager = authenticationManager;
         }
 
         // GET: /Account/Login
@@ -42,7 +44,7 @@ namespace BookstoreApp.API.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await this.signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -73,10 +75,10 @@ namespace BookstoreApp.API.Controllers
             if (ModelState.IsValid)
             {
                 var user = new BookstoreUser { UserName = model.UserName, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var result = await this.userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    await this.signInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     return RedirectToAction("Index", "Home");
                 }
@@ -104,8 +106,8 @@ namespace BookstoreApp.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByNameAsync(model.Email);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user.Id)))
+                var user = await this.userManager.FindByNameAsync(model.Email);
+                if (user == null || !(await this.userManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
@@ -150,13 +152,13 @@ namespace BookstoreApp.API.Controllers
             {
                 return View(model);
             }
-            var user = await _userManager.FindByNameAsync(model.Email);
+            var user = await this.userManager.FindByNameAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
-            var result = await _userManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            var result = await this.userManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
@@ -178,7 +180,7 @@ namespace BookstoreApp.API.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            this.authManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
 
@@ -186,16 +188,16 @@ namespace BookstoreApp.API.Controllers
         {
             if (disposing)
             {
-                if (_userManager != null)
+                if (this.userManager != null)
                 {
-                    _userManager.Dispose();
-                    _userManager = null;
+                    this.userManager.Dispose();
+                    this.userManager = null;
                 }
 
-                if (_signInManager != null)
+                if (this.signInManager != null)
                 {
-                    _signInManager.Dispose();
-                    _signInManager = null;
+                    this.signInManager.Dispose();
+                    this.signInManager = null;
                 }
             }
 
@@ -205,14 +207,6 @@ namespace BookstoreApp.API.Controllers
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
-
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
-        }
 
         private void AddErrors(IdentityResult result)
         {
