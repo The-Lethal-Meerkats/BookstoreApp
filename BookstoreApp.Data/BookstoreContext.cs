@@ -19,11 +19,6 @@ namespace BookstoreApp.Data
             
         }
 
-        public IDbSet<User> Users { get; set; }
-        public IDbSet<UserAddress> UserAddresses { get; set; }
-        public IDbSet<Country> Countries { get; set; }
-        public IDbSet<City> Cities { get; set; }
-
         public IDbSet<Wishlist> Wishlists { get; set; }
         
         public IDbSet<Book> Books { get; set; }
