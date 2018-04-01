@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BookstoreApp.Models.Accounts;
 using BookstoreApp.Services.Contracts;
 using BookstoreApp.Services.Implementation;
 using Microsoft.Owin.Security;
@@ -13,25 +14,27 @@ namespace BookstoreApp.API.Controllers
     {
         private IWishlistService wishlistService;
         private IAuthenticationManager authenticationManager;
-        public WishlistController(IWishlistService wishlistService, IAuthenticationManager authenticationManager)
+        private IBookstoreUserContext userContext;
+
+        public WishlistController(IWishlistService wishlistService, IAuthenticationManager authenticationManager, IBookstoreUserContext userContext)
         {
-            this.wishlistService = wishlistService ?? throw new ArgumentNullException();
-            this.authenticationManager = authenticationManager ?? throw new ArgumentNullException();
+            this.wishlistService = wishlistService;
+            this.authenticationManager = authenticationManager;
+            this.userContext = userContext;
         }
         // GET: Wishlist
         public ActionResult WishlistBookCollection()
         {
-            var user = this.authenticationManager.User.FindFirst(c => c.Type == "UserId");
-            var userId = int.Parse(user.Value);
+            
+            var userId = this.userContext.UserId;
             var books = wishlistService.GetUserWishlistBooks(userId);
             return View(books);
         }
 
         public ActionResult AddToWishlist(int bookId)
         {
-            
-            var user = this.authenticationManager.User.FindFirst(c => c.Type == "UserId");
-            var userId = int.Parse(user.Value);
+
+            var userId = this.userContext.UserId;
             try
             {
                 wishlistService.AddBookToWishlist(bookId, userId);
@@ -48,8 +51,7 @@ namespace BookstoreApp.API.Controllers
 
         public ActionResult DeleteFromWishlist(int bookId)
         {
-            var user = this.authenticationManager.User.FindFirst(c => c.Type == "UserId");
-            var userId = int.Parse(user.Value);
+            var userId = this.userContext.UserId;
             try
             {
                 wishlistService.DeleteBookFromWishlist(bookId, userId);
