@@ -1,25 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using BookstoreApp.Models.Accounts;
 using BookstoreApp.Services.Contracts;
-using BookstoreApp.Services.Implementation;
-using Microsoft.Owin.Security;
 
 namespace BookstoreApp.API.Controllers
 {
     public class ShoppingCartController : Controller
     {
         private IShoppingCartService shoppingCartService;
-        private IAuthenticationManager authenticationManager;
         private IBookstoreUserContext userContext;
 
-        public ShoppingCartController(IShoppingCartService shoppingCartService, IAuthenticationManager authenticationManager, IBookstoreUserContext userContext)
+        public ShoppingCartController(IShoppingCartService shoppingCartService, IBookstoreUserContext userContext)
         {
             this.shoppingCartService = shoppingCartService;
-            this.authenticationManager = authenticationManager;
             this.userContext = userContext;
         }
 

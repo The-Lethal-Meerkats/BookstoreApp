@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using BookstoreApp.Models.Accounts;
 using BookstoreApp.Services.Contracts;
-using BookstoreApp.Services.Implementation;
 using Microsoft.Owin.Security;
 
 namespace BookstoreApp.API.Controllers
@@ -13,13 +9,11 @@ namespace BookstoreApp.API.Controllers
     public class WishlistController : Controller
     {
         private IWishlistService wishlistService;
-        private IAuthenticationManager authenticationManager;
         private IBookstoreUserContext userContext;
 
-        public WishlistController(IWishlistService wishlistService, IAuthenticationManager authenticationManager, IBookstoreUserContext userContext)
+        public WishlistController(IWishlistService wishlistService, IBookstoreUserContext userContext)
         {
             this.wishlistService = wishlistService;
-            this.authenticationManager = authenticationManager;
             this.userContext = userContext;
         }
 
