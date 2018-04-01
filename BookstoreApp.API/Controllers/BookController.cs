@@ -4,7 +4,7 @@ using Microsoft.Owin.Security;
 
 namespace BookstoreApp.API.Controllers
 {
-    [Authorize]
+   // [Authorize]
     public class BookController : Controller
     {
         private IBookService bookService;

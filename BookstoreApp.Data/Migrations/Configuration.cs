@@ -52,7 +52,7 @@ namespace BookstoreApp.Migrations
 
         private void SeedBooks(BookstoreContext context)
         {
-            using (StreamReader reader = new StreamReader(@"C:\Users\Nikolay\Desktop\Teamwork\BookstoreApp\BookstoreApp\bookstore.csv"))
+            using (StreamReader reader = new StreamReader(@"D:\Coding\Telerik Academy Alpha\Module III\Databases\Teamwork Assignment\BookstoreApp\bookstore.csv"))
             {
                 var client = new HttpClient();
                 var Random = new Random();
