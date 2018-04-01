@@ -1,4 +1,6 @@
 ﻿using Microsoft.Owin.Security;
+using System;
+using System.Security.Claims;
 
 namespace BookstoreApp.Models.Accounts
 {
@@ -15,10 +17,13 @@ namespace BookstoreApp.Models.Accounts
         {
             get
             {
-                var user = this.authenticationManager.User.FindFirst(c => c.Type == "UserId");
-                var userId = int.Parse(user.Value);
+                var userId = this.authenticationManager.User.FindFirst(c => c.Type == "UserId");
+                if (!string.IsNullOrEmpty(userId.Value))
+                {
+                    return int.Parse(userId.Value);
+                }
 
-                return userId;
+                throw new ArgumentNullException();
             }
         }
     }

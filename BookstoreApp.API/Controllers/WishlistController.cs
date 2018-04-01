@@ -21,27 +21,34 @@ namespace BookstoreApp.API.Controllers
         // GET: Wishlist
         public ActionResult WishlistBookCollection()
         {
-            var userId = this.userContext.UserId;
-
-            var books = wishlistService.GetUserWishlistBooks(userId);
-
-            if (books == null)
+            try
             {
-                books = new List<BookViewModel>();
-            }
+                var userId = this.userContext.UserId;
 
-            return View(books);
+                var books = wishlistService.GetUserWishlistBooks(userId);
+
+                if (books == null)
+                {
+                    books = new List<BookViewModel>();
+                }
+
+                return View(books);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
         public ActionResult AddToWishlist(int bookId)
         {
-
-            var userId = this.userContext.UserId;
             try
             {
+                var userId = this.userContext.UserId;
+
                 wishlistService.AddBookToWishlist(bookId, userId);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return View("ErrorAdd");
             }
@@ -51,18 +58,17 @@ namespace BookstoreApp.API.Controllers
 
         public ActionResult DeleteFromWishlist(int bookId)
         {
-            var userId = this.userContext.UserId;
             try
             {
+                var userId = this.userContext.UserId;
+
                 wishlistService.DeleteBookFromWishlist(bookId, userId);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                //TODO : Add unsuccessful result
-                return View();
+                return View("Error");
             }
 
-            //TODO: Add success view 
             return View("SuccessDelete");
         }
     }

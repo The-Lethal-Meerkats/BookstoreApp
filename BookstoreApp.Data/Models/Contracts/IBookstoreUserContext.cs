@@ -1,6 +1,4 @@
-﻿using System.Dynamic;
-
-namespace BookstoreApp.Models.Accounts
+﻿namespace BookstoreApp.Models.Accounts
 {
     public interface IBookstoreUserContext
     {

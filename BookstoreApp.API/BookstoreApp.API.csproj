@@ -288,8 +288,8 @@
     <Content Include="Views\ShoppingCart\SuccessDelete.cshtml" />
     <Content Include="Views\ShoppingCart\ErrorAdd.cshtml" />
     <Content Include="Views\ShoppingCart\ErrorDelete.cshtml" />
-    <Content Include="Views\ShoppingCart\OrderSuccess.cshtml" />
-    <Content Include="Views\ShoppingCart\OrderFail.cshtml" />
+    <Content Include="Views\Order\OrderSuccess.cshtml" />
+    <Content Include="Views\Order\OrderFail.cshtml" />
     <Content Include="Views\Order\PersonalOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>

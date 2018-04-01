@@ -80,31 +80,6 @@ namespace BookstoreApp.Services.Implementation
             return this.unitOfWork.SaveChanges();
         }
 
-        public int PlaceOrderFromShoppingCart(int userId)
-        {
-            var shoppingCart = this.unitOfWork.ShoppingCarts
-                .All()
-                .Where(sc => sc.UserId == userId)
-                .FirstOrDefault();
-
-            if (shoppingCart == null)
-            {
-                return -1;
-            }
-
-            var orderToPlace = new Order()
-            {
-                Books = shoppingCart.Books,
-                DeliveryAddress = shoppingCart.User.UserAddress,
-                OrderStatusId = 1,
-                PhoneNumber = shoppingCart.User.PhoneNumber,
-                UserId = userId
-            };
-
-            this.unitOfWork.Orders.Add(orderToPlace);
-            return this.unitOfWork.SaveChanges();
-        }
-
         public List<BookViewModel> ShowUserShoppingCart(int userId)
         {
             var shoppingCart = this.unitOfWork.ShoppingCarts

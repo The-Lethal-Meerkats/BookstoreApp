@@ -21,7 +21,6 @@ namespace BookstoreApp.Services.Implementation
             this.mapper = mapper;
         }
 
-
         public List<OrderViewModel> GetUserOrders(int userId)
         {
             if (userId < 1)
@@ -57,6 +56,33 @@ namespace BookstoreApp.Services.Implementation
             }
 
             return totalPrice;
+        }
+
+        public int PlaceUserOrder(int userId)
+        {
+            var shoppingCart = this.unitOfWork.ShoppingCarts
+                .All()
+                .Where(sc => sc.UserId == userId)
+                .FirstOrDefault();
+
+            if (shoppingCart == null)
+            {
+                return -1;
+            }
+
+            var orderToPlace = new Order()
+            {
+                Books = shoppingCart.Books,
+                DeliveryAddress = shoppingCart.User.UserAddress,
+                OrderStatusId = 1,
+                PhoneNumber = shoppingCart.User.PhoneNumber,
+                UserId = userId
+            };
+
+            this.unitOfWork.Orders.Add(orderToPlace);
+            this.unitOfWork.ShoppingCarts.Delete(shoppingCart);
+
+            return this.unitOfWork.SaveChanges();
         }
 
         private Order GetOrderByOrderId(int orderId)
