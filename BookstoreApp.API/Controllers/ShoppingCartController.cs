@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using BookstoreApp.Models.Accounts;
 using BookstoreApp.Services.Contracts;
+using BookstoreApp.Services.ViewModels;
 
 namespace BookstoreApp.API.Controllers
 {
@@ -19,14 +21,21 @@ namespace BookstoreApp.API.Controllers
         public ActionResult ShoppingCartBookCollection()
         {
             var userId = userContext.UserId;
-            var book = shoppingCartService.ShowUserShoppingCart(userId);
 
-            return View(book);
+            var books = shoppingCartService.ShowUserShoppingCart(userId);
+
+            if (books == null)
+            {
+                books = new List<BookViewModel>();
+            }
+
+            return View(books);
         }
 
         public ActionResult AddBookToShoppingCart(int bookId)
         {
             var userId = userContext.UserId;
+
             try
             {
                 shoppingCartService.AddBookToShoppingCart(bookId, userId);
@@ -44,6 +53,7 @@ namespace BookstoreApp.API.Controllers
         public ActionResult DeleteBookToShoppingCart(int bookId)
         {
             var userId = userContext.UserId;
+
             try
             {
                 shoppingCartService.RemoveBookFromShoppingCart(bookId, userId);
@@ -62,6 +72,7 @@ namespace BookstoreApp.API.Controllers
         public ActionResult PlaceOrderFromShoppingCart()
         {
             var userId = userContext.UserId;
+
             try
             {
                 shoppingCartService.PlaceOrderFromShoppingCart(userId);
