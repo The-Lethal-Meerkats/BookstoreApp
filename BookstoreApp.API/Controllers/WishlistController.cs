@@ -27,14 +27,15 @@ namespace BookstoreApp.API.Controllers
             var user = this.authenticationManager.User.FindFirst(c => c.Type == "UserId");
             var userId = int.Parse(user.Value);
             var books = wishlistService.GetUserWishlistBooks(userId);
+
             return View(books);
         }
 
         public ActionResult AddToWishlist(int bookId)
-        {
-            
+        {          
             var user = this.authenticationManager.User.FindFirst(c => c.Type == "UserId");
             var userId = int.Parse(user.Value);
+
             try
             {
                 wishlistService.AddBookToWishlist(bookId, userId);
@@ -42,11 +43,11 @@ namespace BookstoreApp.API.Controllers
             catch (Exception ex)
             {
                 //TODO : Add unsuccessful result
-                return View();
+                return PartialView("_Error");
             }
 
             //TODO: Add success view 
-            return View();
+            return View("_Success");
         }
 
         public ActionResult DeleteFromWishlist(int bookId)

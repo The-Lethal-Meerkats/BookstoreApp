@@ -1,4 +1,5 @@
-﻿@model BookstoreApp.Services.ViewModels.BookImageViewModel
+﻿@using Microsoft.Ajax.Utilities
+@model BookstoreApp.Services.ViewModels.BookImageViewModel
 
 @{
     var imgSrc = String.Format("data:image/png;base64, {0}", Model.Image);
@@ -40,9 +41,12 @@
         </dd>
         <hr />
         <dd>
-            <button type="button" class="btn btn-warning">Add to Wishlist</button>
+            @Html.DisplayFor(model => model.Id)
         </dd>
-    </dl>
+        @Html.ActionLink("Add To Wishlist", "AddToWishlist", "Wishlist", new { id = Model.Id }, new { @class = "btn btn-warning" })
+
+
+    </dl> 
 </div>
 <p>
     @Html.ActionLink("Back to List", "BookCollection")
