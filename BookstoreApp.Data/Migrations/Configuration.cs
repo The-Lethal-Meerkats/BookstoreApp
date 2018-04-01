@@ -3,6 +3,8 @@ namespace BookstoreApp.Migrations
     using BookstoreApp.Data;
     using BookstoreApp.Models;
     using BookstoreApp.Models.Accounts;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -52,7 +54,7 @@ namespace BookstoreApp.Migrations
 
         private void SeedBooks(BookstoreContext context)
         {
-            using (StreamReader reader = new StreamReader(@"D:\Coding\Telerik Academy Alpha\Module III\Databases\Teamwork Assignment\BookstoreApp\bookstore.csv"))
+            using (StreamReader reader = new StreamReader(@"D:\Telerik Academy\TeamProjects\BookstoreApp\bookstore.csv"))
             {
                 var client = new HttpClient();
                 var Random = new Random();
@@ -109,6 +111,9 @@ namespace BookstoreApp.Migrations
 
         private void SeedUsers(BookstoreContext context)
         {
+            var userStore = new UserStore<BookstoreUser, BookstoreRole, int, BookstoreUserLogin, BookstoreUserRole, BookstoreUserClaim>(context);
+            var userManager = new UserManager<BookstoreUser, int>(userStore);
+
             #region Users
 
             var userSofi = new BookstoreUser()
@@ -124,11 +129,11 @@ namespace BookstoreApp.Migrations
 
             var userMe = new BookstoreUser()
             {
-                FirstName = "Ivan",
-                LastName = "Gargov",
-                Email = "me@me",
+                FirstName = "admin",
+                LastName = "admin",
+                Email = "admin@admin.co",
                 PhoneNumber = "123456",
-                PasswordHash = "112312",
+                PasswordHash = new PasswordHasher().HashPassword("admin"),
                 UserAddress = "asd",
                 UserName = "vanchopancho"
             };
@@ -146,8 +151,8 @@ namespace BookstoreApp.Migrations
             #endregion
 
             context.Users.Add(userSofi);
-            context.Users.Add(userMe);
             context.Users.Add(userNick);
+            userManager.Create(userMe);
 
             context.SaveChanges();
         }
