@@ -11,7 +11,7 @@ namespace BookstoreApp.API.Controllers
         // GET: Wishlist
         public ActionResult Index()
         {
-            return View();
+            return View("Error");
         }
     }
 }
