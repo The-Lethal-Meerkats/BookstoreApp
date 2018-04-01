@@ -31,5 +31,21 @@ namespace BookstoreApp.API.Controllers
 
             return View("OrderSuccess");
         }
+
+        public ActionResult GetUserOrders()
+        {
+            try
+            {
+                var userId = userContext.UserId;
+
+                this.orderService.GetUserOrders(userId);
+            }
+            catch (Exception)
+            {
+                return View("OrderFail");
+            }
+
+            return View("Error");
+        }
     }
 }
