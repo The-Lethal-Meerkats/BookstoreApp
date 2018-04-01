@@ -68,7 +68,6 @@ namespace BookstoreApp.Services.Implementation
             }
 
             var bookToRemove = this.GetBook(bookId);
-            var user = this.GetUser(userId);
 
             var shoppingCart = GetShoppingCart(userId);
 
@@ -110,7 +109,6 @@ namespace BookstoreApp.Services.Implementation
             {
                 throw new ArgumentException("Invalid userId");
             }
-            var user = this.GetUser(userId);
 
             var shoppingCart = GetShoppingCart(userId);
 

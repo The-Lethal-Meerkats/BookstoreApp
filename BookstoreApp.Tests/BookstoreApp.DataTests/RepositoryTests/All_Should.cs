@@ -20,7 +20,7 @@ namespace BookstoreApp.Tests.BookstoreApp.DataTests.RepositoryTests
 
             var countryRepository = new GenericRepository<Country>(contextMock);
             
-            var country = new Country(){CountryName = "gosho"};
+            var country = new Country(){CountryName = "Cambodia"};
 
             contextMock.Countries.Add(country);
 

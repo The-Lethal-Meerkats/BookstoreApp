@@ -41,10 +41,10 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                 CategoryId = 1
             };
 
-            var country = new Country(){CountryName = "Bulgaria",Id = 1};
-            var city = new City() {CityName = "Sofia", Country = country, CountryId = 1, Id = 1};
-            var address = new UserAddress() { City = city,CityId = 1, Id = 1, Street = "street"};
-            var orderStatus = new OrderStatus() {Id = 1, OrderStatusDescription = "Status"};
+            var country = new Country() { CountryName = "Bulgaria", Id = 1 };
+            var city = new City() { CityName = "Sofia", Country = country, CountryId = 1, Id = 1 };
+            var address = new UserAddress() { City = city, CityId = 1, Id = 1, Street = "street" };
+            var orderStatus = new OrderStatus() { Id = 1, OrderStatusDescription = "Status" };
             var books = new Collection<Book>()
             {
                 book1
@@ -60,7 +60,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                 PhoneNumber = "0888888",
                 UserAddress = address,
                 UserAddressId = 1,
-                Username = "Pesho"                
+                Username = "Pesho"
             };
 
             var orders = new List<Order>()
@@ -76,7 +76,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                     UserId = 1,
                     User = user1,
                     OrderCompletedTime = null,
-                    ReceivedOrderTime = null                 
+                    ReceivedOrderTime = null
                 },
                 new Order
                 {
@@ -112,81 +112,13 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
             var mapperMock = new Mock<IMapper>();
             var unitOfWorkMock = new Mock<IUnitOfWork>();
 
-            var repoMock = new Mock<IRepository<Order>>();
-
-            var author1 = new Author { Id = 1, AuthorName = "Author1" };
-            var book1 = new Book()
-            {
-                Id = 1,
-                Isbn = "123",
-                Title = "C# Unleashed",
-                Author = author1,
-                CategoryId = 1
-            };
-
-            var country = new Country() { CountryName = "Bulgaria", Id = 1 };
-            var city = new City() { CityName = "Sofia", Country = country, CountryId = 1, Id = 1 };
-            var address = new UserAddress() { City = city, CityId = 1, Id = 1, Street = "street" };
-            var orderStatus = new OrderStatus() { Id = 1, OrderStatusDescription = "Status" };
-            var books = new Collection<Book>()
-            {
-                book1
-            };
-
-            var user1 = new User()
-            {
-                FirstName = "Pesho",
-                LastName = "Petrov",
-                Id = 2,
-                Password = "secret",
-                Email = "email",
-                PhoneNumber = "0888888",
-                UserAddress = address,
-                UserAddressId = 1,
-                Username = "Pesho"
-            };
-
-            IList<Order> orders = new List<Order>()
-            {
-                new Order
-                {
-                    Books = books,
-                    DeliveryAddress = "address",
-                    Id = 100,
-                    OrderStatusId = 1,
-                    OrderStatus = orderStatus,
-                    PhoneNumber = user1.PhoneNumber,
-                    UserId = 1,
-                    User = user1,
-                    OrderCompletedTime = null,
-                    ReceivedOrderTime = null
-                },
-                new Order
-                {
-                    Books = books,
-                    DeliveryAddress = "address",
-                    Id = 100,
-                    OrderStatusId = 1,
-                    OrderStatus = orderStatus,
-                    PhoneNumber = user1.PhoneNumber,
-                    UserId = 1,
-                    User = user1,
-                    OrderCompletedTime = null,
-                    ReceivedOrderTime = null
-                }
-            };
-
-            mapperMock.Setup(x => x.Map<List<OrderViewModel>>(It.IsAny<List<Order>>()))
-                    .Returns(new List<OrderViewModel>());
-
-            repoMock.Setup(r => r.All()).Returns(orders.AsQueryable());
-            unitOfWorkMock.Setup(u => u.Orders).Returns(repoMock.Object);
+            
 
             var orderService = new OrderService(unitOfWorkMock.Object, mapperMock.Object);
 
-           
+
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => orderService.GetUserOrders(-1));
         }
-        
+
     }
 }

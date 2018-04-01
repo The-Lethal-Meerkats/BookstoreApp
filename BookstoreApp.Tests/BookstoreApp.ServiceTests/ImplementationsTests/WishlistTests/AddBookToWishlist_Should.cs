@@ -11,6 +11,7 @@ using BookstoreApp.Services.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
 {
@@ -119,5 +120,34 @@ namespace BookstoreApp.Tests.ImplementationsTests.WishlistTests
 
             Assert.AreEqual(2, actualBookCountInWishlist);
         }
+
+        //[TestMethod]
+        //public void InvokeSaveChangesAddOnce_WhenInvokedWithCorrectParams()
+        //{
+        //    var mapperMock = new Mock<IMapper>();
+        //    var unitOfWorkMock = new Mock<IUnitOfWork>();
+        //    var book1 = new Book(){Id = 2};
+
+        //    var wishlist = new Wishlist();
+
+        //    var wishlists = new List<Wishlist>() {wishlist};
+
+        //    var user1 = new User(){Id = 2};
+
+
+
+        //    unitOfWorkMock.Setup(x => x.Users.GetById(2)).Returns(user1);
+        //    unitOfWorkMock.Setup(x => x.Wishlists.All()).Returns(wishlists.AsQueryable);
+        //    unitOfWorkMock.Setup(x => x.Books.GetById(1)).Returns(book1);
+        //    unitOfWorkMock.Setup(x => x.Wishlists.AddOrUpdate(It.IsAny<Expression<Func<Wishlist, object>>>(), It.IsAny<Wishlist>())).Verifiable();
+
+        //    var wishlistService = new WishlistService(unitOfWorkMock.Object, mapperMock.Object);
+            
+
+        //    wishlistService.AddBookToWishlist(book1.Id, user1.Id);
+
+        //    unitOfWorkMock.Verify(x => x.Wishlists.AddOrUpdate(It.IsAny<Expression<Func<Wishlist, object>>>(), It.IsAny<Wishlist>()),Times.Once);
+
+        //}
     }
 }

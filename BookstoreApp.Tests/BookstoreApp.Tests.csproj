@@ -108,7 +108,7 @@
     <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\WishlistTests\DeleteBookFromWishlist_Should.cs" />
     <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\WishlistTests\GetUserWishlistBooks_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BookstoreApp.DataTests\RepositoryTests\GenericRepository_Should.cs" />
+    <Compile Include="BookstoreApp.DataTests\RepositoryTests\Constructor_Should.cs" />
     <Compile Include="BookstoreApp.DataTests\RepositoryTests\GetById_Should.cs" />
     <Compile Include="BookstoreApp.DataTests\RepositoryTests\Add_Should.cs" />
     <Compile Include="BookstoreApp.DataTests\RepositoryTests\Delete_Should.cs" />
