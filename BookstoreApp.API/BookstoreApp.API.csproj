@@ -66,6 +66,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
@@ -74,6 +77,12 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -198,6 +207,8 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Identity\BookstoreSignInManager.cs" />
@@ -228,6 +239,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\meerkat_book.jpg" />
+    <Content Include="Images\payment-successful.png" />
+    <Content Include="Images\sad_face_red-329x319-329x319.png" />
     <Content Include="Scripts\bootstrap-old.js" />
     <Content Include="Scripts\bootstrap-old.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -273,12 +286,19 @@
     <Content Include="Views\Wishlist\WishlistBookCollection.cshtml" />
     <Content Include="Views\Wishlist\SuccessDelete.cshtml" />
     <Content Include="Views\Wishlist\ErrorDelete.cshtml" />
+    <Content Include="Views\ShoppingCart\ShoppingCartBookCollection.cshtml" />
+    <Content Include="Views\ShoppingCart\SuccessAdd.cshtml" />
+    <Content Include="Views\ShoppingCart\SuccessDelete.cshtml" />
+    <Content Include="Views\ShoppingCart\ErrorAdd.cshtml" />
+    <Content Include="Views\ShoppingCart\ErrorDelete.cshtml" />
+    <Content Include="Views\ShoppingCart\OrderSuccess.cshtml" />
+    <Content Include="Views\ShoppingCart\OrderFail.cshtml" />
+    <Content Include="Views\Order\PersonalOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_GlobalResources\" />
     <Folder Include="Views\Search\" />
-    <Folder Include="Views\ShoppingCart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -1,10 +1,9 @@
 ﻿@model IEnumerable<BookstoreApp.Services.ViewModels.BookViewModel>
 @{
-    ViewBag.Title = "Wishlist";
+    ViewBag.Title = "ShoppingCartBookCollection";
 }
-
 <br />
-<h2>Your personal Wishlist</h2>
+<h2>Your personal Shopping Cart</h2>
 <br />
 <table class="table">
     <tr>
@@ -17,7 +16,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Price)
         </th>
-        <th>Shopping Cart</th>
         <th>Delete</th>
     </tr>
 
@@ -34,10 +32,11 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
 
-            <td> @Html.ActionLink("Add", "AddBookToShoppingCart", "ShoppingCart", new { bookId = item.Id }, new { @class = "btn btn-info" })</td>
-            <td> @Html.ActionLink("Delete", "DeleteFromWishlist", "Wishlist", new { bookId = item.Id }, new { @class = "btn btn-danger" })
+            <td>
+                @Html.ActionLink("Delete", "DeleteBookToShoppingCart", "ShoppingCart", new { bookId = item.Id }, new { @class = "btn btn-danger" })
             </td>
         </tr>
     }
-
 </table>
+<hr />
+@Html.ActionLink("I'm ordering!", "PlaceOrderFromShoppingCart", "ShoppingCart",  new { @class = "btn btn-success" })

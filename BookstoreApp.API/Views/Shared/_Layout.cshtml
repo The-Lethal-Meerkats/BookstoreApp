@@ -25,7 +25,10 @@
                     <a class="nav-link navbar-brand" href="@Url.Action("WishlistBookCollection", "Wishlist")">Wishlist</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link navbar-brand" href="@Url.Action("Index", "ShoppingCart")">Shopping Cart</a>
+                    <a class="nav-link navbar-brand" href="@Url.Action("ShoppingCartBookCollection", "ShoppingCart")">Shopping Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar-brand" href="@Url.Action("", "Order")">Orders</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link navbar-brand" href="@Url.Action("Contact", "Home")">Contact Us</a>
@@ -35,7 +38,7 @@
             @Html.Partial("_LoginPartial")
         </div>
     </nav>  
-
+    <br />
     <div class="container body-content">
         @RenderBody()
         <hr />

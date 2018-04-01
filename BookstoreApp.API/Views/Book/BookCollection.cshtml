@@ -35,7 +35,9 @@
         <td>           
             @Html.ActionLink("Details", "BookDetails", new {id = item.Id})
         </td>
-        <td><button type="button" class="btn btn-info">Add</button></td>
+        <td>
+            @Html.ActionLink("Add", "AddBookToShoppingCart", "ShoppingCart", new { bookId = item.Id }, new { @class = "btn btn-info" })
+        </td>
     </tr>
 }
 
