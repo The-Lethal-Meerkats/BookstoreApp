@@ -87,6 +87,11 @@ namespace BookstoreApp.Services.Implementation
 
             var shoppingCart = GetShoppingCart(userId);
 
+            if (shoppingCart == null)
+            {
+                return null;
+            }
+
             var booksModel = shoppingCart.Books
                 .AsQueryable()
                 .ProjectTo<BookViewModel>()
@@ -103,7 +108,6 @@ namespace BookstoreApp.Services.Implementation
             }
 
             var user = this.GetUser(userId);
-
 
             var shoppingCart = GetShoppingCart(userId);
 
@@ -179,11 +183,6 @@ namespace BookstoreApp.Services.Implementation
                 .All()
                 .Where(or => or.UserId == userId)
                 .FirstOrDefault();
-
-            if (shoppingCart == null)
-            {
-                throw new ArgumentNullException("No existing user with such ID");
-            }
 
             return shoppingCart;
         }
