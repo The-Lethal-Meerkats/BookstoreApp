@@ -11,7 +11,7 @@ namespace BookstoreApp.API.Controllers
         // GET: Search
         public ActionResult Index()
         {
-            return View();
+            return View("Search");
         }
     }
 }
