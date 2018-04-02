@@ -127,6 +127,23 @@ namespace BookstoreApp.Services.Implementation
             return totalPrice;
         }
 
+        public int RemoveShoppingCart(int userId)
+        {
+            var shoppingCart = this.unitOfWork.ShoppingCarts
+                .All()
+                .Where(u => u.UserId == userId)
+                .FirstOrDefault();
+
+            if (shoppingCart == null)
+            {
+                return -1;
+            }
+
+            this.unitOfWork.ShoppingCarts.Delete(shoppingCart);
+
+            return this.unitOfWork.SaveChanges();
+        }
+
         private Book GetBook(int bookId)
         {
             var book = this.unitOfWork.Books.GetById(bookId);

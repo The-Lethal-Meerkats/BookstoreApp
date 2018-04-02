@@ -8,11 +8,13 @@ namespace BookstoreApp.API.Controllers
     public class OrderController : Controller
     {
         private IOrderService orderService;
+        private IShoppingCartService shoppingCartService;
         private IBookstoreUserContext userContext;
 
-        public OrderController(IOrderService orderService, IBookstoreUserContext userContext)
+        public OrderController(IOrderService orderService, IShoppingCartService shoppingCartService, IBookstoreUserContext userContext)
         {
             this.orderService = orderService;
+            this.shoppingCartService = shoppingCartService;
             this.userContext = userContext;
         }
 
@@ -22,30 +24,35 @@ namespace BookstoreApp.API.Controllers
             {
                 var userId = userContext.UserId;
 
-                this.orderService.PlaceUserOrder(userId);
+                var result = this.orderService.PlaceUserOrder(userId);
+
+                if (result > 0)
+                {
+                    this.shoppingCartService.RemoveShoppingCart(userId);
+                }
+
+                return View("OrderSuccess");
             }
             catch (Exception)
             {
                 return View("OrderFail");
             }
-
-            return View("OrderSuccess");
         }
 
-        public ActionResult GetUserOrders()
+        public ActionResult PersonalOrders()
         {
             try
             {
                 var userId = userContext.UserId;
 
-                this.orderService.GetUserOrders(userId);
+                var orders = this.orderService.GetUserOrders(userId);
+
+                return View(orders);
             }
             catch (Exception)
             {
                 return View("OrderFail");
             }
-
-            return View("Error");
         }
     }
 }

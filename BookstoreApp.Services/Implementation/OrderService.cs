@@ -80,7 +80,6 @@ namespace BookstoreApp.Services.Implementation
             };
 
             this.unitOfWork.Orders.Add(orderToPlace);
-            this.unitOfWork.ShoppingCarts.Delete(shoppingCart);
 
             return this.unitOfWork.SaveChanges();
         }

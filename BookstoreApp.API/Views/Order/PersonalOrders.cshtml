@@ -1,7 +1,54 @@
 ﻿@model IEnumerable<BookstoreApp.Services.ViewModels.OrderViewModel>
 
 @{
-    ViewBag.Title = "Personal Orders";
+    ViewBag.Title = "PersonalOrders";
 }
 
 <h2>Your Personal Orders</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderCompletedTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReceivedOrderTime)
+        </th>
+    </tr>
+
+    @foreach (var order in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => order.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => order.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => order.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => order.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(model => order.OrderCompletedTime)
+            </td>
+            <td>
+                @Html.DisplayFor(model => order.ReceivedOrderTime)
+            </td>
+        </tr>
+    }
+</table>
