@@ -54,7 +54,7 @@ namespace BookstoreApp.Migrations
 
         private void SeedBooks(BookstoreContext context)
         {
-            using (StreamReader reader = new StreamReader(@"C:\Users\Nikolay\Desktop\Teamwork\BookstoreApp\BookstoreApp\bookstore.csv"))
+            using (StreamReader reader = new StreamReader(@"D:\Coding\Telerik Academy Alpha\Module III\Databases\Teamwork Assignment\BookstoreApp\bookstore.csv"))
             {
                 var client = new HttpClient();
                 var Random = new Random();
@@ -122,7 +122,7 @@ namespace BookstoreApp.Migrations
                 LastName = "Kiryakova",
                 Email = "sf@kiryakova.me",
                 PhoneNumber = "123456",
-                PasswordHash = "NeSiPomnqParolata",
+                PasswordHash = new PasswordHasher().HashPassword("admin"),
                 UserAddress = "asd",
                 UserName = "sofilofi"
             };
@@ -144,14 +144,14 @@ namespace BookstoreApp.Migrations
                 LastName = "Nikolov",
                 Email = "you@you",
                 PhoneNumber = "123456",
-                PasswordHash = "345dsfswe425",
+                PasswordHash = new PasswordHasher().HashPassword("admin"),
                 UserAddress = "asd",
                 UserName = "nickpick"
             };
             #endregion
 
-            context.Users.Add(userSofi);
-            context.Users.Add(userNick);
+            userManager.Create(userSofi);
+            userManager.Create(userNick);
             userManager.Create(userMe);
 
             context.SaveChanges();

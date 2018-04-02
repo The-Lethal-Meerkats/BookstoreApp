@@ -278,7 +278,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Book\BookDetails.cshtml" />
     <Content Include="Views\Book\BookCollection.cshtml" />
-    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Wishlist\ErrorAdd.cshtml" />
     <Content Include="Views\Wishlist\SuccessAdd.cshtml" />
     <Content Include="Views\Wishlist\WishlistBookCollection.cshtml" />
@@ -294,10 +294,10 @@
     <Content Include="Views\Order\PersonalOrders.cshtml" />
     <Content Include="Views\Order\OrdersExport.cshtml" />
     <Content Include="Views\Order\OrderExportSuccess.cshtml" />
+    <Content Include="Views\Book\BooksByTitleResult.cshtml" />
+    <Content Include="Views\Book\BooksByAuthorResult.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Search\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
