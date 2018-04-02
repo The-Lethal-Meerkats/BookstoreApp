@@ -78,32 +78,6 @@ namespace BookstoreApp.Services.Implementation
             return this.unitOfWork.SaveChanges();
         }
 
-        public int PlaceOrderFromShoppingCart(int userId)
-        {
-            if (userId < 1)
-            {
-                throw new ArgumentException("Invalid userId");
-            }
-
-            var user = this.GetUser(userId);
-
-            var shoppingCart = GetShoppingCart(userId);
-
-            //string deliveryAddress = this.BuildAddress(shoppingCart.User.UserAddress);
-
-            var orderToPlace = new Order()
-            {
-                Books = shoppingCart.Books,
-                DeliveryAddress = shoppingCart.User.UserAddress,
-                OrderStatusId = 1,
-                PhoneNumber = shoppingCart.User.PhoneNumber,
-                UserId = userId
-            };
-
-            this.unitOfWork.Orders.Add(orderToPlace);
-            return this.unitOfWork.SaveChanges();
-        }
-
         public List<BookViewModel> ShowUserShoppingCart(int userId)
         {
             if (userId < 1)
@@ -196,18 +170,6 @@ namespace BookstoreApp.Services.Implementation
 
             return shoppingCart;
         }
-        //private string BuildAddress(UserAddress userAddress)
-        //{
-        //    var addressToBuild = new
-        //    {
-        //        Street = userAddress.Street,
-        //        City = userAddress.City.CityName,
-        //        Country = userAddress.City.Country.CountryName
-        //    };
-
-        //    string address = JsonConvert.SerializeObject(addressToBuild);
-
-        //    return address;
-        //}
+       
     }
 }
