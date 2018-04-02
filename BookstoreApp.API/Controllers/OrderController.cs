@@ -6,6 +6,7 @@ using BookstoreApp.Services.Providers.Contracts;
 
 namespace BookstoreApp.API.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private IOrderService orderService;

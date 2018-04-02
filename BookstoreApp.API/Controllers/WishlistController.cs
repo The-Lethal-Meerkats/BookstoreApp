@@ -7,6 +7,7 @@ using BookstoreApp.Services.ViewModels;
 
 namespace BookstoreApp.API.Controllers
 {
+    [Authorize]
     public class WishlistController : Controller
     {
         private IWishlistService wishlistService;

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace BookstoreApp.API.Controllers
 {
+    [Authorize]
     public class SearchController : Controller
     {
         // GET: Search
