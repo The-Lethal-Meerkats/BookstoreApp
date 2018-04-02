@@ -85,6 +85,8 @@ namespace BookstoreApp.Services.Implementation
                 return null;
             }
 
+            var shoppingCart = GetShoppingCart(userId);
+
             var booksModel = shoppingCart.Books
                 .AsQueryable()
                 .ProjectTo<BookViewModel>()
