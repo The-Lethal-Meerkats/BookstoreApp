@@ -122,7 +122,7 @@ namespace BookstoreApp.Migrations
                 LastName = "Kiryakova",
                 Email = "sf@kiryakova.me",
                 PhoneNumber = "123456",
-                PasswordHash = "NeSiPomnqParolata",
+                PasswordHash = new PasswordHasher().HashPassword("admin"),
                 UserAddress = "asd",
                 UserName = "sofilofi"
             };
@@ -144,14 +144,14 @@ namespace BookstoreApp.Migrations
                 LastName = "Nikolov",
                 Email = "you@you",
                 PhoneNumber = "123456",
-                PasswordHash = "345dsfswe425",
+                PasswordHash = new PasswordHasher().HashPassword("admin"),
                 UserAddress = "asd",
                 UserName = "nickpick"
             };
             #endregion
 
-            context.Users.Add(userSofi);
-            context.Users.Add(userNick);
+            userManager.Create(userSofi);
+            userManager.Create(userNick);
             userManager.Create(userMe);
 
             context.SaveChanges();
