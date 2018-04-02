@@ -8,6 +8,8 @@ namespace BookstoreApp.Services.ViewModels
 {
     public class OrderViewModel: IMapFrom<Order>, IHaveCustomMappings
     {
+        public int Id { get; set; }
+
         public DateTime ReceivedOrderTime { get; set; }
 
         public DateTime? OrderCompletedTime { get; set; }

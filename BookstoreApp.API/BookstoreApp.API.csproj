@@ -239,6 +239,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\meerkat_book.jpg" />
+    <Content Include="Images\opps.jpg" />
     <Content Include="Images\payment-successful.png" />
     <Content Include="Images\sad_face_red-329x319-329x319.png" />
     <Content Include="Scripts\bootstrap-old.js" />
