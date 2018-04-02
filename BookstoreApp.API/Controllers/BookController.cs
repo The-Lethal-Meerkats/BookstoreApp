@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using BookstoreApp.Services.Contracts;
 
 namespace BookstoreApp.API.Controllers
@@ -32,6 +33,6 @@ namespace BookstoreApp.API.Controllers
             }
 
             return View(bookModel);
-        }
+        }     
     }
 }
