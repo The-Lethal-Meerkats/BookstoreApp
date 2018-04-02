@@ -40,9 +40,6 @@
             @Html.DisplayFor(model => model.Price)
         </dd>
         <hr />
-        <dd>
-            @Html.DisplayFor(model => model.Id)
-        </dd>
         @Html.ActionLink("Add To Wishlist", "AddToWishlist", "Wishlist", new { bookId = Model.Id }, new { @class = "btn btn-warning" })
 
 
