@@ -48,7 +48,10 @@
       <HintPath>..\packages\Effort.EF6.1.3.3\lib\net45\Effort.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -56,8 +59,11 @@
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework.Testing, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFrameworkTesting.1.2.1\lib\net45\EntityFramework.Testing.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Testing.Moq, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFrameworkTesting.Moq.1.2.1\lib\net45\EntityFramework.Testing.Moq.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -87,6 +93,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookstoreApp.DataTests\RepositoryTests\All_Should.cs" />
     <Compile Include="BookstoreApp.DataTests\UnitOfWork\Constructor_Should.cs" />
     <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\BookServiceTests\Constructor_Should.cs" />
     <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\BookServiceTests\GetAllBooks_Should.cs" />
@@ -98,12 +105,16 @@
     <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\OrderServiceTests\GetUserOrders_Should.cs" />
     <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\ShoppingCartServiceTests\AddBookToShoppingCart_Should.cs" />
     <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\ShoppingCartServiceTests\Constructor_Should.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\ShoppingCartServiceTests\RemoveBookFromShoppingCart_Should.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\ShoppingCartServiceTests\GetCartTotalPrice_Should.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\ShoppingCartServiceTests\PlaceOrderFromShoppingCart.cs" />
+    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\ShoppingCartServiceTests\ShowUserShoppingCart.cs" />
     <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\WishlistTests\Constructor_Should.cs" />
     <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\WishlistTests\AddBookToWishlist_Should.cs" />
     <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\WishlistTests\DeleteBookFromWishlist_Should.cs" />
     <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\WishlistTests\GetUserWishlistBooks_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BookstoreApp.DataTests\RepositoryTests\GenericRepository_Should.cs" />
+    <Compile Include="BookstoreApp.DataTests\RepositoryTests\Constructor_Should.cs" />
     <Compile Include="BookstoreApp.DataTests\RepositoryTests\GetById_Should.cs" />
     <Compile Include="BookstoreApp.DataTests\RepositoryTests\Add_Should.cs" />
     <Compile Include="BookstoreApp.DataTests\RepositoryTests\Delete_Should.cs" />

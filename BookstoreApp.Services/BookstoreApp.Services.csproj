@@ -93,8 +93,15 @@
     <Compile Include="Providers\Contracts\IPDFExporter.cs" />
     <Compile Include="Providers\PDFExporter.cs" />
     <Compile Include="Validation\AuthorValidator.cs" />
+    <Compile Include="Validation\BookImageValidator.cs" />
     <Compile Include="Validation\BookValidator.cs" />
+    <Compile Include="Validation\CategoryValidator.cs" />
+    <Compile Include="Validation\OrderStatusValidator.cs" />
+    <Compile Include="Validation\OrderValidator.cs" />
+    <Compile Include="Validation\ShoppingCartStatusValidator.cs" />
+    <Compile Include="Validation\ShoppingCartValidator.cs" />
     <Compile Include="Validation\UserValidator.cs" />
+    <Compile Include="Validation\WishlistValidator.cs" />
     <Compile Include="ViewModels\AuthorViewModel.cs" />
     <Compile Include="ViewModels\BookImageViewModel.cs" />
     <Compile Include="ViewModels\BookViewModel.cs" />
