@@ -18,11 +18,11 @@ namespace BookstoreApp.Tests.BookstoreApp.DataTests.RepositoryTests
         {
             var contextMock = new BookstoreContext(Effort.DbConnectionFactory.CreateTransient());
 
-            var countryRepository = new GenericRepository<Country>(contextMock);
+            var countryRepository = new GenericRepository<Author>(contextMock);
             
-            var country = new Country(){CountryName = "Cambodia"};
+            var author = new Author(){AuthorName = "Cambodia"};
 
-            contextMock.Countries.Add(country);
+            contextMock.Authors.Add(author);
 
             contextMock.SaveChanges();
 

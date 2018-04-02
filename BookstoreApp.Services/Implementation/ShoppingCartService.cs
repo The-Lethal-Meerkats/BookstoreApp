@@ -8,6 +8,7 @@ using BookstoreApp.Services.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using BookstoreApp.Models.Accounts;
+using Newtonsoft.Json;
 
 namespace BookstoreApp.Services.Implementation
 {
@@ -88,7 +89,7 @@ namespace BookstoreApp.Services.Implementation
 
             var shoppingCart = GetShoppingCart(userId);
 
-            string deliveryAddress = this.BuildAddress(shoppingCart.User.UserAddress);
+            //string deliveryAddress = this.BuildAddress(shoppingCart.User.UserAddress);
 
             var orderToPlace = new Order()
             {
@@ -195,18 +196,18 @@ namespace BookstoreApp.Services.Implementation
 
             return shoppingCart;
         }
-        private string BuildAddress(UserAddress userAddress)
-        {
-            var addressToBuild = new
-            {
-                Street = userAddress.Street,
-                City = userAddress.City.CityName,
-                Country = userAddress.City.Country.CountryName
-            };
+        //private string BuildAddress(UserAddress userAddress)
+        //{
+        //    var addressToBuild = new
+        //    {
+        //        Street = userAddress.Street,
+        //        City = userAddress.City.CityName,
+        //        Country = userAddress.City.Country.CountryName
+        //    };
 
-            string address = JsonConvert.SerializeObject(addressToBuild);
+        //    string address = JsonConvert.SerializeObject(addressToBuild);
 
-            return address;
-        }
+        //    return address;
+        //}
     }
 }

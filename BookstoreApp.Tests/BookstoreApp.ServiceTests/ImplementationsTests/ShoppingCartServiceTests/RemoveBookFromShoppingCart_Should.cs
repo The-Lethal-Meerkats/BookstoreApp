@@ -4,6 +4,7 @@ using System.Linq;
 using AutoMapper;
 using BookstoreApp.Data.Contracts;
 using BookstoreApp.Models;
+using BookstoreApp.Models.Accounts;
 using BookstoreApp.Services.Implementation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -46,7 +47,7 @@ namespace BookstoreApp.Tests.BookstoreApp.ServiceTests.ImplementationsTests.Shop
         {
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             var mapperStub = new Mock<IMapper>();
-            var fakeUser = new User() { Id = 1 };
+            var fakeUser = new BookstoreUser() { Id = 1 };
             var fakeBook = new Book();
             var fakeShoppingCart = new ShoppingCart() { UserId = 1 };
             var fakeShoppingCarts = new List<ShoppingCart>() { fakeShoppingCart }.AsQueryable();
@@ -67,7 +68,7 @@ namespace BookstoreApp.Tests.BookstoreApp.ServiceTests.ImplementationsTests.Shop
         {
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             var mapperStub = new Mock<IMapper>();
-            var fakeUser = new User() { Id = 1 };
+            var fakeUser = new BookstoreUser() { Id = 1 };
             var fakeBook = new Book();
             var fakeShoppingCart = new ShoppingCart() { UserId = 1 };
             var fakeShoppingCarts = new List<ShoppingCart>() { fakeShoppingCart }.AsQueryable();
@@ -87,7 +88,7 @@ namespace BookstoreApp.Tests.BookstoreApp.ServiceTests.ImplementationsTests.Shop
         {
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             var mapperStub = new Mock<IMapper>();
-            var fakeUser = new User() { Id = 1 };
+            var fakeUser = new BookstoreUser() { Id = 1 };
             var fakeBook = new Book();
             var fakeShoppingCart = new ShoppingCart() { UserId = 1 };
             var fakeShoppingCarts = new List<ShoppingCart>() { fakeShoppingCart }.AsQueryable();

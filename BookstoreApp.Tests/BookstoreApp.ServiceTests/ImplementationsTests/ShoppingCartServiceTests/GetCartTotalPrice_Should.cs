@@ -5,6 +5,7 @@ using System.Linq;
 using AutoMapper;
 using BookstoreApp.Data.Contracts;
 using BookstoreApp.Models;
+using BookstoreApp.Models.Accounts;
 using BookstoreApp.Services.Implementation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -48,21 +49,19 @@ namespace BookstoreApp.Tests.BookstoreApp.ServiceTests.ImplementationsTests.Shop
                     Title = "Java Unleashed", Author = author1, CategoryId = 1, Price = 10}
             };
 
-            var country = new Country() { CountryName = "Bulgaria", Id = 1 };
-            var city = new City() { CityName = "Sofia", Country = country, CountryId = 1, Id = 1 };
-            var address = new UserAddress() { City = city, CityId = 1, Id = 1, Street = "street" };
+            
            
-            var user1 = new User()
+            var user1 = new BookstoreUser()
             {
                 FirstName = "Pesho",
                 LastName = "Petrov",
                 Id = 2,
-                Password = "secret",
+               
                 Email = "email",
                 PhoneNumber = "0888888",
-                UserAddress = address,
-                UserAddressId = 1,
-                Username = "Pesho"
+                
+            
+                
             };
             var shoppingCartStatus = new ShoppingCartStatus()
             {
@@ -74,7 +73,7 @@ namespace BookstoreApp.Tests.BookstoreApp.ServiceTests.ImplementationsTests.Shop
             {
                 Books = books,
                 Id = 1,
-                User = user1,
+                
                 UserId = 2,
                 ShoppingCartStatus = shoppingCartStatus,
                 ShoppingCartStatusId = shoppingCartStatus.Id

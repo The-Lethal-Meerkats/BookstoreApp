@@ -52,43 +52,43 @@ namespace BookstoreApp.Tests.RepositoryTests
         {
             var context = new BookstoreContext(Effort.DbConnectionFactory.CreateTransient());
 
-            var countryRepository = new GenericRepository<Country>(context);
+            var countryRepository = new GenericRepository<Author>(context);
 
-            var country = new Country() { CountryName = "gosho",Id =1 };
-            var country1 = new Country() { CountryName = "gosho1" };
+            var author = new Author() { AuthorName = "gosho",Id =1 };
+            var country1 = new Author() { AuthorName = "gosho1" };
 
-            context.Countries.Add(country);
+            context.Authors.Add(author);
             context.SaveChanges();
 
-            context.Countries.Add(country1);
+            context.Authors.Add(country1);
             context.SaveChanges();
 
             countryRepository.Delete(1);
             context.SaveChanges();
 
-            Assert.AreEqual(1,context.Countries.Count());
+            Assert.AreEqual(1,context.Authors.Count());
         }
         [TestMethod]
         public void DeletesEntity_When_InvokedWithCorrectValues()
         {
             var context = new BookstoreContext(Effort.DbConnectionFactory.CreateTransient());
 
-            var countryRepository = new GenericRepository<Country>(context);
+            var countryRepository = new GenericRepository<Author>(context);
 
-            var country = new Country() { CountryName = "gosho", Id = 1 };
-            var country1 = new Country() { CountryName = "gosho1" };
+            var author = new Author() { AuthorName = "gosho", Id = 1 };
+            var country1 = new Author() { AuthorName = "gosho1" };
 
-            context.Countries.Add(country);
+            context.Authors.Add(author);
             context.SaveChanges();
 
-            context.Countries.Add(country1);
+            context.Authors.Add(country1);
             context.SaveChanges();
 
-            countryRepository.Delete(country);
+            countryRepository.Delete(author);
             context.SaveChanges();
 
 
-            Assert.AreEqual(1, context.Countries.Count());
+            Assert.AreEqual(1, context.Authors.Count());
         }
     }
 }

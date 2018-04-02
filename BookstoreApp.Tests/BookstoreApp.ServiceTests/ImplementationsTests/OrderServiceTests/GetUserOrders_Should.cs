@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using BookstoreApp.Models.Accounts;
 
 namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
 {
@@ -41,26 +42,21 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                 CategoryId = 1
             };
 
-            var country = new Country() { CountryName = "Bulgaria", Id = 1 };
-            var city = new City() { CityName = "Sofia", Country = country, CountryId = 1, Id = 1 };
-            var address = new UserAddress() { City = city, CityId = 1, Id = 1, Street = "street" };
             var orderStatus = new OrderStatus() { Id = 1, OrderStatusDescription = "Status" };
             var books = new Collection<Book>()
             {
                 book1
             };
 
-            var user1 = new User()
+            var user1 = new BookstoreUser()
             {
                 FirstName = "Pesho",
                 LastName = "Petrov",
                 Id = 2,
-                Password = "secret",
+                
                 Email = "email",
                 PhoneNumber = "0888888",
-                UserAddress = address,
-                UserAddressId = 1,
-                Username = "Pesho"
+                
             };
 
             var orders = new List<Order>()
@@ -74,7 +70,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                     OrderStatus = orderStatus,
                     PhoneNumber = user1.PhoneNumber,
                     UserId = 1,
-                    User = user1,
                     OrderCompletedTime = null,
                     ReceivedOrderTime = null
                 },
@@ -87,7 +82,6 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
                     OrderStatus = orderStatus,
                     PhoneNumber = user1.PhoneNumber,
                     UserId = 1,
-                    User = user1,
                     OrderCompletedTime = null,
                     ReceivedOrderTime = null
                 }

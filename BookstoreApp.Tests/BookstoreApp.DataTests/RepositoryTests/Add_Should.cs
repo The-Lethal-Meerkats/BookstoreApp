@@ -28,19 +28,19 @@ namespace BookstoreApp.Tests.RepositoryTests
         {
             var context = new BookstoreContext(Effort.DbConnectionFactory.CreateTransient());
 
-            var countryRepository = new GenericRepository<Country>(context);
+            var countryRepository = new GenericRepository<Author>(context);
 
-            var country = new Country() { CountryName = "gosho", Id = 1 };
-            var country1 = new Country() { CountryName = "gosho1" };
+            var author = new Author() { AuthorName = "gosho", Id = 1 };
+            var country1 = new Author() { AuthorName = "gosho1" };
 
-            countryRepository.Add(country);
+            countryRepository.Add(author);
             context.SaveChanges();
             countryRepository.Add(country1);
             context.SaveChanges();
 
             var expectedResult = 2;
 
-            Assert.AreEqual(expectedResult, context.Countries.Count());
+            Assert.AreEqual(expectedResult, context.Authors.Count());
         }
     }
 }
