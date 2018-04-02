@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "SuccessDelete";
+}
+
+<br />
+<h2>Success!</h2>
+
+<br />
+<br />
+<div class="card text-white bg-success mb-3" style="max-width: 20rem;" align="center">
+    <div class="card-header">Success</div>
+    <div class="card-body">
+        <h4 class="card-title">Book deleted from your wishlist!</h4>
+        <p class="card-text"><a class="btn btn-default" href=@Url.Action("WishlistBookCollection", "Wishlist")>Go back to your Wishlist &raquo;</a></p>
+        <p class="card-text"><a class="btn btn-default" href=@Url.Action("WishlistBookCollection", "Wishlist")>Or go to your shopping cart &raquo;</a></p>
+    </div>
+</div>

@@ -9,7 +9,6 @@ using Microsoft.Owin.Security;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Filters;
 
 namespace BookstoreApp.API.DI
 {

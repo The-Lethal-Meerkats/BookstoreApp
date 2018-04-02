@@ -1,10 +1,9 @@
 ﻿using System.Web.Mvc;
 using BookstoreApp.Services.Contracts;
-using Microsoft.Owin.Security;
 
 namespace BookstoreApp.API.Controllers
 {
-    [Authorize]
+    // [Authorize]
     public class BookController : Controller
     {
         private IBookService bookService;

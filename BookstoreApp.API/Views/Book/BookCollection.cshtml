@@ -17,6 +17,8 @@
         <th>
             @Html.DisplayNameFor(model => model.Price)
         </th>
+        <th></th>
+        <th>Shopping Cart</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -30,8 +32,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.Price)
         </td>
+        <td>           
+            @Html.ActionLink("Details", "BookDetails", new {id = item.Id})
+        </td>
         <td>
-            @Html.ActionLink("Details", "BookDetails", new { id = item.Id })
+            @Html.ActionLink("Add", "AddBookToShoppingCart", "ShoppingCart", new { bookId = item.Id }, new { @class = "btn btn-info" })
         </td>
     </tr>
 }

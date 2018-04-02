@@ -82,10 +82,8 @@ namespace BookstoreApp.Services.Implementation
         {
             if (userId < 1)
             {
-                throw new ArgumentException("Invalid userId");
+                return null;
             }
-
-            var shoppingCart = GetShoppingCart(userId);
 
             var booksModel = shoppingCart.Books
                 .AsQueryable()

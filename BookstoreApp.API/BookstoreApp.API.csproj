@@ -66,6 +66,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
@@ -74,6 +77,12 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -198,6 +207,10 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Identity\BookstoreSignInManager.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -226,11 +239,10 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\meerkat_book.jpg" />
+    <Content Include="Images\payment-successful.png" />
+    <Content Include="Images\sad_face_red-329x319-329x319.png" />
     <Content Include="Scripts\bootstrap-old.js" />
     <Content Include="Scripts\bootstrap-old.min.js" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -263,14 +275,24 @@
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_RegisterPartial.cshtml" />
     <Content Include="Views\Book\BookDetails.cshtml" />
     <Content Include="Views\Book\BookCollection.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Wishlist\ErrorAdd.cshtml" />
+    <Content Include="Views\Wishlist\SuccessAdd.cshtml" />
+    <Content Include="Views\Wishlist\WishlistBookCollection.cshtml" />
+    <Content Include="Views\Wishlist\SuccessDelete.cshtml" />
+    <Content Include="Views\Wishlist\ErrorDelete.cshtml" />
+    <Content Include="Views\ShoppingCart\ShoppingCartBookCollection.cshtml" />
+    <Content Include="Views\ShoppingCart\SuccessAdd.cshtml" />
+    <Content Include="Views\ShoppingCart\SuccessDelete.cshtml" />
+    <Content Include="Views\ShoppingCart\ErrorAdd.cshtml" />
+    <Content Include="Views\ShoppingCart\ErrorDelete.cshtml" />
+    <Content Include="Views\Order\OrderSuccess.cshtml" />
+    <Content Include="Views\Order\OrderFail.cshtml" />
+    <Content Include="Views\Order\PersonalOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="App_GlobalResources\" />
     <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
@@ -310,7 +332,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62831</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
