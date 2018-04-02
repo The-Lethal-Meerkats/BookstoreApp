@@ -15,7 +15,8 @@ namespace BookstoreApp.Services.Providers
         {
             string date = ($"y{DateTime.Now.Year}m{DateTime.Now.Month}d{DateTime.Now.Day}" +
                            $"h{DateTime.Now.Hour}m{DateTime.Now.Minute}s{DateTime.Now.Second}.pdf");
-            string fileName = $"../../../PDFReports/OrderReport{date}";
+
+            string fileName = $"D:\\OrderReport{date}";
 
             FileStream fs = new FileStream(fileName, FileMode.Create);
             Document document = new Document(PageSize.A4, 25, 25, 30, 30);
