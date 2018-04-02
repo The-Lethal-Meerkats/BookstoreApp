@@ -74,6 +74,7 @@ namespace BookstoreApp.Services.Implementation
             {
                 Books = shoppingCart.Books,
                 DeliveryAddress = shoppingCart.User.UserAddress,
+                OrderCompletedTime = DateTime.Now,
                 OrderStatusId = 1,
                 PhoneNumber = shoppingCart.User.PhoneNumber,
                 UserId = userId
@@ -96,6 +97,7 @@ namespace BookstoreApp.Services.Implementation
             var ordersModel = this.unitOfWork.Orders
                 .All()
                 .Where(or => or.UserId == userId)
+                .OrderByDescending(o => o.Id)
                 .ProjectTo<OrderViewModel>()
                 .ToList();
 
