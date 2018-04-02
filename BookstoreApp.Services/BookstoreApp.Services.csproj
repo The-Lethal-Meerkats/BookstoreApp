@@ -42,6 +42,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -87,6 +90,8 @@
     <Compile Include="AutoMapper\Mapping\IMapFrom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Implementation\ShoppingCartService.cs" />
+    <Compile Include="Providers\Contracts\IPDFExporter.cs" />
+    <Compile Include="Providers\PDFExporter.cs" />
     <Compile Include="Validation\AuthorValidator.cs" />
     <Compile Include="Validation\BookImageValidator.cs" />
     <Compile Include="Validation\BookValidator.cs" />

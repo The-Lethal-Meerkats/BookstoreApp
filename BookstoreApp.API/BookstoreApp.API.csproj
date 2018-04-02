@@ -290,8 +290,10 @@
     <Content Include="Views\ShoppingCart\ErrorAdd.cshtml" />
     <Content Include="Views\ShoppingCart\ErrorDelete.cshtml" />
     <Content Include="Views\Order\OrderSuccess.cshtml" />
-    <Content Include="Views\Order\OrderFail.cshtml" />
+    <Content Include="Views\Order\OrderExportFail.cshtml" />
     <Content Include="Views\Order\PersonalOrders.cshtml" />
+    <Content Include="Views\Order\OrdersExport.cshtml" />
+    <Content Include="Views\Order\OrderExportSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Search\" />

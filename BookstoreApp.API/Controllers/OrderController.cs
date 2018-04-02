@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using BookstoreApp.Models.Accounts;
 using BookstoreApp.Services.Contracts;
+using BookstoreApp.Services.Providers.Contracts;
 
 namespace BookstoreApp.API.Controllers
 {
@@ -9,12 +10,15 @@ namespace BookstoreApp.API.Controllers
     {
         private IOrderService orderService;
         private IShoppingCartService shoppingCartService;
+        private IPDFExporter pdfExporter;
         private IBookstoreUserContext userContext;
 
-        public OrderController(IOrderService orderService, IShoppingCartService shoppingCartService, IBookstoreUserContext userContext)
+        public OrderController(IOrderService orderService, IShoppingCartService shoppingCartService, 
+            IPDFExporter pdfExporter, IBookstoreUserContext userContext)
         {
             this.orderService = orderService;
             this.shoppingCartService = shoppingCartService;
+            this.pdfExporter = pdfExporter;
             this.userContext = userContext;
         }
 
@@ -52,6 +56,24 @@ namespace BookstoreApp.API.Controllers
             catch (Exception)
             {
                 return View("OrderFail");
+            }
+        }
+
+        public ActionResult ExportOrders()
+        {
+            try
+            {
+                var userId = userContext.UserId;
+
+                var orders = this.orderService.GetUserOrders(userId);
+
+                this.pdfExporter.ExportOrders(orders);
+
+                return View("OrderExportSuccess");
+            }
+            catch (Exception)
+            {
+                return View("OrderExportFail");
             }
         }
     }
