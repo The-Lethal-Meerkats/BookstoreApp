@@ -33,6 +33,30 @@ namespace BookstoreApp.API.Controllers
             }
 
             return View(bookModel);
-        }     
+        }
+
+        public ActionResult BooksByTitleResult(string title)
+        {
+            var books = this.bookService.GetBooksByTitle(title);
+
+            if (books == null)
+            {
+                return HttpNotFound("No such book found in collection.");
+            }
+
+            return View(books);
+        }
+
+        public ActionResult BooksByAuthorResult(string title)
+        {
+            var books = this.bookService.GetBooksByAuthor(title);
+
+            if (books == null)
+            {
+                return HttpNotFound("No such auhtor found in collection.");
+            }
+
+            return View(books);
+        }
     }
 }

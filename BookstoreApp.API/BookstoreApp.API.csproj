@@ -292,6 +292,8 @@
     <Content Include="Views\Order\OrderSuccess.cshtml" />
     <Content Include="Views\Order\OrderFail.cshtml" />
     <Content Include="Views\Order\PersonalOrders.cshtml" />
+    <Content Include="Views\Book\BooksByTitleResult.cshtml" />
+    <Content Include="Views\Book\BooksByAuthorResult.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<BookstoreApp.Services.ViewModels.BookViewModel>
+
 @{
     ViewBag.Title = "Search";
 }
@@ -9,5 +10,5 @@
     <input class="form-control mr-sm-2" type="text" placeholder="Search">
 </form>
 <br />
-<button type="button" class="btn btn-warning">Book Title</button>
-<button type="button" class="btn btn-warning">Author</button>
+@Html.ActionLink("Book Title", "BooksByTitleResult", "Book", new { title = InputType.Text }, new { @class = "btn btn-warning" })
+@Html.ActionLink("Book Author", "BooksByAuthorResult", "Book", new { title = InputType.Text }, new { @class = "btn btn-warning" })
