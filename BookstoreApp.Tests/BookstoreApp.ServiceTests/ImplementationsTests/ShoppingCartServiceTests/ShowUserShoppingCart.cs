@@ -31,7 +31,9 @@ namespace BookstoreApp.Tests.BookstoreApp.ServiceTests.ImplementationsTests.Shop
 
             var invalidUserId = -1;
 
-            Assert.ThrowsException<ArgumentException>(() => shoppingCartService.ShowUserShoppingCart(invalidUserId));
+            var result = shoppingCartService.ShowUserShoppingCart(invalidUserId);
+
+            Assert.IsNull(result);
         }
         [TestMethod]
         public void InvokesGetShoppingCartOnce_When_ShowUserShoppingCartIsCalledWithCorrectParams()

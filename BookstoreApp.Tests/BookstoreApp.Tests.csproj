@@ -107,7 +107,6 @@
     <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\ShoppingCartServiceTests\Constructor_Should.cs" />
     <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\ShoppingCartServiceTests\RemoveBookFromShoppingCart_Should.cs" />
     <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\ShoppingCartServiceTests\GetCartTotalPrice_Should.cs" />
-    <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\ShoppingCartServiceTests\PlaceOrderFromShoppingCart.cs" />
     <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\ShoppingCartServiceTests\ShowUserShoppingCart.cs" />
     <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\WishlistTests\Constructor_Should.cs" />
     <Compile Include="BookstoreApp.ServiceTests\ImplementationsTests\WishlistTests\AddBookToWishlist_Should.cs" />
