@@ -30,12 +30,12 @@ namespace BookstoreApp.Tests.RepositoryTests
 
             var countryRepository = new GenericRepository<Author>(context);
 
-            var author = new Author() { AuthorName = "gosho", Id = 1 };
-            var country1 = new Author() { AuthorName = "gosho1" };
+            var author = new Author() { AuthorName = "gosho" };
+            var author1 = new Author() { AuthorName = "gosho1" };
 
             countryRepository.Add(author);
             context.SaveChanges();
-            countryRepository.Add(country1);
+            countryRepository.Add(author1);
             context.SaveChanges();
 
             var expectedResult = 2;

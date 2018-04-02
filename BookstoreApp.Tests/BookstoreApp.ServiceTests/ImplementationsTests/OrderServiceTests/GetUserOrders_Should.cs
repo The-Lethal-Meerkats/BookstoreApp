@@ -32,58 +32,24 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             var repoMock = new Mock<IRepository<Order>>();
 
-            var author1 = new Author { Id = 1, AuthorName = "Author1" };
-            var book1 = new Book()
-            {
-                Id = 1,
-                Isbn = "123",
-                Title = "C# Unleashed",
-                Author = author1,
-                CategoryId = 1
-            };
-
-            var orderStatus = new OrderStatus() { Id = 1, OrderStatusDescription = "Status" };
-            var books = new Collection<Book>()
-            {
-                book1
-            };
-
             var user1 = new BookstoreUser()
             {
-                FirstName = "Pesho",
-                LastName = "Petrov",
                 Id = 2,
-                
-                Email = "email",
-                PhoneNumber = "0888888",
-                
+
             };
 
             var orders = new List<Order>()
             {
                 new Order
                 {
-                    Books = books,
-                    DeliveryAddress = "address",
-                    Id = 100,
-                    OrderStatusId = 1,
-                    OrderStatus = orderStatus,
-                    PhoneNumber = user1.PhoneNumber,
-                    UserId = 1,
-                    OrderCompletedTime = null,
-                    ReceivedOrderTime = null
+                    UserId = 2,
+                    User = user1
+                  
                 },
                 new Order
                 {
-                    Books = books,
-                    DeliveryAddress = "address",
-                    Id = 100,
-                    OrderStatusId = 1,
-                    OrderStatus = orderStatus,
-                    PhoneNumber = user1.PhoneNumber,
-                    UserId = 1,
-                    OrderCompletedTime = null,
-                    ReceivedOrderTime = null
+                    UserId = 2,
+                    User = user1
                 }
             };
 
@@ -95,7 +61,7 @@ namespace BookstoreApp.Tests.ImplementationsTests.OrderServiceTests
 
             var orderService = new OrderService(unitOfWorkMock.Object, mapperMock.Object);
 
-            var sut = orderService.GetUserOrders(1);
+            var sut = orderService.GetUserOrders(2);
 
             Assert.AreEqual(2, sut.Count);
         }
