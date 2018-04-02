@@ -32,7 +32,6 @@ namespace BookstoreApp.Services.Providers
                 document.Add(new Paragraph("There are no completed orders"));
 
             }
-
             else
             {
                 foreach (var order in orders)
@@ -49,11 +48,11 @@ namespace BookstoreApp.Services.Providers
                     document.Add(new Paragraph($"Total Price: {totalPrice} $"));
                     document.Add(new Paragraph(Environment.NewLine));
                 }
-
-                document.Close();
-                writer.Close();
-                fs.Close();
             }
+
+            document.Close();
+            writer.Close();
+            fs.Close();
         }
     }
 }
