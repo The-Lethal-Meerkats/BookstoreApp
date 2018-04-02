@@ -1,24 +1,21 @@
 ﻿@model IEnumerable<BookstoreApp.Services.ViewModels.OrderViewModel>
-
 @{
     ViewBag.Title = "PersonalOrders";
 }
-
 <h2>Your Personal Orders</h2>
-
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Id)
+            ID
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            First Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            Last Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Username)
+            Username
         </th>
         <th>
             @Html.DisplayNameFor(model => model.OrderCompletedTime)
@@ -50,7 +47,6 @@
             </td>
         </tr>
     }
-
-    <hr />
-    @Html.ActionLink("Export All Orders", "ExportOrders", "Order", null, new { @class = "btn btn-success" })
 </table>
+<hr />
+@Html.ActionLink("Export All Orders", "ExportOrders", "Order", null, new { @class = "btn btn-success" })
