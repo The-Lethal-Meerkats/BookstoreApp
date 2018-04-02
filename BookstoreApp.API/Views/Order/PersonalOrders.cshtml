@@ -27,7 +27,6 @@
             @Html.DisplayNameFor(model => model.ReceivedOrderTime)
         </th>
     </tr>
-
     @foreach (var order in Model)
     {
         <tr>
@@ -51,4 +50,7 @@
             </td>
         </tr>
     }
+
+    <hr />
+    @Html.ActionLink("Export All Orders", "ExportOrders", "Order", null, new { @class = "btn btn-success" })
 </table>
