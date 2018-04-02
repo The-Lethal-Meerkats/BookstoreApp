@@ -40,7 +40,7 @@ namespace BookstoreApp.API.Controllers
             }
             catch (Exception)
             {
-                return View("OrderFail");
+                return View("OrderExportFail");
             }
         }
 
@@ -56,7 +56,7 @@ namespace BookstoreApp.API.Controllers
             }
             catch (Exception)
             {
-                return View("OrderFail");
+                return View("OrderExportFail");
             }
         }
 
