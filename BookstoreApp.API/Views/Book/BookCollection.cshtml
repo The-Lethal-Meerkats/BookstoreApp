@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BookstoreApp.Services.ViewModels.BookViewModel>
+
+@{
+    ViewBag.Title = "Book Collection";
+}
+
+<h2>Book Collection</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "BookDetails", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

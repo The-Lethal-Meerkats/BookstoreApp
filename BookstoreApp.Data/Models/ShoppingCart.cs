@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BookstoreApp.Models.Accounts;
+using System.Collections.Generic;
 
 namespace BookstoreApp.Models
 {
@@ -13,7 +14,7 @@ namespace BookstoreApp.Models
 
 
         public int UserId { get; set; }
-        public virtual User User { get; set; }
+        public virtual BookstoreUser User { get; set; }
 
         public int ShoppingCartStatusId { get; set; }
         public virtual ShoppingCartStatus ShoppingCartStatus { get; set; }

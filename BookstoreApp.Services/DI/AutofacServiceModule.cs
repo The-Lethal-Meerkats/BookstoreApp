@@ -11,7 +11,7 @@ namespace BookstoreApp.Services.DI
             builder.RegisterAssemblyTypes(typeof(IBookService).Assembly)
                 .Where(t => t.Name.EndsWith("Service"))
                 .AsImplementedInterfaces()
-                .InstancePerDependency();
+                .InstancePerRequest();
 
             builder.Register(m => Mapper.Instance);
 

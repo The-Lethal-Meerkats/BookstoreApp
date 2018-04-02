@@ -9,12 +9,16 @@ namespace BookstoreApp.Data.DI
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<BookstoreContext>().As<IBookstoreContext>().InstancePerDependency();
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerDependency();
+            builder.RegisterType<BookstoreContext>()
+                .As<IBookstoreContext>()
+                .InstancePerRequest();
+            builder.RegisterType<UnitOfWork>()
+                .As<IUnitOfWork>()
+                .InstancePerRequest();
 
             builder.RegisterGeneric(typeof(GenericRepository<>))
                 .As(typeof(IRepository<>))
-                .InstancePerDependency();
+                .InstancePerRequest();
         }
     }
 }

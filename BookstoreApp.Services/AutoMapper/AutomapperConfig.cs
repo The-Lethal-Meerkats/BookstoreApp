@@ -9,26 +9,18 @@ namespace BookstoreApp.Services.AutoMapper
 {
     public static class AutomapperConfig
     {
-        // Not automatic automapper
-        //public static void Initialize()
-        //{
-        //    Mapper.Initialize(cfg =>
-        //    {
-        //        cfg.CreateMap<BookModel, Book>().ReverseMap();
-        //    });
-        //}
         public static void Initialize()
         {
             var types = AppDomain.CurrentDomain
                 .GetAssemblies()
                 .Where(x => !x.IsDynamic)
                 .SelectMany(x => x.GetReferencedAssemblies())
+                .Where(x => x.Name.StartsWith("Bookstore"))
                 .Select(x => Assembly.Load(x))
                 .SelectMany(x => x.GetTypes());
             
             Mapper.Initialize(cfg => Load(types, cfg));
         }
-
 
         private static void Load(IEnumerable<Type> types, IMapperConfigurationExpression cfg)
         {

@@ -2,6 +2,7 @@ namespace BookstoreApp.Migrations
 {
     using BookstoreApp.Data;
     using BookstoreApp.Models;
+    using BookstoreApp.Models.Accounts;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -51,7 +52,7 @@ namespace BookstoreApp.Migrations
 
         private void SeedBooks(BookstoreContext context)
         {
-            using (StreamReader reader = new StreamReader(@"D:\Telerik Academy\TeamProjects\BookstoreApp\bookstore.csv"))
+            using (StreamReader reader = new StreamReader(@"C:\Users\Nikolay\Desktop\Teamwork\BookstoreApp\BookstoreApp\bookstore.csv"))
             {
                 var client = new HttpClient();
                 var Random = new Random();
@@ -109,54 +110,38 @@ namespace BookstoreApp.Migrations
         private void SeedUsers(BookstoreContext context)
         {
             #region Users
-            var country = new Country()
-            {
-                CountryName = "Bulgaria"
-            };
 
-            var city = new City()
-            {
-                CityName = "Sofia",
-                Country = country
-            };
-
-            var userAddress = new UserAddress()
-            {
-                City = city,
-                Street = "asdasd"
-            };
-
-            var userSofi = new User()
+            var userSofi = new BookstoreUser()
             {
                 FirstName = "Sofia",
                 LastName = "Kiryakova",
                 Email = "sf@kiryakova.me",
                 PhoneNumber = "123456",
-                Password = "NeSiPomnqParolata",
-                UserAddress = userAddress,
-                Username = "sofilofi"
+                PasswordHash = "NeSiPomnqParolata",
+                UserAddress = "asd",
+                UserName = "sofilofi"
             };
 
-            var userMe = new User()
+            var userMe = new BookstoreUser()
             {
                 FirstName = "Ivan",
                 LastName = "Gargov",
                 Email = "me@me",
                 PhoneNumber = "123456",
-                Password = "112312",
-                UserAddress = userAddress,
-                Username = "vanchopancho"
+                PasswordHash = "112312",
+                UserAddress = "asd",
+                UserName = "vanchopancho"
             };
 
-            var userNick = new User()
+            var userNick = new BookstoreUser()
             {
                 FirstName = "Nikolay",
                 LastName = "Nikolov",
                 Email = "you@you",
                 PhoneNumber = "123456",
-                Password = "345dsfswe425",
-                UserAddress = userAddress,
-                Username = "nickpick"
+                PasswordHash = "345dsfswe425",
+                UserAddress = "asd",
+                UserName = "nickpick"
             };
             #endregion
 
@@ -175,7 +160,7 @@ namespace BookstoreApp.Migrations
             };
 
             var rand = new Random();
-            var entries = context.ChangeTracker.Entries<User>();
+            var entries = context.ChangeTracker.Entries<BookstoreUser>();
 
             foreach (var entry in entries)
             {

@@ -5,9 +5,9 @@ using BookstoreApp.Data.Contracts;
 using BookstoreApp.Models;
 using BookstoreApp.Services.Contracts;
 using BookstoreApp.Services.ViewModels;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using BookstoreApp.Models.Accounts;
 
 namespace BookstoreApp.Services.Implementation
 {
@@ -93,7 +93,7 @@ namespace BookstoreApp.Services.Implementation
             var orderToPlace = new Order()
             {
                 Books = shoppingCart.Books,
-                DeliveryAddress = deliveryAddress,
+                DeliveryAddress = shoppingCart.User.UserAddress,
                 OrderStatusId = 1,
                 PhoneNumber = shoppingCart.User.PhoneNumber,
                 UserId = userId
@@ -159,7 +159,7 @@ namespace BookstoreApp.Services.Implementation
             return book;
         }
 
-        private User GetUser(int userId)
+        private BookstoreUser GetUser(int userId)
         {
             if (userId < 1)
             {
